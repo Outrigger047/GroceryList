@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace GroceryList.Main
 {
     public class GroceryItemRepository
     {
+        private readonly string FILE_PATH = 
+            Path.Combine(Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), 
+                "repo.txt");
+
         private readonly FileInfo _file;
 
         public List<GroceryItem> Items { get; private set; }
 
-        public GroceryItemRepository(string path)
+        public GroceryItemRepository()
         {
-            _file = new FileInfo(Path.GetFullPath(path));
+            _file = new FileInfo(FILE_PATH);
             LoadRepository();
         }
 
