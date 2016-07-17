@@ -8,7 +8,7 @@ namespace GroceryList.Main
     {
         private readonly FileInfo _file;
 
-        public Dictionary<GroceryItem, int> Items { get; private set; }
+        public List<GroceryItem> Items { get; private set; }
 
         public GroceryItemRepository(string path)
         {
