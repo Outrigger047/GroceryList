@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GroceryList.Main
 {
-    public partial class Form1 : Form
+    public partial class NewListWindow : Form
     {
-        public Form1()
+        public NewListWindow()
         {
             InitializeComponent();
         }
