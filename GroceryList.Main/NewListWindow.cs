@@ -21,11 +21,15 @@ namespace GroceryList.Main
             Repo = new GroceryItemRepository();
 
             InitializeComponent();
+            UiLoadRefreshRepository();
         }
 
         private void UiLoadRefreshRepository()
         {
-
+            foreach (var item in Repo.Items)
+            {
+                this.RepositoryListBox.Items.Add(BuildUiTableRowFromRepo(item));
+            }
         }
 
         private string BuildUiTableRowFromRepo(GroceryItem repoItem)
@@ -37,7 +41,7 @@ namespace GroceryList.Main
             foreach (var price in repoItem.Prices)
             {
                 sb.Append(price.Store + ": ");
-                sb.Append("$" + Math.Round(Convert.ToDecimal(price.Price / 100), 2) + "    ");
+                sb.Append("$" + Math.Round(Convert.ToDecimal(price.Price) / 100, 2) + "    ");
             }
 
             return sb.ToString();
