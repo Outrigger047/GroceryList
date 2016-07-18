@@ -18,15 +18,20 @@ namespace GroceryList.Main
         public GroceryItemRepository()
         {
             _file = new FileInfo(FILE_PATH);
-            LoadRepository();
+            Items = new List<GroceryItem>();
+
+            LoadRepositoryFromDisk();
         }
 
-        private bool LoadRepository()
+        private void LoadRepositoryFromDisk()
         {
-            using (StreamReader reader = File.OpenText(_file.FullName))
+            bool theOldCollegeTry = true;
+            while (theOldCollegeTry)
             {
                 try
                 {
+                    StreamReader reader = new StreamReader(_file.FullName);
+
                     while (!reader.EndOfStream)
                     {
                         string[] currentLine = reader.ReadLine().Split('\t');
@@ -36,13 +41,14 @@ namespace GroceryList.Main
                             ParseStoreName(currentLine[2])));
                     }
 
-                    return true;
+                    theOldCollegeTry = false;
                 }
-                catch (Exception e)
+                catch (FileNotFoundException)
                 {
-                    return false;
-                    throw;
-                }
+                    FileStream fs = File.Create(_file.FullName);
+                    fs.Close();
+                    // Give it the old college try!
+                } 
             }
         }
 

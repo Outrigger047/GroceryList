@@ -6,7 +6,14 @@ namespace GroceryList.Main
     {
         public static int ParseMoneysFromFile(string moneysFromFile)
         {
-            return Convert.ToInt32(Math.Round(Convert.ToDouble(moneysFromFile), 2) * 100);
+            if (moneysFromFile == "")
+            {
+                return -1;
+            }
+            else
+            {
+                return Convert.ToInt32(Math.Round(Convert.ToDouble(moneysFromFile), 2) * 100);
+            }
         }
     }
 }

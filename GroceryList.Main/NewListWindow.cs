@@ -14,6 +14,8 @@ namespace GroceryList.Main
     {
         public GroceryItemRepository Repo { get; private set; }
 
+        //private BackgroundWorker RepoUpdater;
+
         public NewListWindow()
         {
             Repo = new GroceryItemRepository();
@@ -21,7 +23,7 @@ namespace GroceryList.Main
             InitializeComponent();
         }
 
-        private void LoadRefreshRepository()
+        private void UiLoadRefreshRepository()
         {
 
         }
