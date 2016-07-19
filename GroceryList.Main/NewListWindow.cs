@@ -28,7 +28,7 @@ namespace GroceryList.Main
         {
             foreach (var item in Repo.Items)
             {
-                this.RepositoryListBox.Items.Add(BuildUiTableRowFromRepo(item));
+                RepositoryListBox.Items.Add(BuildUiTableRowFromRepo(item));
             }
         }
 
@@ -45,6 +45,18 @@ namespace GroceryList.Main
             }
 
             return sb.ToString();
+        }
+
+        private void RepositoryListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (RepositoryListBox.SelectedIndices != null)
+            {
+                AddToListButton.Enabled = true;
+            }
+            else
+            {
+                AddToListButton.Enabled = false;
+            }
         }
     }
 }
