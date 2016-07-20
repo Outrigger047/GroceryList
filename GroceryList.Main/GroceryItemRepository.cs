@@ -13,14 +13,27 @@ namespace GroceryList.Main
 
         private readonly FileInfo _file;
 
-        public List<GroceryItem> Items { get; private set; }
+        public List<GroceryRepoItem> Items { get; private set; }
 
         public GroceryItemRepository()
         {
             _file = new FileInfo(FILE_PATH);
-            Items = new List<GroceryItem>();
+            Items = new List<GroceryRepoItem>();
 
             LoadRepositoryFromDisk();
+        }
+
+        public GroceryItem GetItemFromString(string itemToFind)
+        {
+            foreach (var item in Items)
+            {
+                if (item.Name == itemToFind)
+                {
+                    return item;
+                }
+            }
+
+            return null;
         }
 
         private void LoadRepositoryFromDisk()
@@ -36,7 +49,7 @@ namespace GroceryList.Main
                     {
                         string[] currentLine = reader.ReadLine().Split('\t');
 
-                        Items.Add(new GroceryItem(currentLine[0],
+                        Items.Add(new GroceryRepoItem(currentLine[0],
                             MoneyShit.ParseMoneysFromFile(currentLine[1]),
                             ParseStoreName(currentLine[2])));
                     }

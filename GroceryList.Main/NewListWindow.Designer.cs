@@ -93,7 +93,6 @@
             this.RepositoryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.RepositoryListBox.Size = new System.Drawing.Size(413, 381);
             this.RepositoryListBox.TabIndex = 0;
-            this.RepositoryListBox.SelectedIndexChanged += new System.EventHandler(this.RepositoryListBox_SelectedIndexChanged);
             // 
             // ListGroupBox
             // 

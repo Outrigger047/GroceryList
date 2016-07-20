@@ -12,51 +12,25 @@ namespace GroceryList.Main
 {
     public partial class NewListWindow : Form
     {
-        public GroceryItemRepository Repo { get; private set; }
-
-        //private BackgroundWorker RepoUpdater;
+        public GroceryItemRepository AvailableItemsRepo { get; private set; }
+        public Dictionary<GroceryItem, int> ListItemsRepo { get; private set; }
 
         public NewListWindow()
         {
-            Repo = new GroceryItemRepository();
+            AvailableItemsRepo = new GroceryItemRepository();
+            ListItemsRepo = new Dictionary<GroceryItem, int>();
 
             InitializeComponent();
-            UiLoadRefreshRepository();
         }
 
-        private void UiLoadRefreshRepository()
+        private void MoveAvailableToList(GroceryItem itemToMove)
         {
-            foreach (var item in Repo.Items)
-            {
-                RepositoryListBox.Items.Add(BuildUiTableRowFromRepo(item));
-            }
+
         }
 
-        private string BuildUiTableRowFromRepo(GroceryItem repoItem)
+        private void MoveListToAvailable(GroceryItem itemToMove)
         {
-            StringBuilder sb = new StringBuilder();
 
-            sb.Append(repoItem.Name + "   ");
-
-            foreach (var price in repoItem.Prices)
-            {
-                sb.Append(price.Store + ": ");
-                sb.Append("$" + Math.Round(Convert.ToDecimal(price.Price) / 100, 2) + "    ");
-            }
-
-            return sb.ToString();
-        }
-
-        private void RepositoryListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (RepositoryListBox.SelectedIndices != null)
-            {
-                AddToListButton.Enabled = true;
-            }
-            else
-            {
-                AddToListButton.Enabled = false;
-            }
         }
     }
 }

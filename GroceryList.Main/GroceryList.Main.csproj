@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="GroceryRepoItem.cs" />
     <Compile Include="NewListWindow.cs">
       <SubType>Form</SubType>
     </Compile>
