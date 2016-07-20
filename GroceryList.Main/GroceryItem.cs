@@ -43,7 +43,7 @@ namespace GroceryList.Main
                         runningPrices.Append("   ");
                         runningPrices.Append(p.Store);
                         runningPrices.Append(": $");
-                        runningPrices.Append((decimal)p.Price / 100);
+                        runningPrices.Append(System.Math.Round((decimal)p.Price / 100, 2));
                     } 
                 }
 

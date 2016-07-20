@@ -7,9 +7,10 @@ namespace GroceryList.Main
 {
     public class GroceryItemRepository
     {
-        private readonly string FILE_PATH = 
+        private readonly string DISK_REPO_FILE_PATH = 
             Path.Combine(Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), 
-                "repo.txt");
+                @"\Assets\repo.txt");
+        private readonly string DISK_REPO_VALID_HEADER_ROW = "ITEM\tCATEGORY\tHANNAFORD_PRICE\tSHAWS_PRICE\tSAMS_PRICE";
 
         private readonly FileInfo _file;
 
@@ -17,7 +18,7 @@ namespace GroceryList.Main
 
         public GroceryItemRepository()
         {
-            _file = new FileInfo(FILE_PATH);
+            _file = new FileInfo(DISK_REPO_FILE_PATH);
             Items = new List<GroceryRepoItem>();
 
             LoadRepositoryFromDisk();
@@ -49,9 +50,16 @@ namespace GroceryList.Main
                     {
                         string[] currentLine = reader.ReadLine().Split('\t');
 
-                        Items.Add(new GroceryRepoItem(currentLine[0],
-                            MoneyShit.ParseMoneysFromFile(currentLine[1]),
-                            ParseStoreName(currentLine[2])));
+                        if (currentLine[1] == "" && currentLine[2] == "")
+                        {
+                            Items.Add(new GroceryRepoItem(currentLine[0]));
+                        }
+                        else
+                        {
+                            Items.Add(new GroceryRepoItem(currentLine[0],
+                                MoneyShit.ParseMoneysFromFile(currentLine[1]),
+                                ParseStoreName(currentLine[2])));
+                        }
                     }
 
                     theOldCollegeTry = false;
@@ -63,6 +71,44 @@ namespace GroceryList.Main
                     // Give it the old college try!
                 } 
             }
+        }
+
+        private void LoadRepositoryFromDiskNew()
+        {
+            bool tryAgain;
+
+            do
+            {
+                tryAgain = false;
+
+                try
+                {
+                    StreamReader reader = new StreamReader(_file.FullName);
+
+                    while (!reader.EndOfStream)
+                    {
+                        string[] currentLine = reader.ReadLine().Split('\t');
+
+                        if (currentLine[1] == "" && currentLine[2] == "")
+                        {
+                            Items.Add(new GroceryRepoItem(currentLine[0]));
+                        }
+                        else
+                        {
+                            Items.Add(new GroceryRepoItem(currentLine[0],
+                                MoneyShit.ParseMoneysFromFile(currentLine[1]),
+                                ParseStoreName(currentLine[2])));
+                        }
+                    }
+                }
+                catch (FileNotFoundException)
+                {
+                    tryAgain = true;
+
+                    FileStream fs = File.Create(_file.FullName);
+                    fs.Close();
+                }
+            } while (tryAgain);
         }
 
         private void WriteRepositoryToDisk()
