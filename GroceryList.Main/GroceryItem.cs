@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace GroceryList.Main
 {
@@ -26,6 +27,27 @@ namespace GroceryList.Main
             if (IsNewPriceUnique(priceToAdd))
             {
                 Prices.Add(new StorePrice(storeIn, priceIn)); 
+            }
+        }
+
+        public string ListBoxRowText
+        {
+            get
+            {
+                System.Text.StringBuilder runningPrices = new System.Text.StringBuilder();
+
+                if (Prices.Any())
+                {
+                    foreach (var p in Prices)
+                    {
+                        runningPrices.Append("   ");
+                        runningPrices.Append(p.Store);
+                        runningPrices.Append(": $");
+                        runningPrices.Append((decimal)p.Price / 100);
+                    } 
+                }
+
+                return Name + runningPrices.ToString();
             }
         }
 
