@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewListWindow));
             this.RepositoryGroupBox = new System.Windows.Forms.GroupBox();
             this.RepoEditItemButton = new System.Windows.Forms.Button();
             this.RepoRemoveItemButton = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.ListListBox = new System.Windows.Forms.ListBox();
             this.AddToListButton = new System.Windows.Forms.Button();
             this.RemoveFromListButton = new System.Windows.Forms.Button();
+            this.InformationGroupBox = new System.Windows.Forms.GroupBox();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -60,29 +62,31 @@
             // 
             // RepoEditItemButton
             // 
-            this.RepoEditItemButton.Location = new System.Drawing.Point(104, 408);
+            this.RepoEditItemButton.Enabled = false;
+            this.RepoEditItemButton.Location = new System.Drawing.Point(7, 408);
             this.RepoEditItemButton.Name = "RepoEditItemButton";
-            this.RepoEditItemButton.Size = new System.Drawing.Size(91, 23);
+            this.RepoEditItemButton.Size = new System.Drawing.Size(118, 23);
             this.RepoEditItemButton.TabIndex = 3;
-            this.RepoEditItemButton.Text = "Edit Item";
+            this.RepoEditItemButton.Text = "Edit Selected Item";
             this.RepoEditItemButton.UseVisualStyleBackColor = true;
             // 
             // RepoRemoveItemButton
             // 
-            this.RepoRemoveItemButton.Location = new System.Drawing.Point(201, 408);
+            this.RepoRemoveItemButton.Enabled = false;
+            this.RepoRemoveItemButton.Location = new System.Drawing.Point(131, 408);
             this.RepoRemoveItemButton.Name = "RepoRemoveItemButton";
-            this.RepoRemoveItemButton.Size = new System.Drawing.Size(91, 23);
+            this.RepoRemoveItemButton.Size = new System.Drawing.Size(118, 23);
             this.RepoRemoveItemButton.TabIndex = 2;
             this.RepoRemoveItemButton.Text = "Remove Item";
             this.RepoRemoveItemButton.UseVisualStyleBackColor = true;
             // 
             // RepoAddItemButton
             // 
-            this.RepoAddItemButton.Location = new System.Drawing.Point(7, 408);
+            this.RepoAddItemButton.Location = new System.Drawing.Point(255, 408);
             this.RepoAddItemButton.Name = "RepoAddItemButton";
             this.RepoAddItemButton.Size = new System.Drawing.Size(91, 23);
             this.RepoAddItemButton.TabIndex = 1;
-            this.RepoAddItemButton.Text = "Add Item";
+            this.RepoAddItemButton.Text = "Add Item...";
             this.RepoAddItemButton.UseVisualStyleBackColor = true;
             // 
             // RepositoryListBox
@@ -110,6 +114,7 @@
             // 
             // ListSaveListAsButton
             // 
+            this.ListSaveListAsButton.Enabled = false;
             this.ListSaveListAsButton.Location = new System.Drawing.Point(298, 408);
             this.ListSaveListAsButton.Name = "ListSaveListAsButton";
             this.ListSaveListAsButton.Size = new System.Drawing.Size(91, 23);
@@ -119,6 +124,7 @@
             // 
             // ListSaveListButton
             // 
+            this.ListSaveListButton.Enabled = false;
             this.ListSaveListButton.Location = new System.Drawing.Point(201, 408);
             this.ListSaveListButton.Name = "ListSaveListButton";
             this.ListSaveListButton.Size = new System.Drawing.Size(91, 23);
@@ -137,6 +143,7 @@
             // 
             // ListNewListButton
             // 
+            this.ListNewListButton.Enabled = false;
             this.ListNewListButton.Location = new System.Drawing.Point(7, 408);
             this.ListNewListButton.Name = "ListNewListButton";
             this.ListNewListButton.Size = new System.Drawing.Size(91, 23);
@@ -173,16 +180,30 @@
             this.RemoveFromListButton.Text = "Remove From Grocery List";
             this.RemoveFromListButton.UseVisualStyleBackColor = true;
             // 
+            // InformationGroupBox
+            // 
+            this.InformationGroupBox.Location = new System.Drawing.Point(13, 482);
+            this.InformationGroupBox.Name = "InformationGroupBox";
+            this.InformationGroupBox.Size = new System.Drawing.Size(1014, 139);
+            this.InformationGroupBox.TabIndex = 4;
+            this.InformationGroupBox.TabStop = false;
+            this.InformationGroupBox.Text = "Information";
+            // 
             // NewListWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 591);
+            this.ClientSize = new System.Drawing.Size(1039, 633);
+            this.Controls.Add(this.InformationGroupBox);
             this.Controls.Add(this.RemoveFromListButton);
             this.Controls.Add(this.AddToListButton);
             this.Controls.Add(this.ListGroupBox);
             this.Controls.Add(this.RepositoryGroupBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "NewListWindow";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = " NewListWindow";
             this.RepositoryGroupBox.ResumeLayout(false);
             this.ListGroupBox.ResumeLayout(false);
@@ -205,6 +226,7 @@
         private System.Windows.Forms.Button ListSaveListButton;
         private System.Windows.Forms.Button ListOpenListButton;
         private System.Windows.Forms.Button ListNewListButton;
+        private System.Windows.Forms.GroupBox InformationGroupBox;
     }
 }
 

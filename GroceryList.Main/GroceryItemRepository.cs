@@ -65,6 +65,12 @@ namespace GroceryList.Main
             }
         }
 
+        private void WriteRepositoryToDisk()
+        {
+            // Gotta do this...
+            throw new NotImplementedException();
+        }
+
         private Enums.Stores ParseStoreName(string storeNameFromFile)
         {
             switch (storeNameFromFile)
