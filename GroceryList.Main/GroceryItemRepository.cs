@@ -18,7 +18,7 @@ namespace GroceryList.Main
         public GroceryItemRepository()
         {
             _file = new FileInfo(DISK_REPO_FILE_PATH);
-            Items = DiskRepoHelpers.LoadRepositoryFromDiskNew(_file);
+            Items = DiskRepoHelpers.LoadRepositoryFromDisk(_file);
         }
 
         public GroceryItem GetItemFromString(string itemToFind)
@@ -34,49 +34,7 @@ namespace GroceryList.Main
             return null;
         }
 
-        [System.Obsolete("Use GroceryList.Main.Helpers.DiskRepoHelpers.LoadRepositoryFromDiskNew()")]
-        private void LoadRepositoryFromDisk()
-        {
-            bool theOldCollegeTry = true;
-            while (theOldCollegeTry)
-            {
-                try
-                {
-                    StreamReader reader = new StreamReader(_file.FullName);
-
-                    while (!reader.EndOfStream)
-                    {
-                        string[] currentLine = reader.ReadLine().Split('\t');
-
-                        if (currentLine[1] == "" && currentLine[2] == "")
-                        {
-                            Items.Add(new GroceryRepoItem(currentLine[0]));
-                        }
-                        else
-                        {
-                            Items.Add(new GroceryRepoItem(currentLine[0],
-                                MoneyShit.ParseMoneysFromFile(currentLine[1]),
-                                ParseStoreName(currentLine[2])));
-                        }
-                    }
-
-                    theOldCollegeTry = false;
-                }
-                catch (FileNotFoundException)
-                {
-                    FileStream fs = File.Create(_file.FullName);
-                    fs.Close();
-                    // Give it the old college try!
-                } 
-            }
-        }
-
-        private void WriteRepositoryToDisk()
-        {
-            // Gotta do this...
-            throw new NotImplementedException();
-        }
-
+        [System.Obsolete]
         private Enums.Stores ParseStoreName(string storeNameFromFile)
         {
             switch (storeNameFromFile)

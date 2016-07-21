@@ -15,11 +15,10 @@ namespace GroceryList.Main
             Prices = new List<StorePrice>();
         }
 
-        public GroceryItem(string nameIn, int priceIn, Enums.Stores storeIn)
+        public GroceryItem(string nameIn, List<StorePrice> pricesIn)
         {
             Name = nameIn;
-            Prices = new List<StorePrice>();
-            Prices.Add(new StorePrice(storeIn, priceIn));
+            Prices = pricesIn;
         }
 
         public void AddNewPrice(Enums.Stores storeIn, int priceIn)

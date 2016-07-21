@@ -1,4 +1,5 @@
-﻿using GroceryList.Main.Helpers;
+﻿using System.Collections.Generic;
+using GroceryList.Main.Helpers;
 
 namespace GroceryList.Main
 {
@@ -10,7 +11,7 @@ namespace GroceryList.Main
         {
         }
 
-        public GroceryRepoItem(string nameIn, int priceIn, Enums.Stores storeIn) : base(nameIn, priceIn, storeIn)
+        public GroceryRepoItem(string nameIn, List<StorePrice> pricesIn) : base(nameIn, pricesIn)
         {
         }
 
