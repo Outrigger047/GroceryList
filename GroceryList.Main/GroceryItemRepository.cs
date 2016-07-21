@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using GroceryList.Main.Helpers;
 
 namespace GroceryList.Main
 {
     public class GroceryItemRepository
     {
+        private const int DISK_REPO_HANNAFORD_COL_INDEX = 2;
+        private const int DISK_REPO_SHAWS_COL_INDEX = 3;
+        private const int DISK_REPO_SAMS_COL_INDEX = 4;
         private readonly string DISK_REPO_FILE_PATH = 
             Path.Combine(Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), 
                 @"\Assets\repo.txt");
@@ -37,6 +41,7 @@ namespace GroceryList.Main
             return null;
         }
 
+        [System.Obsolete("Use LoadRepositoryFromDiskNew()")]
         private void LoadRepositoryFromDisk()
         {
             bool theOldCollegeTry = true;
@@ -83,22 +88,31 @@ namespace GroceryList.Main
 
                 try
                 {
-                    StreamReader reader = new StreamReader(_file.FullName);
+                    StreamReader sr = new StreamReader(_file.FullName);
 
-                    while (!reader.EndOfStream)
+                    while (!sr.EndOfStream)
                     {
-                        string[] currentLine = reader.ReadLine().Split('\t');
+                        string[] currentLine = sr.ReadLine().Split('\t');
 
-                        if (currentLine[1] == "" && currentLine[2] == "")
+                        if (currentLine.ToString() == DISK_REPO_VALID_HEADER_ROW)
                         {
-                            Items.Add(new GroceryRepoItem(currentLine[0]));
+
                         }
                         else
                         {
-                            Items.Add(new GroceryRepoItem(currentLine[0],
-                                MoneyShit.ParseMoneysFromFile(currentLine[1]),
-                                ParseStoreName(currentLine[2])));
+                            throw new Exception("Header row invalid");
                         }
+
+                        //if (currentLine[1] == "" && currentLine[2] == "")
+                        //{
+                        //    Items.Add(new GroceryRepoItem(currentLine[0]));
+                        //}
+                        //else
+                        //{
+                        //    Items.Add(new GroceryRepoItem(currentLine[0],
+                        //        MoneyShit.ParseMoneysFromFile(currentLine[1]),
+                        //        ParseStoreName(currentLine[2])));
+                        //}
                     }
                 }
                 catch (FileNotFoundException)
@@ -106,6 +120,9 @@ namespace GroceryList.Main
                     tryAgain = true;
 
                     FileStream fs = File.Create(_file.FullName);
+                    StreamWriter sw = new StreamWriter(fs);
+                    sw.WriteLine(DISK_REPO_VALID_HEADER_ROW);
+                    sw.Close();
                     fs.Close();
                 }
             } while (tryAgain);

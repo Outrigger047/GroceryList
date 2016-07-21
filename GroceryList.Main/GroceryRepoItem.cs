@@ -1,4 +1,6 @@
-﻿namespace GroceryList.Main
+﻿using GroceryList.Main.Helpers;
+
+namespace GroceryList.Main
 {
     public class GroceryRepoItem : GroceryItem
     {

@@ -49,7 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enums.cs" />
+    <Compile Include="GroceryList.Main.Helpers\DiskRepoHelpers.cs" />
+    <Compile Include="GroceryList.Main.Helpers\Enums.cs" />
     <Compile Include="GroceryRepoItem.cs" />
     <Compile Include="NewListWindow.cs">
       <SubType>Form</SubType>
@@ -91,6 +92,9 @@
   <ItemGroup>
     <Content Include="Assets\badass_profile.jpg" />
     <Content Include="Assets\badass_profile_OD0_icon.ico" />
+    <Content Include="Assets\repo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
