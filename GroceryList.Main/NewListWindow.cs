@@ -13,6 +13,8 @@ namespace GroceryList.Main
 {
     public partial class NewListWindow : Form
     {
+        private readonly string DEFAULT_FILTER_TEXTBOX_VALUE = "\uD83D\uDD0E Type to filter...";
+
         public GroceryItemRepository InternalItemsRepo { get; private set; }
         public List<GroceryItem> AvailableItemsRepo { get; private set; }
         public Dictionary<GroceryItem, int> ListItemsRepo { get; private set; }
@@ -111,8 +113,8 @@ namespace GroceryList.Main
 
         private void ResetFilterTextBox(System.Windows.Forms.TextBox textBoxToReset)
         {
-            textBoxToReset.Text = "\uD83D\uDD0E Type to filter...";
-            textBoxToReset.ForeColor = Color.Gray;
+            textBoxToReset.Text = DEFAULT_FILTER_TEXTBOX_VALUE;
+            textBoxToReset.ForeColor = Color.LightGray;
         }
 
         private void RepositoryListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,6 +168,52 @@ namespace GroceryList.Main
             foreach (var item in itemsToMove)
             {
                 MoveListToAvailable(item);
+            }
+        }
+
+        private void AvailableFilterTextBox_MouseEnter(object sender, EventArgs e)
+        {
+            if (AvailableFilterTextBox.Text == DEFAULT_FILTER_TEXTBOX_VALUE)
+            {
+                AvailableFilterTextBox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void AvailableFilterTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            if (AvailableFilterTextBox.Text == DEFAULT_FILTER_TEXTBOX_VALUE)
+            {
+                AvailableFilterTextBox.ForeColor = Color.LightGray;
+            }
+        }
+
+        private void AvailableFilterTextBox_Enter(object sender, EventArgs e)
+        {
+            if (AvailableFilterTextBox.Text == DEFAULT_FILTER_TEXTBOX_VALUE)
+            {
+                AvailableFilterTextBox.Text = "";
+                AvailableFilterTextBox.ForeColor = Color.Black;
+            }
+            else if (AvailableFilterTextBox.Text != "") // WHY DOESNT THIS WORK??
+            {
+                AvailableFilterTextBox.SelectAll();
+            }
+        }
+
+        private void AvailableFilterTextBox_Leave(object sender, EventArgs e)
+        {
+            if (AvailableFilterTextBox.Text == "")
+            {
+                ResetFilterTextBox(AvailableFilterTextBox);
+            }
+        }
+
+        private void AvailableFilterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (AvailableFilterTextBox.Text != "" &&
+                AvailableFilterTextBox.Text != DEFAULT_FILTER_TEXTBOX_VALUE)
+            {
+                // Do filter functionality here
             }
         }
     }

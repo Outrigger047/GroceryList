@@ -262,6 +262,11 @@
             this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
             this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
             this.AvailableFilterTextBox.TabIndex = 4;
+            this.AvailableFilterTextBox.TextChanged += new System.EventHandler(this.AvailableFilterTextBox_TextChanged);
+            this.AvailableFilterTextBox.Enter += new System.EventHandler(this.AvailableFilterTextBox_Enter);
+            this.AvailableFilterTextBox.Leave += new System.EventHandler(this.AvailableFilterTextBox_Leave);
+            this.AvailableFilterTextBox.MouseEnter += new System.EventHandler(this.AvailableFilterTextBox_MouseEnter);
+            this.AvailableFilterTextBox.MouseLeave += new System.EventHandler(this.AvailableFilterTextBox_MouseLeave);
             // 
             // NewListWindow
             // 
