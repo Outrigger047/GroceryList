@@ -16,6 +16,14 @@ namespace GroceryList.Main.Helpers
         private static readonly string DISK_REPO_VALID_HEADER_ROW = 
             "ITEM\tCATEGORY\tHANNAFORD_PRICE\tSHAWS_PRICE\tSAMS_PRICE";
 
+        public static Dictionary<int, Enums.Stores> DiskRepoStoreColIndexLookup =
+            new Dictionary<int, Enums.Stores>()
+            {
+                { 2, Enums.Stores.Hannaford },
+                { 3, Enums.Stores.Shaws },
+                { 4, Enums.Stores.Sams }
+            };
+
         public static List<GroceryRepoItem> LoadRepositoryFromDisk(FileInfo path)
         {
             List<GroceryRepoItem> repoFromDisk = new List<GroceryRepoItem>();
@@ -36,16 +44,15 @@ namespace GroceryList.Main.Helpers
                         {
                             string[] currentLine = sr.ReadLine().Split('\t');
 
-                            //if (currentLine[1] == "" && currentLine[2] == "")
-                            //{
-                            //    Items.Add(new GroceryRepoItem(currentLine[0]));
-                            //}
-                            //else
-                            //{
-                            //    Items.Add(new GroceryRepoItem(currentLine[0],
-                            //        MoneyShit.ParseMoneysFromFile(currentLine[1]),
-                            //        ParseStoreName(currentLine[2])));
-                            //}
+                            if (RowHasPrices(currentLine))
+                            {
+                                repoFromDisk.Add(
+                                    new GroceryRepoItem(currentLine[0], ExtractPricesFromRow(currentLine))); 
+                            }
+                            else
+                            {
+                                repoFromDisk.Add(new GroceryRepoItem(currentLine[0]));
+                            }
                         }
 
                         sr.Close();
@@ -77,9 +84,33 @@ namespace GroceryList.Main.Helpers
             throw new NotImplementedException();
         }
 
+        private static bool RowHasPrices(string[] currentLine)
+        {
+            if (currentLine[DISK_REPO_HANNAFORD_COL_INDEX] != "" ||
+                currentLine[DISK_REPO_SHAWS_COL_INDEX] != "" ||
+                currentLine[DISK_REPO_SAMS_COL_INDEX] != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private static List<StorePrice> ExtractPricesFromRow(string[] currentLine)
         {
             List<StorePrice> pricesFromRow = new List<StorePrice>();
+
+            for (int i = DISK_REPO_HANNAFORD_COL_INDEX; i < DISK_REPO_SAMS_COL_INDEX; i++)
+            {
+                if (currentLine[i] != "")
+                {
+                    Enums.Stores currentLineStore;
+                    DiskRepoStoreColIndexLookup.TryGetValue(i, out currentLineStore);
+                    pricesFromRow.Add(new StorePrice(currentLineStore, MoneyShit.ParseMoneysFromFile(currentLine[i])));
+                }
+            }
 
             return pricesFromRow;
         }
