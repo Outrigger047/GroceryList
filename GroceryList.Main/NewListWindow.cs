@@ -39,6 +39,9 @@ namespace GroceryList.Main
             AvailableItemsRepo.Remove(itemToMove);
             ListItemsRepo.Add(itemToMove, 1);
 
+            RepositoryListBox.SelectedIndex = -1;
+            AddToListButton.Enabled = false;
+
             EventArgs e = new EventArgs();
             ItemsMoved(this, e);
         }
@@ -48,6 +51,9 @@ namespace GroceryList.Main
             ListItemsRepo.Remove(itemToMove);
             AvailableItemsRepo.Add(itemToMove);
 
+            ListListBox.SelectedIndex = -1;
+            RemoveFromListButton.Enabled = false;
+
             EventArgs e = new EventArgs();
             ItemsMoved(this, e);
         }
@@ -56,7 +62,7 @@ namespace GroceryList.Main
         {
             DoUiListBoxUpdateFromRepos();
 
-            InfoTotalPriceLabel.Text = "$     " + CalclistTotalCost(Enums.Stores.Hannaford);
+            InfoTotalPriceLabel.Text = "$" + CalclistTotalCost(Enums.Stores.Hannaford);
             InfoNumItemsLabel.Text = ListListBox.Items.Count.ToString();
         }
 

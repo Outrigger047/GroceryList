@@ -48,6 +48,8 @@
             this.InfoNumItemsNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
+            this.AvailableFilterTextBox = new System.Windows.Forms.TextBox();
+            this.ListFilterTextBox = new System.Windows.Forms.TextBox();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.InformationGroupBox.SuspendLayout();
@@ -55,6 +57,7 @@
             // 
             // RepositoryGroupBox
             // 
+            this.RepositoryGroupBox.Controls.Add(this.AvailableFilterTextBox);
             this.RepositoryGroupBox.Controls.Add(this.RepoEditItemButton);
             this.RepositoryGroupBox.Controls.Add(this.RepoRemoveItemButton);
             this.RepositoryGroupBox.Controls.Add(this.RepoAddItemButton);
@@ -98,15 +101,16 @@
             // RepositoryListBox
             // 
             this.RepositoryListBox.FormattingEnabled = true;
-            this.RepositoryListBox.Location = new System.Drawing.Point(7, 20);
+            this.RepositoryListBox.Location = new System.Drawing.Point(7, 46);
             this.RepositoryListBox.Name = "RepositoryListBox";
             this.RepositoryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.RepositoryListBox.Size = new System.Drawing.Size(413, 381);
+            this.RepositoryListBox.Size = new System.Drawing.Size(413, 355);
             this.RepositoryListBox.TabIndex = 0;
             this.RepositoryListBox.SelectedIndexChanged += new System.EventHandler(this.RepositoryListBox_SelectedIndexChanged);
             // 
             // ListGroupBox
             // 
+            this.ListGroupBox.Controls.Add(this.ListFilterTextBox);
             this.ListGroupBox.Controls.Add(this.ListQuantityButton);
             this.ListGroupBox.Controls.Add(this.ListSaveListAsButton);
             this.ListGroupBox.Controls.Add(this.ListSaveListButton);
@@ -172,10 +176,10 @@
             // ListListBox
             // 
             this.ListListBox.FormattingEnabled = true;
-            this.ListListBox.Location = new System.Drawing.Point(7, 20);
+            this.ListListBox.Location = new System.Drawing.Point(7, 46);
             this.ListListBox.Name = "ListListBox";
             this.ListListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListListBox.Size = new System.Drawing.Size(413, 381);
+            this.ListListBox.Size = new System.Drawing.Size(413, 355);
             this.ListListBox.TabIndex = 1;
             this.ListListBox.SelectedIndexChanged += new System.EventHandler(this.ListListBox_SelectedIndexChanged);
             // 
@@ -231,7 +235,7 @@
             this.InfoNumItemsNameLabel.Size = new System.Drawing.Size(118, 13);
             this.InfoNumItemsNameLabel.TabIndex = 2;
             this.InfoNumItemsNameLabel.Text = "Number of Items on List";
-            this.InfoNumItemsNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.InfoNumItemsNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // InfoTotalAmtNameLabel
             // 
@@ -246,12 +250,25 @@
             // InfoTotalPriceLabel
             // 
             this.InfoTotalPriceLabel.AutoSize = true;
-            this.InfoTotalPriceLabel.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(785, 27);
+            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(789, 35);
             this.InfoTotalPriceLabel.Name = "InfoTotalPriceLabel";
-            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(130, 24);
+            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(34, 13);
             this.InfoTotalPriceLabel.TabIndex = 0;
-            this.InfoTotalPriceLabel.Text = "$     0.00";
+            this.InfoTotalPriceLabel.Text = "$0.00";
+            // 
+            // AvailableFilterTextBox
+            // 
+            this.AvailableFilterTextBox.Location = new System.Drawing.Point(7, 19);
+            this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
+            this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
+            this.AvailableFilterTextBox.TabIndex = 4;
+            // 
+            // ListFilterTextBox
+            // 
+            this.ListFilterTextBox.Location = new System.Drawing.Point(7, 19);
+            this.ListFilterTextBox.Name = "ListFilterTextBox";
+            this.ListFilterTextBox.Size = new System.Drawing.Size(413, 20);
+            this.ListFilterTextBox.TabIndex = 5;
             // 
             // NewListWindow
             // 
@@ -270,7 +287,9 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = " NewListWindow";
             this.RepositoryGroupBox.ResumeLayout(false);
+            this.RepositoryGroupBox.PerformLayout();
             this.ListGroupBox.ResumeLayout(false);
+            this.ListGroupBox.PerformLayout();
             this.InformationGroupBox.ResumeLayout(false);
             this.InformationGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -298,6 +317,8 @@
         private System.Windows.Forms.Label InfoNumItemsLabel;
         private System.Windows.Forms.Label InfoNumItemsNameLabel;
         private System.Windows.Forms.Label InfoTotalAmtNameLabel;
+        private System.Windows.Forms.TextBox AvailableFilterTextBox;
+        private System.Windows.Forms.TextBox ListFilterTextBox;
     }
 }
 
