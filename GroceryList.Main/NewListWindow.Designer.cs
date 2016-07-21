@@ -49,7 +49,6 @@
             this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
             this.AvailableFilterTextBox = new System.Windows.Forms.TextBox();
-            this.ListFilterTextBox = new System.Windows.Forms.TextBox();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.InformationGroupBox.SuspendLayout();
@@ -110,7 +109,6 @@
             // 
             // ListGroupBox
             // 
-            this.ListGroupBox.Controls.Add(this.ListFilterTextBox);
             this.ListGroupBox.Controls.Add(this.ListQuantityButton);
             this.ListGroupBox.Controls.Add(this.ListSaveListAsButton);
             this.ListGroupBox.Controls.Add(this.ListSaveListButton);
@@ -176,10 +174,10 @@
             // ListListBox
             // 
             this.ListListBox.FormattingEnabled = true;
-            this.ListListBox.Location = new System.Drawing.Point(7, 46);
+            this.ListListBox.Location = new System.Drawing.Point(7, 20);
             this.ListListBox.Name = "ListListBox";
             this.ListListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListListBox.Size = new System.Drawing.Size(413, 355);
+            this.ListListBox.Size = new System.Drawing.Size(413, 381);
             this.ListListBox.TabIndex = 1;
             this.ListListBox.SelectedIndexChanged += new System.EventHandler(this.ListListBox_SelectedIndexChanged);
             // 
@@ -258,17 +256,12 @@
             // 
             // AvailableFilterTextBox
             // 
+            this.AvailableFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AvailableFilterTextBox.Location = new System.Drawing.Point(7, 19);
+            this.AvailableFilterTextBox.MaxLength = 100;
             this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
             this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
             this.AvailableFilterTextBox.TabIndex = 4;
-            // 
-            // ListFilterTextBox
-            // 
-            this.ListFilterTextBox.Location = new System.Drawing.Point(7, 19);
-            this.ListFilterTextBox.Name = "ListFilterTextBox";
-            this.ListFilterTextBox.Size = new System.Drawing.Size(413, 20);
-            this.ListFilterTextBox.TabIndex = 5;
             // 
             // NewListWindow
             // 
@@ -289,7 +282,6 @@
             this.RepositoryGroupBox.ResumeLayout(false);
             this.RepositoryGroupBox.PerformLayout();
             this.ListGroupBox.ResumeLayout(false);
-            this.ListGroupBox.PerformLayout();
             this.InformationGroupBox.ResumeLayout(false);
             this.InformationGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -318,7 +310,6 @@
         private System.Windows.Forms.Label InfoNumItemsNameLabel;
         private System.Windows.Forms.Label InfoTotalAmtNameLabel;
         private System.Windows.Forms.TextBox AvailableFilterTextBox;
-        private System.Windows.Forms.TextBox ListFilterTextBox;
     }
 }
 

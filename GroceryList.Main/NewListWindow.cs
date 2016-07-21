@@ -32,6 +32,7 @@ namespace GroceryList.Main
             InitializeComponent();
 
             DoUiListBoxUpdateFromRepos();
+            ResetFilterTextBox(AvailableFilterTextBox);
         }
 
         private void MoveAvailableToList(GroceryItem itemToMove)
@@ -106,6 +107,12 @@ namespace GroceryList.Main
         private string CalclistTotalCost(Enums.Stores store)
         {
             return Math.Round(((decimal)CalcListTotalCost(store) / 100), 2).ToString();
+        }
+
+        private void ResetFilterTextBox(System.Windows.Forms.TextBox textBoxToReset)
+        {
+            textBoxToReset.Text = "\uD83D\uDD0E Type to filter...";
+            textBoxToReset.ForeColor = Color.Gray;
         }
 
         private void RepositoryListBox_SelectedIndexChanged(object sender, EventArgs e)
