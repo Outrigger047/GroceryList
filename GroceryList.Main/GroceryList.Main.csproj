@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="GroceryList.Main.Helpers\DiskRepoHelpers.cs" />
     <Compile Include="GroceryList.Main.Helpers\Enums.cs" />
-    <Compile Include="GroceryRepoItem.cs" />
     <Compile Include="NewListWindow.cs">
       <SubType>Form</SubType>
     </Compile>

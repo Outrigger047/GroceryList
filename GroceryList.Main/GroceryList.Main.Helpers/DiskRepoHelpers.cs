@@ -24,9 +24,9 @@ namespace GroceryList.Main.Helpers
                 { 4, Enums.Stores.Sams }
             };
 
-        public static List<GroceryRepoItem> LoadRepositoryFromDisk(FileInfo path)
+        public static List<GroceryItem> LoadRepositoryFromDisk(FileInfo path)
         {
-            List<GroceryRepoItem> repoFromDisk = new List<GroceryRepoItem>();
+            List<GroceryItem> repoFromDisk = new List<GroceryItem>();
 
             bool tryAgain;
 
@@ -44,14 +44,20 @@ namespace GroceryList.Main.Helpers
                         {
                             string[] currentLine = sr.ReadLine().Split('\t');
 
+                            if (repoFromDisk.FindIndex(x => x.Name == currentLine[0]) > -1)
+                            {
+                                throw new Exception("Duplicate item found", 
+                                    new Exception(currentLine[0]));
+                            }
+
                             if (RowHasPrices(currentLine))
                             {
                                 repoFromDisk.Add(
-                                    new GroceryRepoItem(currentLine[0], ExtractPricesFromRow(currentLine))); 
+                                    new GroceryItem(currentLine[0], ExtractPricesFromRow(currentLine))); 
                             }
                             else
                             {
-                                repoFromDisk.Add(new GroceryRepoItem(currentLine[0]));
+                                repoFromDisk.Add(new GroceryItem(currentLine[0]));
                             }
                         }
 

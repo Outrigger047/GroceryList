@@ -13,7 +13,7 @@ namespace GroceryList.Main
                 new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), @"Assets\repo.txt");
         private readonly FileInfo _file;
 
-        public List<GroceryRepoItem> Items { get; private set; }
+        public List<GroceryItem> Items { get; private set; }
 
         public GroceryItemRepository()
         {

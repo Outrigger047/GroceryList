@@ -35,16 +35,22 @@
             this.RepoAddItemButton = new System.Windows.Forms.Button();
             this.RepositoryListBox = new System.Windows.Forms.ListBox();
             this.ListGroupBox = new System.Windows.Forms.GroupBox();
+            this.ListQuantityButton = new System.Windows.Forms.Button();
             this.ListSaveListAsButton = new System.Windows.Forms.Button();
             this.ListSaveListButton = new System.Windows.Forms.Button();
             this.ListOpenListButton = new System.Windows.Forms.Button();
-            this.ListNewListButton = new System.Windows.Forms.Button();
+            this.ListClearListButton = new System.Windows.Forms.Button();
             this.ListListBox = new System.Windows.Forms.ListBox();
             this.AddToListButton = new System.Windows.Forms.Button();
             this.RemoveFromListButton = new System.Windows.Forms.Button();
             this.InformationGroupBox = new System.Windows.Forms.GroupBox();
+            this.InfoNumItemsLabel = new System.Windows.Forms.Label();
+            this.InfoNumItemsNameLabel = new System.Windows.Forms.Label();
+            this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
+            this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
+            this.InformationGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // RepositoryGroupBox
@@ -67,7 +73,7 @@
             this.RepoEditItemButton.Name = "RepoEditItemButton";
             this.RepoEditItemButton.Size = new System.Drawing.Size(118, 23);
             this.RepoEditItemButton.TabIndex = 3;
-            this.RepoEditItemButton.Text = "Edit Selected Item";
+            this.RepoEditItemButton.Text = "Edit Selected Item...";
             this.RepoEditItemButton.UseVisualStyleBackColor = true;
             // 
             // RepoRemoveItemButton
@@ -77,7 +83,7 @@
             this.RepoRemoveItemButton.Name = "RepoRemoveItemButton";
             this.RepoRemoveItemButton.Size = new System.Drawing.Size(118, 23);
             this.RepoRemoveItemButton.TabIndex = 2;
-            this.RepoRemoveItemButton.Text = "Remove Item";
+            this.RepoRemoveItemButton.Text = "Remove Item...";
             this.RepoRemoveItemButton.UseVisualStyleBackColor = true;
             // 
             // RepoAddItemButton
@@ -97,13 +103,15 @@
             this.RepositoryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.RepositoryListBox.Size = new System.Drawing.Size(413, 381);
             this.RepositoryListBox.TabIndex = 0;
+            this.RepositoryListBox.SelectedIndexChanged += new System.EventHandler(this.RepositoryListBox_SelectedIndexChanged);
             // 
             // ListGroupBox
             // 
+            this.ListGroupBox.Controls.Add(this.ListQuantityButton);
             this.ListGroupBox.Controls.Add(this.ListSaveListAsButton);
             this.ListGroupBox.Controls.Add(this.ListSaveListButton);
             this.ListGroupBox.Controls.Add(this.ListOpenListButton);
-            this.ListGroupBox.Controls.Add(this.ListNewListButton);
+            this.ListGroupBox.Controls.Add(this.ListClearListButton);
             this.ListGroupBox.Controls.Add(this.ListListBox);
             this.ListGroupBox.Location = new System.Drawing.Point(601, 13);
             this.ListGroupBox.Name = "ListGroupBox";
@@ -112,10 +120,20 @@
             this.ListGroupBox.TabStop = false;
             this.ListGroupBox.Text = "Grocery List";
             // 
+            // ListQuantityButton
+            // 
+            this.ListQuantityButton.Enabled = false;
+            this.ListQuantityButton.Location = new System.Drawing.Point(7, 433);
+            this.ListQuantityButton.Name = "ListQuantityButton";
+            this.ListQuantityButton.Size = new System.Drawing.Size(91, 23);
+            this.ListQuantityButton.TabIndex = 6;
+            this.ListQuantityButton.Text = "Edit Quantity...";
+            this.ListQuantityButton.UseVisualStyleBackColor = true;
+            // 
             // ListSaveListAsButton
             // 
             this.ListSaveListAsButton.Enabled = false;
-            this.ListSaveListAsButton.Location = new System.Drawing.Point(298, 408);
+            this.ListSaveListAsButton.Location = new System.Drawing.Point(201, 408);
             this.ListSaveListAsButton.Name = "ListSaveListAsButton";
             this.ListSaveListAsButton.Size = new System.Drawing.Size(91, 23);
             this.ListSaveListAsButton.TabIndex = 5;
@@ -125,7 +143,7 @@
             // ListSaveListButton
             // 
             this.ListSaveListButton.Enabled = false;
-            this.ListSaveListButton.Location = new System.Drawing.Point(201, 408);
+            this.ListSaveListButton.Location = new System.Drawing.Point(104, 408);
             this.ListSaveListButton.Name = "ListSaveListButton";
             this.ListSaveListButton.Size = new System.Drawing.Size(91, 23);
             this.ListSaveListButton.TabIndex = 4;
@@ -134,22 +152,22 @@
             // 
             // ListOpenListButton
             // 
-            this.ListOpenListButton.Location = new System.Drawing.Point(104, 408);
+            this.ListOpenListButton.Location = new System.Drawing.Point(7, 408);
             this.ListOpenListButton.Name = "ListOpenListButton";
             this.ListOpenListButton.Size = new System.Drawing.Size(91, 23);
             this.ListOpenListButton.TabIndex = 3;
             this.ListOpenListButton.Text = "Open List...";
             this.ListOpenListButton.UseVisualStyleBackColor = true;
             // 
-            // ListNewListButton
+            // ListClearListButton
             // 
-            this.ListNewListButton.Enabled = false;
-            this.ListNewListButton.Location = new System.Drawing.Point(7, 408);
-            this.ListNewListButton.Name = "ListNewListButton";
-            this.ListNewListButton.Size = new System.Drawing.Size(91, 23);
-            this.ListNewListButton.TabIndex = 2;
-            this.ListNewListButton.Text = "New List...";
-            this.ListNewListButton.UseVisualStyleBackColor = true;
+            this.ListClearListButton.Enabled = false;
+            this.ListClearListButton.Location = new System.Drawing.Point(298, 408);
+            this.ListClearListButton.Name = "ListClearListButton";
+            this.ListClearListButton.Size = new System.Drawing.Size(91, 23);
+            this.ListClearListButton.TabIndex = 2;
+            this.ListClearListButton.Text = "Clear List...";
+            this.ListClearListButton.UseVisualStyleBackColor = true;
             // 
             // ListListBox
             // 
@@ -159,6 +177,7 @@
             this.ListListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListListBox.Size = new System.Drawing.Size(413, 381);
             this.ListListBox.TabIndex = 1;
+            this.ListListBox.SelectedIndexChanged += new System.EventHandler(this.ListListBox_SelectedIndexChanged);
             // 
             // AddToListButton
             // 
@@ -169,6 +188,7 @@
             this.AddToListButton.TabIndex = 2;
             this.AddToListButton.Text = "Add To Grocery List";
             this.AddToListButton.UseVisualStyleBackColor = true;
+            this.AddToListButton.Click += new System.EventHandler(this.AddToListButton_Click);
             // 
             // RemoveFromListButton
             // 
@@ -179,15 +199,59 @@
             this.RemoveFromListButton.TabIndex = 3;
             this.RemoveFromListButton.Text = "Remove From Grocery List";
             this.RemoveFromListButton.UseVisualStyleBackColor = true;
+            this.RemoveFromListButton.Click += new System.EventHandler(this.RemoveFromListButton_Click);
             // 
             // InformationGroupBox
             // 
+            this.InformationGroupBox.Controls.Add(this.InfoNumItemsLabel);
+            this.InformationGroupBox.Controls.Add(this.InfoNumItemsNameLabel);
+            this.InformationGroupBox.Controls.Add(this.InfoTotalAmtNameLabel);
+            this.InformationGroupBox.Controls.Add(this.InfoTotalPriceLabel);
             this.InformationGroupBox.Location = new System.Drawing.Point(13, 482);
             this.InformationGroupBox.Name = "InformationGroupBox";
             this.InformationGroupBox.Size = new System.Drawing.Size(1014, 139);
             this.InformationGroupBox.TabIndex = 4;
             this.InformationGroupBox.TabStop = false;
             this.InformationGroupBox.Text = "Information";
+            // 
+            // InfoNumItemsLabel
+            // 
+            this.InfoNumItemsLabel.AutoSize = true;
+            this.InfoNumItemsLabel.Location = new System.Drawing.Point(789, 65);
+            this.InfoNumItemsLabel.Name = "InfoNumItemsLabel";
+            this.InfoNumItemsLabel.Size = new System.Drawing.Size(13, 13);
+            this.InfoNumItemsLabel.TabIndex = 3;
+            this.InfoNumItemsLabel.Text = "0";
+            // 
+            // InfoNumItemsNameLabel
+            // 
+            this.InfoNumItemsNameLabel.AutoSize = true;
+            this.InfoNumItemsNameLabel.Location = new System.Drawing.Point(661, 65);
+            this.InfoNumItemsNameLabel.Name = "InfoNumItemsNameLabel";
+            this.InfoNumItemsNameLabel.Size = new System.Drawing.Size(118, 13);
+            this.InfoNumItemsNameLabel.TabIndex = 2;
+            this.InfoNumItemsNameLabel.Text = "Number of Items on List";
+            this.InfoNumItemsNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // InfoTotalAmtNameLabel
+            // 
+            this.InfoTotalAmtNameLabel.AutoSize = true;
+            this.InfoTotalAmtNameLabel.Location = new System.Drawing.Point(690, 35);
+            this.InfoTotalAmtNameLabel.Name = "InfoTotalAmtNameLabel";
+            this.InfoTotalAmtNameLabel.Size = new System.Drawing.Size(89, 13);
+            this.InfoTotalAmtNameLabel.TabIndex = 1;
+            this.InfoTotalAmtNameLabel.Text = "Total List Amount";
+            this.InfoTotalAmtNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // InfoTotalPriceLabel
+            // 
+            this.InfoTotalPriceLabel.AutoSize = true;
+            this.InfoTotalPriceLabel.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(785, 27);
+            this.InfoTotalPriceLabel.Name = "InfoTotalPriceLabel";
+            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(130, 24);
+            this.InfoTotalPriceLabel.TabIndex = 0;
+            this.InfoTotalPriceLabel.Text = "$     0.00";
             // 
             // NewListWindow
             // 
@@ -207,6 +271,8 @@
             this.Text = " NewListWindow";
             this.RepositoryGroupBox.ResumeLayout(false);
             this.ListGroupBox.ResumeLayout(false);
+            this.InformationGroupBox.ResumeLayout(false);
+            this.InformationGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -225,8 +291,13 @@
         private System.Windows.Forms.Button ListSaveListAsButton;
         private System.Windows.Forms.Button ListSaveListButton;
         private System.Windows.Forms.Button ListOpenListButton;
-        private System.Windows.Forms.Button ListNewListButton;
+        private System.Windows.Forms.Button ListClearListButton;
         private System.Windows.Forms.GroupBox InformationGroupBox;
+        private System.Windows.Forms.Button ListQuantityButton;
+        private System.Windows.Forms.Label InfoTotalPriceLabel;
+        private System.Windows.Forms.Label InfoNumItemsLabel;
+        private System.Windows.Forms.Label InfoNumItemsNameLabel;
+        private System.Windows.Forms.Label InfoTotalAmtNameLabel;
     }
 }
 
