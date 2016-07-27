@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewListWindow));
             this.RepositoryGroupBox = new System.Windows.Forms.GroupBox();
+            this.AvailableFilterTextBox = new System.Windows.Forms.TextBox();
             this.RepoEditItemButton = new System.Windows.Forms.Button();
             this.RepoRemoveItemButton = new System.Windows.Forms.Button();
             this.RepoAddItemButton = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.InfoNumItemsNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
-            this.AvailableFilterTextBox = new System.Windows.Forms.TextBox();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.InformationGroupBox.SuspendLayout();
@@ -67,6 +67,21 @@
             this.RepositoryGroupBox.TabIndex = 0;
             this.RepositoryGroupBox.TabStop = false;
             this.RepositoryGroupBox.Text = "Available Items";
+            // 
+            // AvailableFilterTextBox
+            // 
+            this.AvailableFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvailableFilterTextBox.Location = new System.Drawing.Point(7, 19);
+            this.AvailableFilterTextBox.MaxLength = 100;
+            this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
+            this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
+            this.AvailableFilterTextBox.TabIndex = 4;
+            this.AvailableFilterTextBox.TextChanged += new System.EventHandler(this.AvailableFilterTextBox_TextChanged);
+            this.AvailableFilterTextBox.Enter += new System.EventHandler(this.AvailableFilterTextBox_Enter);
+            this.AvailableFilterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AvailableFilterTextBox_KeyPress);
+            this.AvailableFilterTextBox.Leave += new System.EventHandler(this.AvailableFilterTextBox_Leave);
+            this.AvailableFilterTextBox.MouseEnter += new System.EventHandler(this.AvailableFilterTextBox_MouseEnter);
+            this.AvailableFilterTextBox.MouseLeave += new System.EventHandler(this.AvailableFilterTextBox_MouseLeave);
             // 
             // RepoEditItemButton
             // 
@@ -253,20 +268,6 @@
             this.InfoTotalPriceLabel.Size = new System.Drawing.Size(34, 13);
             this.InfoTotalPriceLabel.TabIndex = 0;
             this.InfoTotalPriceLabel.Text = "$0.00";
-            // 
-            // AvailableFilterTextBox
-            // 
-            this.AvailableFilterTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AvailableFilterTextBox.Location = new System.Drawing.Point(7, 19);
-            this.AvailableFilterTextBox.MaxLength = 100;
-            this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
-            this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
-            this.AvailableFilterTextBox.TabIndex = 4;
-            this.AvailableFilterTextBox.TextChanged += new System.EventHandler(this.AvailableFilterTextBox_TextChanged);
-            this.AvailableFilterTextBox.Enter += new System.EventHandler(this.AvailableFilterTextBox_Enter);
-            this.AvailableFilterTextBox.Leave += new System.EventHandler(this.AvailableFilterTextBox_Leave);
-            this.AvailableFilterTextBox.MouseEnter += new System.EventHandler(this.AvailableFilterTextBox_MouseEnter);
-            this.AvailableFilterTextBox.MouseLeave += new System.EventHandler(this.AvailableFilterTextBox_MouseLeave);
             // 
             // NewListWindow
             // 

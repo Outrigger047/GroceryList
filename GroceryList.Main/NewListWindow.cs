@@ -83,7 +83,7 @@ namespace GroceryList.Main
 
             foreach (var item in ListItemsRepo)
             {
-                ListListBox.Items.Add(item.Key.ListBoxRowText);
+                ListListBox.Items.Add(String.Concat(item.Value, "x  ", item.Key.ListBoxRowText));
             }
 
             ResumeLayout();
@@ -153,6 +153,8 @@ namespace GroceryList.Main
             {
                 MoveAvailableToList(item);
             }
+
+            ResetFilterTextBox(AvailableFilterTextBox);
         }
 
         private void RemoveFromListButton_Click(object sender, EventArgs e)
@@ -162,7 +164,7 @@ namespace GroceryList.Main
             foreach (var item in ListListBox.SelectedItems)
             {
                 itemsToMove.Add(
-                    ListItemsRepo.Keys.ToList().Find(x => x.Name == Regex.Split(item.ToString(), @"\s{2,}")[0]));
+                    ListItemsRepo.Keys.ToList().Find(x => x.Name == Regex.Split(item.ToString(), @"\s{2,}")[1]));
             }
 
             foreach (var item in itemsToMove)
@@ -202,9 +204,10 @@ namespace GroceryList.Main
 
         private void AvailableFilterTextBox_Leave(object sender, EventArgs e)
         {
-            if (AvailableFilterTextBox.Text == "")
+            if (AvailableFilterTextBox.Text == "" | !RepositoryListBox.Focused)
             {
                 ResetFilterTextBox(AvailableFilterTextBox);
+                DoUiListBoxUpdateFromRepos();
             }
         }
 
@@ -213,7 +216,31 @@ namespace GroceryList.Main
             if (AvailableFilterTextBox.Text != "" &&
                 AvailableFilterTextBox.Text != DEFAULT_FILTER_TEXTBOX_VALUE)
             {
-                // Do filter functionality here
+                RepositoryListBox.Items.Clear();
+
+                foreach (var item in AvailableItemsRepo)
+                {
+                    if (item.Name.ToLower().Contains(AvailableFilterTextBox.Text.ToLower()))
+                    {
+                        RepositoryListBox.Items.Add(item.ListBoxRowText);
+                    }
+                }
+            }
+            else if (AvailableFilterTextBox.Text == "")
+            {
+                RepositoryListBox.ClearSelected();
+                DoUiListBoxUpdateFromRepos();
+            }
+        }
+
+        private void AvailableFilterTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Handle user pressing ESC while filter text box is in focus
+            if (e.KeyChar == 27)
+            {
+                RepositoryListBox.Focus();
+                ResetFilterTextBox(AvailableFilterTextBox);
+                DoUiListBoxUpdateFromRepos();
             }
         }
     }
