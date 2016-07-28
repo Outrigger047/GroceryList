@@ -108,7 +108,7 @@ namespace GroceryList.Main.Helpers
         {
             List<StorePrice> pricesFromRow = new List<StorePrice>();
 
-            for (int i = DISK_REPO_HANNAFORD_COL_INDEX; i < DISK_REPO_SAMS_COL_INDEX + 1; i++)
+            for (int i = DISK_REPO_HANNAFORD_COL_INDEX; i <= DISK_REPO_SAMS_COL_INDEX; i++)
             {
                 if (currentLine[i] != "")
                 {
