@@ -123,6 +123,7 @@ namespace GroceryList.Main
             {
                 AddToListButton.Enabled = true;
                 RemoveFromListButton.Enabled = false;
+                RepoEditItemButton.Enabled = true;
 
                 ListListBox.SelectedIndex = -1;
             }
@@ -134,6 +135,7 @@ namespace GroceryList.Main
             {
                 RemoveFromListButton.Enabled = true;
                 AddToListButton.Enabled = false;
+                RepoEditItemButton.Enabled = false;
 
                 RepositoryListBox.SelectedIndex = -1;
             }
