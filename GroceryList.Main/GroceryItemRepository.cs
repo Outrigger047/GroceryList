@@ -33,5 +33,13 @@ namespace GroceryList.Main
 
             return null;
         }
+
+        public void EditItemInRepository(GroceryItem itemToEdit)
+        {
+            GroceryItem targetItem = Items.Find(x => x.Name == itemToEdit.Name);
+
+            targetItem.ChangeName(itemToEdit.Name);
+            
+        }
     }
 }

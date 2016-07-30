@@ -92,6 +92,7 @@
             this.RepoEditItemButton.TabIndex = 3;
             this.RepoEditItemButton.Text = "Edit Selected Item...";
             this.RepoEditItemButton.UseVisualStyleBackColor = true;
+            this.RepoEditItemButton.Click += new System.EventHandler(this.RepoEditItemButton_Click);
             // 
             // RepoRemoveItemButton
             // 

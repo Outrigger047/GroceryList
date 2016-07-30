@@ -123,7 +123,14 @@ namespace GroceryList.Main
             {
                 AddToListButton.Enabled = true;
                 RemoveFromListButton.Enabled = false;
-                RepoEditItemButton.Enabled = true;
+                if (RepositoryListBox.SelectedItems.Count == 1)
+                {
+                    RepoEditItemButton.Enabled = true; 
+                }
+                else
+                {
+                    RepoEditItemButton.Enabled = false;
+                }
 
                 ListListBox.SelectedIndex = -1;
             }
@@ -244,6 +251,11 @@ namespace GroceryList.Main
                 ResetFilterTextBox(AvailableFilterTextBox);
                 DoUiListBoxUpdateFromRepos();
             }
+        }
+
+        private void RepoEditItemButton_Click(object sender, EventArgs e)
+        {
+            // Click edit button here
         }
     }
 }
