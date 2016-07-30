@@ -30,6 +30,11 @@ namespace GroceryList.Main
             }
         }
 
+        public void ChangeName(string nameIn)
+        {
+            Name = nameIn;
+        }
+
         public string ListBoxRowText
         {
             get

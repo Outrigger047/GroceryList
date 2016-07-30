@@ -12,5 +12,10 @@ namespace GroceryList.Main
             Store = storeIn;
             Price = priceIn;
         }
+
+        public void UpdatePrice(int priceIn)
+        {
+            Price = priceIn;
+        }
     }
 }
