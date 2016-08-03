@@ -28,6 +28,10 @@ namespace GroceryList.Main
             {
                 Prices.Add(new StorePrice(storeIn, priceIn)); 
             }
+            else
+            {
+                Prices.Find(x => x.Store == storeIn).UpdatePrice(priceIn);
+            }
         }
 
         public void ChangeName(string nameIn)

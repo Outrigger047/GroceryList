@@ -24,7 +24,29 @@ namespace GroceryList.Main
         public NewListWindow()
         {
             // GroceryItemRepository constructor loads repository from disk
-            InternalItemsRepo = new GroceryItemRepository();
+            try
+            {
+                InternalItemsRepo = new GroceryItemRepository();
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("Header row invalid"))
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        "Repository header row invalid.",
+                        "Repository Import Error",
+                        System.Windows.Forms.MessageBoxButtons.OK,
+                        System.Windows.Forms.MessageBoxIcon.Error);
+                }
+                else if (e.Message.Contains("Duplicate item found"))
+                {
+                    System.Windows.Forms.MessageBox.Show(
+                        "Duplicate item found: " + e.InnerException.Message,
+                        "Repository Import Error",
+                        System.Windows.Forms.MessageBoxButtons.OK,
+                        System.Windows.Forms.MessageBoxIcon.Error);
+                }
+            }
 
             AvailableItemsRepo = InternalItemsRepo.Items;
             ListItemsRepo = new Dictionary<GroceryItem, int>();
@@ -255,7 +277,11 @@ namespace GroceryList.Main
 
         private void RepoEditItemButton_Click(object sender, EventArgs e)
         {
-            // Click edit button here
+            GroceryItem itemToEdit = InternalItemsRepo
+                .GetItemFromString(Regex.Split(RepositoryListBox.SelectedItem.ToString(), @"\s{2,}")[0]);
+
+            EditRepoItemForm editItemForm = new EditRepoItemForm(itemToEdit);
+            editItemForm.Show();
         }
     }
 }

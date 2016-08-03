@@ -29,13 +29,13 @@ namespace GroceryList.Main
                 switch (price.Store)
                 {
                     case Helpers.Enums.Stores.Hannaford:
-                        HannafordPriceBox.Value = price.Price;
+                        HannafordPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
                     case Helpers.Enums.Stores.Sams:
-                        SamsPriceBox.Value = price.Price;
+                        SamsPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
                     case Helpers.Enums.Stores.Shaws:
-                        ShawsPriceBox.Value = price.Price;
+                        ShawsPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
                     default:
                         break;
