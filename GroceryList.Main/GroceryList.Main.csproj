@@ -65,7 +65,7 @@
     </Compile>
     <Compile Include="GroceryItem.cs" />
     <Compile Include="GroceryItemRepository.cs" />
-    <Compile Include="MoneyShit.cs" />
+    <Compile Include="GroceryList.Main.Helpers\MoneyShit.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StorePrice.cs" />
