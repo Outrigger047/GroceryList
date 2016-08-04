@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GroceryList.Main
+namespace GroceryList.Main.Helpers
 {
     public static class MoneyShit
     {
