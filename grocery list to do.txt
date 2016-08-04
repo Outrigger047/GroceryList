@@ -1,0 +1,42 @@
+- "Edit Selected Item..." repository option
+	- UI: Build new form
+	- Functionality
+		- Edit item in repo directly by changing accessibility or by writing accessor method??
+						THESE ARE TEH QUESTIONS OF OUR THYME
+	
+- "Remove Item" repository option
+	- UI: Confirmation dialog
+	- Functionality
+
+- "Add Item..." repository option
+	- UI: Build new form
+	- Functionality
+
+- "Clear List..." list option
+	- UI: Confirmation dialog
+	- Functionality
+	
+- "Edit Quantity..." list option
+	- UI: Build new form for specify quantity 
+	- Functionality
+	
+- Information pane UI elements
+	- Layout
+	- Functionality
+	
+- "Open List..." list option
+	- UI: Open dialog
+	- Functionality
+	
+- "Save As..." list option
+	- UI: Save dialog
+	- Functionality
+	
+- "Save" list option
+	- Functionality
+	
+- Main form: Radio buttons to select store for list. Price total will be based on selected store.
+	
+- Set UI elements to enable/disable at proper times
+
+- Look into replacing repo/list ListBox components with some sort of table
