@@ -103,6 +103,7 @@
             this.CancelButton.TabIndex = 6;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // HannafordPriceBox
             // 
@@ -146,8 +147,16 @@
             this.Controls.Add(this.HannafordPriceLabel);
             this.Controls.Add(this.ItemNameTextBox);
             this.Controls.Add(this.ItemNameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EditRepoItemForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditRepoItemForm";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.HannafordPriceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ShawsPriceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SamsPriceBox)).EndInit();
