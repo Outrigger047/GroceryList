@@ -18,7 +18,7 @@ namespace GroceryList.Main.Helpers
 
         public static decimal PenniesToDecimal(int penniesIn)
         {
-            return Math.Round((decimal)penniesIn / 100, 2);
+            return Math.Round((decimal)penniesIn / 100, 2, MidpointRounding.AwayFromZero);
         }
 
         public static int DecimalToPennies(decimal decimalIn)

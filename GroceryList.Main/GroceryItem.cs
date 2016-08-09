@@ -52,7 +52,7 @@ namespace GroceryList.Main
                         runningPrices.Append("   ");
                         runningPrices.Append(p.Store);
                         runningPrices.Append(": $");
-                        runningPrices.Append(System.Math.Round((decimal)p.Price / 100, 2));
+                        runningPrices.Append(MoneyShit.PenniesToDecimal(p.Price).ToString("0.00"));
                     } 
                 }
 

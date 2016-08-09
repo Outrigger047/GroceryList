@@ -282,6 +282,7 @@ namespace GroceryList.Main
 
             EditRepoItemForm editItemForm = new EditRepoItemForm(itemToEdit);
             editItemForm.Show();
+            editItemForm.OkButtonClicked += UpdateUiFromRepos;
         }
     }
 }
