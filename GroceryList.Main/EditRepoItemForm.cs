@@ -9,6 +9,8 @@ namespace GroceryList.Main
         public bool ItemUpdated { get; private set; }
         public GroceryItem ItemToEdit;
 
+        public event EventHandler OkButtonClicked;
+
         public EditRepoItemForm(GroceryItem itemToEditIn)
         {
             ItemUpdated = false;
@@ -71,6 +73,9 @@ namespace GroceryList.Main
                 ItemToEdit.AddNewPrice(Enums.Stores.Shaws, MoneyShit.DecimalToPennies(ShawsPriceBox.Value));
                 ItemUpdated = true;
             }
+
+            EventArgs okEventArgs = new EventArgs();
+            OkButtonClicked(this, okEventArgs);
 
             Close();
         }
