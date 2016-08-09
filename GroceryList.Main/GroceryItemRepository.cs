@@ -10,7 +10,7 @@ namespace GroceryList.Main
     {
         private static readonly string DISK_REPO_FILE_PATH = 
             Path.Combine(Path.GetDirectoryName(
-                new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), @"Assets\repo.txt");
+                new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), @"Assets");
         private readonly FileInfo _file;
 
         public List<GroceryItem> Items { get; private set; }

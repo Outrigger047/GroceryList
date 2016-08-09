@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace GroceryList.Main.Helpers
 {
@@ -131,6 +132,23 @@ namespace GroceryList.Main.Helpers
             }
 
             return pricesFromRow;
+        }
+
+        private static FileInfo GetMostRecentRepo(string repoFilesPath)
+        {
+            List<string> files = (List<string>)Directory.EnumerateFiles(repoFilesPath);
+
+            foreach (var file in files)
+            {
+                if (!Regex.IsMatch(file, @"[0-9]{14}\-repo\.txt"))
+                {
+                    files.Remove(file);
+                }
+            }
+
+            files.OrderByDescending(x => Regex.Match(x, @"^[0-9]{14}"));
+
+            return new FileInfo(files.First());
         }
     }
 }
