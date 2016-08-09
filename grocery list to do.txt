@@ -1,8 +1,6 @@
-- "Edit Selected Item..." repository option
-	- UI: Build new form
-	- Functionality
-		- Edit item in repo directly by changing accessibility or by writing accessor method??
-						THESE ARE TEH QUESTIONS OF OUR THYME
+- Add ability to sort multiple repo files from disk and load the most recent one based on timestamp in filename upon program start.
+
+- Invoke write-to-disk method when editing repo items. Test to ensure loading happens properly on subsequent startup.
 	
 - "Remove Item" repository option
 	- UI: Confirmation dialog
