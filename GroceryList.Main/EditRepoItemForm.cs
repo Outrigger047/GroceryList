@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GroceryList.Main.Helpers;
 
@@ -13,10 +6,12 @@ namespace GroceryList.Main
 {
     public partial class EditRepoItemForm : Form
     {
-        GroceryItem ItemToEdit;
+        public bool ItemUpdated { get; private set; }
+        public GroceryItem ItemToEdit;
 
         public EditRepoItemForm(GroceryItem itemToEditIn)
         {
+            ItemUpdated = false;
             ItemToEdit = itemToEditIn;
 
             InitializeComponent();
@@ -29,13 +24,13 @@ namespace GroceryList.Main
             {
                 switch (price.Store)
                 {
-                    case Helpers.Enums.Stores.Hannaford:
+                    case Enums.Stores.Hannaford:
                         HannafordPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
-                    case Helpers.Enums.Stores.Sams:
+                    case Enums.Stores.Sams:
                         SamsPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
-                    case Helpers.Enums.Stores.Shaws:
+                    case Enums.Stores.Shaws:
                         ShawsPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
                     default:
@@ -48,6 +43,35 @@ namespace GroceryList.Main
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
+            Close();
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            if (ItemNameTextBox.Text != ItemToEdit.Name)
+            {
+                ItemToEdit.ChangeName(ItemNameTextBox.Text);
+                ItemUpdated = true;
+            }
+
+            if (HannafordPriceBox.Value != 0)
+            {
+                ItemToEdit.AddNewPrice(Enums.Stores.Hannaford, MoneyShit.DecimalToPennies(HannafordPriceBox.Value));
+                ItemUpdated = true;
+            }
+
+            if (SamsPriceBox.Value != 0)
+            {
+                ItemToEdit.AddNewPrice(Enums.Stores.Sams, MoneyShit.DecimalToPennies(SamsPriceBox.Value));
+                ItemUpdated = true;
+            }
+
+            if (ShawsPriceBox.Value != 0)
+            {
+                ItemToEdit.AddNewPrice(Enums.Stores.Shaws, MoneyShit.DecimalToPennies(ShawsPriceBox.Value));
+                ItemUpdated = true;
+            }
+
             Close();
         }
     }

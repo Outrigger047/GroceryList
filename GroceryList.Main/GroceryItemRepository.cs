@@ -39,7 +39,10 @@ namespace GroceryList.Main
             GroceryItem targetItem = Items.Find(x => x.Name == itemToEdit.Name);
 
             targetItem.ChangeName(itemToEdit.Name);
-            
+            foreach (var p in itemToEdit.Prices)
+            {
+                targetItem.AddNewPrice(p.Store, p.Price);
+            }
         }
     }
 }

@@ -35,16 +35,16 @@ namespace GroceryList.Main
                     System.Windows.Forms.MessageBox.Show(
                         "Repository header row invalid.",
                         "Repository Import Error",
-                        System.Windows.Forms.MessageBoxButtons.OK,
-                        System.Windows.Forms.MessageBoxIcon.Error);
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
                 else if (e.Message.Contains("Duplicate item found"))
                 {
                     System.Windows.Forms.MessageBox.Show(
                         "Duplicate item found: " + e.InnerException.Message,
                         "Repository Import Error",
-                        System.Windows.Forms.MessageBoxButtons.OK,
-                        System.Windows.Forms.MessageBoxIcon.Error);
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
 
@@ -105,7 +105,7 @@ namespace GroceryList.Main
 
             foreach (var item in ListItemsRepo)
             {
-                ListListBox.Items.Add(String.Concat(item.Value, "x  ", item.Key.ListBoxRowText));
+                ListListBox.Items.Add(string.Concat(item.Value, "x  ", item.Key.ListBoxRowText));
             }
 
             ResumeLayout();
