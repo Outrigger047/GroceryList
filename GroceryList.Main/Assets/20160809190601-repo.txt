@@ -1,0 +1,84 @@
+ITEM	CATEGORY	HANNAFORD_PRICE	SHAWS_PRICE	SAMS_PRICE
+Vine tomato		1.69		
+Deli Meat		7.99		
+Chicken Breast		3.99		
+Ground Beef		6.99		
+Keilbasa		3.49		
+Pierogi		2.59		
+Light Cream		2.99		
+Cereal		2.49		
+Cheese Sticks		3.99		
+Whole Milk		4.69		
+Eggs		3.69		
+Tuna		3.29		
+Zatarain's		1.79		
+Broccoli		0.99		
+Green Beans		1.49		
+Mushrooms		1.99		
+Dove Bar Soap		6.99		13.98
+English Muffin		1.29		
+Cheese Slices		2.79		
+Zucchini		1.49		
+Summer Squash		1.49		
+Cucumber		0.79		
+Pasta		1.25		
+Baby Yogurt		3.99		
+Large Yogurt		4.69		
+Bulky Rolls		2.99		
+Ben & Jerry's		3.69		
+Flossers		2.59		
+Hormel Deli Meat		3.99		
+Mini Watermelon		2.99		
+Org Potato Bag		4.99		
+Tea		3.49		
+Baby Puffs		3.29		
+Yogurt Melts		3.49		
+Graham Crackers		3.99		
+Ken's Dressing		3.49		
+Shredded Cheese		2.79		
+Cranberry Juice		1.79		
+Cream Cheese		1.79		
+Sour Cream		1.79		
+Soy Milk		2.79		
+Jet Dry				9.98
+Glasses Wipes				8.86
+Tissues				11.98
+Degree Men's Deodorant				8.68
+Charmin Soft				19.98
+Paper Towels				16.48
+Kitty Litter		10.99		
+Bacon		4.99		
+Peanut Butter		2.49		
+Brownie Mix		1.29		
+Olive Oil		10.99		
+Spinach		5		
+Sausage		3.99		
+Hot Dog		3.99		
+Frozen Fries		1.69		
+Frozen Veggies		1.19		
+Ketchup		2.29		
+Grated Parm		2.49		
+Frozen Fruit		2.99		
+Bag Vidalia Onion		2.49		
+Mayonnaise				
+Ranch Dip				
+Butter Sticks				
+Flour Sugar				
+Butter Spreadable				
+Lettuce				
+Sweet Potato				
+Shrimp				
+Pickles				
+Saurkraut				
+Canned Black Beans				
+Canned Diced Tomato				
+Canned Tomato Sauce				
+Canned Corn				
+Canned Garbanzo Bean				
+Canned Pinto Bean				
+Pam				
+City Garbage Bags		13.5		
+Jam				
+Salt				
+Finish Dishwasher Tablets				
+Brown Sugar				
