@@ -18,8 +18,18 @@ namespace GroceryList.Main
 
         public GroceryItemRepository()
         {
-            _file = new FileInfo(DiskRepoHelpers.GetMostRecentRepo(DISK_REPO_FILE_PATH_DIR).ToString());
-            Items = DiskRepoHelpers.LoadRepositoryFromDisk(_file);
+            string repoPath = DiskRepoHelpers.GetMostRecentRepo(DISK_REPO_FILE_PATH_DIR)?.ToString();
+
+            if (repoPath == null)
+            {
+                Items = DiskRepoHelpers
+                    .LoadRepositoryFromDisk(new FileInfo(Path.Combine(DISK_REPO_FILE_PATH_DIR, @"_base-repo.txt")));
+            }
+            else
+            {
+                _file = new FileInfo(repoPath);
+                Items = DiskRepoHelpers.LoadRepositoryFromDisk(_file); 
+            }
         }
 
         public GroceryItem GetItemFromString(string itemToFind)

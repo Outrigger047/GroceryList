@@ -28,19 +28,25 @@ namespace GroceryList.Main.Helpers
         public static FileInfo GetMostRecentRepo(string repoFilesPath)
         {
             IEnumerable<string> filesTemp = Directory.EnumerateFiles(repoFilesPath);
-            List<string> files = filesTemp.ToList();
+            List<string> files = new List<string>();
 
-            foreach (var file in files)
+            foreach (var file in filesTemp)
             {
-                if (!Regex.IsMatch(file, @"[0-9]{14}\-repo\.txt"))
+                if (Regex.IsMatch(file, @"[0-9]{14}\-repo\.txt"))
                 {
-                    files.Remove(file);
+                    files.Add(file);
                 }
             }
 
-            files.Sort();
-
-            return new FileInfo(files.Last());
+            if (files.Count > 0)
+            {
+                files.Sort();
+                return new FileInfo(files.Last()); 
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static List<GroceryItem> LoadRepositoryFromDisk(FileInfo path)

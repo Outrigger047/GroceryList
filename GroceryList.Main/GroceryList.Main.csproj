@@ -100,7 +100,7 @@
   <ItemGroup>
     <Content Include="Assets\badass_profile.jpg" />
     <Content Include="Assets\badass_profile_OD0_icon.ico" />
-    <Content Include="Assets\20160809190601-repo.txt">
+    <Content Include="Assets\_base-repo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

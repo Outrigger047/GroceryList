@@ -1,5 +1,3 @@
-- Ensure that dummy empty repo created on first startup if none exists has the properly formatted filename with timestamp.
-	
 - "Remove Item" repository option
 	- UI: Confirmation dialog
 	- Functionality
