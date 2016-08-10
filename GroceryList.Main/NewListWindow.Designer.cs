@@ -103,6 +103,7 @@
             this.RepoRemoveItemButton.TabIndex = 2;
             this.RepoRemoveItemButton.Text = "Remove Item...";
             this.RepoRemoveItemButton.UseVisualStyleBackColor = true;
+            this.RepoRemoveItemButton.Click += new System.EventHandler(this.RepoRemoveItemButton_Click);
             // 
             // RepoAddItemButton
             // 

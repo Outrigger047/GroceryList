@@ -1,7 +1,3 @@
-- "Remove Item" repository option
-	- UI: Confirmation dialog
-	- Functionality
-
 - "Add Item..." repository option
 	- UI: Build new form
 	- Functionality

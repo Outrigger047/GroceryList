@@ -17,6 +17,7 @@ namespace GroceryList.Main
         public Dictionary<GroceryItem, int> ListItemsRepo { get; private set; }
 
         public event EventHandler ItemsMoved;
+        public event EventHandler RepoItemsChanged;
 
         public NewListWindow()
         {
@@ -29,7 +30,7 @@ namespace GroceryList.Main
             {
                 if (e.Message.Contains("Header row invalid"))
                 {
-                    System.Windows.Forms.MessageBox.Show(
+                    MessageBox.Show(
                         "Repository header row invalid.",
                         "Repository Import Error",
                         MessageBoxButtons.OK,
@@ -37,7 +38,7 @@ namespace GroceryList.Main
                 }
                 else if (e.Message.Contains("Duplicate item found"))
                 {
-                    System.Windows.Forms.MessageBox.Show(
+                    MessageBox.Show(
                         "Duplicate item found: " + e.InnerException.Message,
                         "Repository Import Error",
                         MessageBoxButtons.OK,
@@ -49,6 +50,7 @@ namespace GroceryList.Main
             ListItemsRepo = new Dictionary<GroceryItem, int>();
 
             ItemsMoved += UpdateUiFromRepos;
+            RepoItemsChanged += InternalItemsRepo.WriteRepoToDisk;
 
             InitializeComponent();
 
@@ -64,8 +66,7 @@ namespace GroceryList.Main
             RepositoryListBox.SelectedIndex = -1;
             AddToListButton.Enabled = false;
 
-            EventArgs e = new EventArgs();
-            ItemsMoved(this, e);
+            ItemsMoved(this, new EventArgs());
         }
 
         private void MoveListToAvailable(GroceryItem itemToMove)
@@ -76,8 +77,7 @@ namespace GroceryList.Main
             ListListBox.SelectedIndex = -1;
             RemoveFromListButton.Enabled = false;
 
-            EventArgs e = new EventArgs();
-            ItemsMoved(this, e);
+            ItemsMoved(this, new EventArgs());
         }
 
         private void UpdateUiFromRepos(object sender, EventArgs e)
@@ -141,10 +141,11 @@ namespace GroceryList.Main
             if (RepositoryListBox.SelectedIndex > -1)
             {
                 AddToListButton.Enabled = true;
+                RepoRemoveItemButton.Enabled = true;
                 RemoveFromListButton.Enabled = false;
                 if (RepositoryListBox.SelectedItems.Count == 1)
                 {
-                    RepoEditItemButton.Enabled = true; 
+                    RepoEditItemButton.Enabled = true;
                 }
                 else
                 {
@@ -162,6 +163,7 @@ namespace GroceryList.Main
                 RemoveFromListButton.Enabled = true;
                 AddToListButton.Enabled = false;
                 RepoEditItemButton.Enabled = false;
+                RepoRemoveItemButton.Enabled = false;
 
                 RepositoryListBox.SelectedIndex = -1;
             }
@@ -181,6 +183,9 @@ namespace GroceryList.Main
             {
                 MoveAvailableToList(item);
             }
+
+            RepoEditItemButton.Enabled = false;
+            RepoRemoveItemButton.Enabled = false;
 
             ResetFilterTextBox(AvailableFilterTextBox);
         }
@@ -281,6 +286,36 @@ namespace GroceryList.Main
             editItemForm.Show();
             editItemForm.OkButtonClicked += UpdateUiFromRepos;
             editItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
+        }
+
+        private void RepoRemoveItemButton_Click(object sender, EventArgs e)
+        {
+            List<GroceryItem> itemsToRemove = new List<GroceryItem>();
+
+            foreach (var item in RepositoryListBox.SelectedItems)
+            {
+                itemsToRemove.Add(
+                    AvailableItemsRepo.Find(x => x.Name == Regex.Split(item.ToString(), @"\s{2,}")[0]));
+            }
+
+            DialogResult r = MessageBox.Show(
+                itemsToRemove.Count > 1 ?
+                    "Are you sure you want to remove these items?"
+                    : "Are you sure you want to remove this item?",
+                "Confirm Item Removal",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                foreach (var item in itemsToRemove)
+                {
+                    AvailableItemsRepo.Remove(item);
+                }
+
+                RepoItemsChanged(this, new EventArgs());
+                ItemsMoved(this, new EventArgs());
+            }
         }
     }
 }
