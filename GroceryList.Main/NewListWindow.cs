@@ -70,6 +70,8 @@ namespace GroceryList.Main
             AddToListButton.Enabled = false;
             ListClearListButton.Enabled = true;
             ListPrintButton.Enabled = true;
+            ListSaveButton.Enabled = true;
+            ListSaveAsButton.Enabled = true;
 
             ItemsMoved(this, new EventArgs());
         }
@@ -84,6 +86,9 @@ namespace GroceryList.Main
             if (ListItemsRepo.Count < 1)
             {
                 ListClearListButton.Enabled = false;
+                ListSaveAsButton.Enabled = false;
+                ListSaveButton.Enabled = false;
+                ListPrintButton.Enabled = false;
             }
 
             ItemsMoved(this, new EventArgs());
@@ -351,6 +356,9 @@ namespace GroceryList.Main
             if (r == DialogResult.Yes)
             {
                 ListClearListButton.Enabled = false;
+                ListSaveButton.Enabled = false;
+                ListSaveAsButton.Enabled = false;
+                ListPrintButton.Enabled = false;
 
                 List<GroceryItem> itemsToMove = new List<GroceryItem>();
 
