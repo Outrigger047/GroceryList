@@ -1,6 +1,4 @@
-- Add ability to sort multiple repo files from disk and load the most recent one based on timestamp in filename upon program start.
-
-- Invoke write-to-disk method when editing repo items. Test to ensure loading happens properly on subsequent startup.
+- Ensure that dummy empty repo created on first startup if none exists has the properly formatted filename with timestamp.
 	
 - "Remove Item" repository option
 	- UI: Confirmation dialog

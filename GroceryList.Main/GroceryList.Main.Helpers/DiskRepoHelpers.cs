@@ -113,9 +113,33 @@ namespace GroceryList.Main.Helpers
                 {
                     sw.Write(item.Name + "\t");
                     sw.Write("\t"); // Category write should be added here once property is added to GroceryItem class
-                    sw.Write((item.Prices.Find(x => x.Store == Enums.Stores.Hannaford)?.Price.ToString() ?? "") + "\t");
-                    sw.Write((item.Prices.Find(x => x.Store == Enums.Stores.Shaws)?.Price.ToString() ?? "") + "\t");
-                    sw.Write((item.Prices.Find(x => x.Store == Enums.Stores.Sams)?.Price.ToString() ?? ""));
+
+                    var hannafordPrice = item.Prices.Find(x => x.Store == Enums.Stores.Hannaford)?.Price;
+                    if (hannafordPrice != null)
+                    {
+                        sw.Write(MoneyShit.PenniesToDecimal((int)hannafordPrice).ToString() + "\t");
+                    }
+                    else
+                    {
+                        sw.Write("\t");
+                    }
+
+                    var shawsPrice = item.Prices.Find(x => x.Store == Enums.Stores.Shaws)?.Price;
+                    if (shawsPrice != null)
+                    {
+                        sw.Write(MoneyShit.PenniesToDecimal((int)shawsPrice).ToString() + "\t");
+                    }
+                    else
+                    {
+                        sw.Write("\t");
+                    }
+
+                    var samsPrice = item.Prices.Find(x => x.Store == Enums.Stores.Sams)?.Price;
+                    if (samsPrice != null)
+                    {
+                        sw.Write(MoneyShit.PenniesToDecimal((int)samsPrice).ToString());
+                    }
+
                     sw.WriteLine();
                 }
             }
