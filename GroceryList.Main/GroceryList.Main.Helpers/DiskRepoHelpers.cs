@@ -113,9 +113,9 @@ namespace GroceryList.Main.Helpers
                 {
                     sw.Write(item.Name + "\t");
                     sw.Write("\t"); // Category write should be added here once property is added to GroceryItem class
-                    sw.Write(item.Prices.Find(x => x.Store == Enums.Stores.Hannaford).Price.ToString() + "\t");
-                    sw.Write(item.Prices.Find(x => x.Store == Enums.Stores.Shaws).Price.ToString() + "\t");
-                    sw.Write(item.Prices.Find(x => x.Store == Enums.Stores.Sams).Price.ToString() + "\t");
+                    sw.Write(item.Prices.Find(x => x.Store == Enums.Stores.Hannaford)?.Price.ToString() ?? "" + "\t");
+                    sw.Write(item.Prices.Find(x => x.Store == Enums.Stores.Shaws)?.Price.ToString() ?? "" + "\t");
+                    sw.Write(item.Prices.Find(x => x.Store == Enums.Stores.Sams)?.Price.ToString() ?? "" + "\t");
                     sw.WriteLine();
                 }
             }

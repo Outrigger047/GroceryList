@@ -280,6 +280,7 @@ namespace GroceryList.Main
             EditRepoItemForm editItemForm = new EditRepoItemForm(itemToEdit);
             editItemForm.Show();
             editItemForm.OkButtonClicked += UpdateUiFromRepos;
+            editItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
         }
     }
 }

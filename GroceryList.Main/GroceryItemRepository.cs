@@ -8,16 +8,17 @@ namespace GroceryList.Main
 {
     public class GroceryItemRepository
     {
-        private static readonly string DISK_REPO_FILE_PATH = 
+        private static readonly string DISK_REPO_FILE_PATH_DIR = 
             Path.Combine(Path.GetDirectoryName(
                 new Uri(Assembly.GetExecutingAssembly().CodeBase).AbsolutePath), @"Assets");
-        private readonly FileInfo _file;
+
+        private FileInfo _file;
 
         public List<GroceryItem> Items { get; private set; }
 
         public GroceryItemRepository()
         {
-            _file = new FileInfo(DiskRepoHelpers.GetMostRecentRepo(DISK_REPO_FILE_PATH).ToString());
+            _file = new FileInfo(DiskRepoHelpers.GetMostRecentRepo(DISK_REPO_FILE_PATH_DIR).ToString());
             Items = DiskRepoHelpers.LoadRepositoryFromDisk(_file);
         }
 
@@ -43,6 +44,19 @@ namespace GroceryList.Main
             {
                 targetItem.AddNewPrice(p.Store, p.Price);
             }
+        }
+
+        public void WriteRepoToDisk(object sender, EventArgs e)
+        {
+            FileInfo updatedFileName = new FileInfo(BuildRepoWriteFileName());
+            DiskRepoHelpers.WriteRepositoryToDisk(Items, updatedFileName);
+            _file = updatedFileName;
+        }
+
+        private string BuildRepoWriteFileName()
+        {
+            return Path.Combine(DISK_REPO_FILE_PATH_DIR, DateTime.Now.ToString("yyyyMMddHHmmss") + @"-repo.txt");
+            //return DISK_REPO_FILE_PATH_DIR + DateTime.Now.ToString("yyyyMMddHHmmss") + @"-repo.txt";
         }
     }
 }
