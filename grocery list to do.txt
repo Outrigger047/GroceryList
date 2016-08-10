@@ -2,6 +2,8 @@
 	- UI: Build new form for specify quantity 
 	- Functionality
 	
+- Repo ListBox UI update should sort the listbox contents alphabetically
+
 - Information pane UI elements
 	- Layout
 	- Functionality
