@@ -5,16 +5,28 @@
 - Information pane UI elements
 	- Layout
 	- Functionality
+		- Radio buttons to select store for list. Price total will be based on selected store.
 	
 - "Export..." list option
+	- UI: Export dialog
+	- Functionality: Export a simple text file with the list
+
+- "Save/Save as..." list options
 	- UI: Save dialog
 	- Functionality
+		- Come up with serializable data structures
+		- Write to disk
+
+- "Open..." list option
+	- UI: Open dialog
+	- Functionality
+		- Read serialized data from disk
 
 - "Print..." list option
 	- UI: Print dialog
 	- Functionality
-	
-- Main form: Radio buttons to select store for list. Price total will be based on selected store.
+		- Research
+		- Implement
 	
 - Set UI elements to enable/disable at proper times
 
