@@ -17,7 +17,7 @@ namespace GroceryList.Main
 
         public GroceryItemRepository()
         {
-            _file = new FileInfo(DISK_REPO_FILE_PATH);
+            _file = new FileInfo(DiskRepoHelpers.GetMostRecentRepo(DISK_REPO_FILE_PATH).ToString());
             Items = DiskRepoHelpers.LoadRepositoryFromDisk(_file);
         }
 

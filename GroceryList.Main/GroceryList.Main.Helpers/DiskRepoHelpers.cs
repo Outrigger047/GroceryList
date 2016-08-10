@@ -25,6 +25,24 @@ namespace GroceryList.Main.Helpers
                 { 4, Enums.Stores.Sams }
             };
 
+        public static FileInfo GetMostRecentRepo(string repoFilesPath)
+        {
+            IEnumerable<string> filesTemp = Directory.EnumerateFiles(repoFilesPath);
+            List<string> files = filesTemp.ToList();
+
+            foreach (var file in files)
+            {
+                if (!Regex.IsMatch(file, @"[0-9]{14}\-repo\.txt"))
+                {
+                    files.Remove(file);
+                }
+            }
+
+            files.OrderByDescending(x => Regex.Match(x, @"^[0-9]{14}"));
+
+            return new FileInfo(files.First());
+        }
+
         public static List<GroceryItem> LoadRepositoryFromDisk(FileInfo path)
         {
             List<GroceryItem> repoFromDisk = new List<GroceryItem>();
@@ -132,23 +150,6 @@ namespace GroceryList.Main.Helpers
             }
 
             return pricesFromRow;
-        }
-
-        private static FileInfo GetMostRecentRepo(string repoFilesPath)
-        {
-            List<string> files = (List<string>)Directory.EnumerateFiles(repoFilesPath);
-
-            foreach (var file in files)
-            {
-                if (!Regex.IsMatch(file, @"[0-9]{14}\-repo\.txt"))
-                {
-                    files.Remove(file);
-                }
-            }
-
-            files.OrderByDescending(x => Regex.Match(x, @"^[0-9]{14}"));
-
-            return new FileInfo(files.First());
         }
     }
 }
