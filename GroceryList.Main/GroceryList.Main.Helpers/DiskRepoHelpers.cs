@@ -38,9 +38,9 @@ namespace GroceryList.Main.Helpers
                 }
             }
 
-            files.OrderByDescending(x => Regex.Match(x, @"^[0-9]{14}"));
+            files.Sort();
 
-            return new FileInfo(files.First());
+            return new FileInfo(files.Last());
         }
 
         public static List<GroceryItem> LoadRepositoryFromDisk(FileInfo path)
