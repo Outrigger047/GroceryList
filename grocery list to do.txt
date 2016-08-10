@@ -33,4 +33,6 @@
 	
 - Set UI elements to enable/disable at proper times
 
+- Edit tab index order on each form to be intuitive
+
 - Look into replacing repo/list ListBox components with some sort of table
