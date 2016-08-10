@@ -6,23 +6,15 @@ namespace GroceryList.Main
 {
     public partial class AddRepoItemForm : Form
     {
-        public bool ItemUpdated { get; private set; }
-        public GroceryItem ItemToEdit;
+        private readonly string ERROR_MSG_MISSING_NAME = "Provide a valid name for this item";
 
-        public event EventHandler OkButtonClicked;
+        public GroceryItem ItemToAdd { get; private set; }
+
+        public event EventHandler<AddRepoItemEventArgs> OkButtonClicked;
 
         public AddRepoItemForm()
         {
-            ItemUpdated = false;
-
             InitializeComponent();
-
-            SuspendLayout();
-
-            ItemNameTextBox.Text = ItemToEdit.Name;
-
-
-            ResumeLayout();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -32,34 +24,46 @@ namespace GroceryList.Main
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (ItemNameTextBox.Text != ItemToEdit.Name)
+            if (ItemNameTextBox.Text == "")
             {
-                ItemToEdit.ChangeName(ItemNameTextBox.Text);
-                ItemUpdated = true;
+                MessageBox.Show(ERROR_MSG_MISSING_NAME,
+                    "Missing Item Name",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-
-            if (HannafordPriceBox.Value != 0)
+            else
             {
-                ItemToEdit.AddNewPrice(Enums.Stores.Hannaford, MoneyShit.DecimalToPennies(HannafordPriceBox.Value));
-                ItemUpdated = true;
-            }
+                ItemToAdd = new GroceryItem(ItemNameTextBox.Text);
 
-            if (SamsPriceBox.Value != 0)
+                if (HannafordPriceBox.Value != 0)
+                {
+                    ItemToAdd.AddNewPrice(Enums.Stores.Hannaford, MoneyShit.DecimalToPennies(HannafordPriceBox.Value));
+                }
+
+                if (SamsPriceBox.Value != 0)
+                {
+                    ItemToAdd.AddNewPrice(Enums.Stores.Sams, MoneyShit.DecimalToPennies(SamsPriceBox.Value));
+                }
+
+                if (ShawsPriceBox.Value != 0)
+                {
+                    ItemToAdd.AddNewPrice(Enums.Stores.Shaws, MoneyShit.DecimalToPennies(ShawsPriceBox.Value));
+                }
+
+                OkButtonClicked(this, new AddRepoItemEventArgs(ItemToAdd));
+
+                Close();
+            }
+        }
+
+        public class AddRepoItemEventArgs : EventArgs
+        {
+            public GroceryItem ItemToAdd { get; private set; }
+
+            public AddRepoItemEventArgs(GroceryItem itemToAdd)
             {
-                ItemToEdit.AddNewPrice(Enums.Stores.Sams, MoneyShit.DecimalToPennies(SamsPriceBox.Value));
-                ItemUpdated = true;
+                ItemToAdd = itemToAdd;
             }
-
-            if (ShawsPriceBox.Value != 0)
-            {
-                ItemToEdit.AddNewPrice(Enums.Stores.Shaws, MoneyShit.DecimalToPennies(ShawsPriceBox.Value));
-                ItemUpdated = true;
-            }
-
-            EventArgs okEventArgs = new EventArgs();
-            OkButtonClicked(this, okEventArgs);
-
-            Close();
         }
     }
 }

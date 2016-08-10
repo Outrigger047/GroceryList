@@ -10,6 +10,9 @@ namespace GroceryList.Main
 {
     public partial class NewListWindow : Form
     {
+        private readonly string CONFIRM_LIST_CLEAR = "Are you sure you want to clear the grocery list?";
+        private readonly string CONFIRM_REPO_REMOVE_SINGLE = "Are you sure you want to remove this item?";
+        private readonly string CONFIRM_REPO_REMOVE_MULTI = "Are you sure you want to remove these items?";
         private readonly string DEFAULT_FILTER_TEXTBOX_VALUE = "\uD83D\uDD0E Type to filter...";
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
@@ -65,6 +68,8 @@ namespace GroceryList.Main
 
             RepositoryListBox.SelectedIndex = -1;
             AddToListButton.Enabled = false;
+            ListClearListButton.Enabled = true;
+            ListPrintButton.Enabled = true;
 
             ItemsMoved(this, new EventArgs());
         }
@@ -76,6 +81,10 @@ namespace GroceryList.Main
 
             ListListBox.SelectedIndex = -1;
             RemoveFromListButton.Enabled = false;
+            if (ListItemsRepo.Count < 1)
+            {
+                ListClearListButton.Enabled = false;
+            }
 
             ItemsMoved(this, new EventArgs());
         }
@@ -299,9 +308,7 @@ namespace GroceryList.Main
             }
 
             DialogResult r = MessageBox.Show(
-                itemsToRemove.Count > 1 ?
-                    "Are you sure you want to remove these items?"
-                    : "Are you sure you want to remove this item?",
+                itemsToRemove.Count > 1 ? CONFIRM_REPO_REMOVE_MULTI : CONFIRM_REPO_REMOVE_SINGLE,
                 "Confirm Item Removal",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
@@ -315,6 +322,51 @@ namespace GroceryList.Main
 
                 RepoItemsChanged(this, new EventArgs());
                 ItemsMoved(this, new EventArgs());
+            }
+        }
+
+        private void RepoAddItemButton_Click(object sender, EventArgs e)
+        {
+            AddRepoItemForm addItemForm = new AddRepoItemForm();
+            addItemForm.Show();
+
+            addItemForm.OkButtonClicked += AddItemFromForm;
+            addItemForm.OkButtonClicked += UpdateUiFromRepos;
+            addItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
+        }
+
+        private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
+        {
+            InternalItemsRepo.Items.Add(e.ItemToAdd);
+        }
+
+        private void ListClearListButton_Click(object sender, EventArgs e)
+        {
+            DialogResult r = MessageBox.Show(
+                CONFIRM_LIST_CLEAR,
+                "Comfirm Clear Grocery List",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                ListClearListButton.Enabled = false;
+
+                List<GroceryItem> itemsToMove = new List<GroceryItem>();
+
+                foreach (var item in ListItemsRepo)
+                {
+                    itemsToMove.Add(item.Key);
+                }
+
+                ListItemsRepo.Clear();
+
+                foreach (var item in itemsToMove)
+                {
+                    AvailableItemsRepo.Add(item);
+                }
+
+                ItemsMoved(this, new EventArgs()); 
             }
         }
     }

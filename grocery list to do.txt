@@ -1,11 +1,3 @@
-- "Add Item..." repository option
-	- UI: Build new form
-	- Functionality
-
-- "Clear List..." list option
-	- UI: Confirmation dialog
-	- Functionality
-	
 - "Edit Quantity..." list option
 	- UI: Build new form for specify quantity 
 	- Functionality
@@ -14,15 +6,12 @@
 	- Layout
 	- Functionality
 	
-- "Open List..." list option
-	- UI: Open dialog
-	- Functionality
-	
-- "Save As..." list option
+- "Export..." list option
 	- UI: Save dialog
 	- Functionality
-	
-- "Save" list option
+
+- "Print..." list option
+	- UI: Print dialog
 	- Functionality
 	
 - Main form: Radio buttons to select store for list. Price total will be based on selected store.
