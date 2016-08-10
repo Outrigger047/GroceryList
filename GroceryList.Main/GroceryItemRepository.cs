@@ -56,7 +56,6 @@ namespace GroceryList.Main
         private string BuildRepoWriteFileName()
         {
             return Path.Combine(DISK_REPO_FILE_PATH_DIR, DateTime.Now.ToString("yyyyMMddHHmmss") + @"-repo.txt");
-            //return DISK_REPO_FILE_PATH_DIR + DateTime.Now.ToString("yyyyMMddHHmmss") + @"-repo.txt";
         }
     }
 }
