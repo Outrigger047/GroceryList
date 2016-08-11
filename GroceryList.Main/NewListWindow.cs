@@ -62,11 +62,6 @@ namespace GroceryList.Main
         }
 
         #region Private Methods
-        private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
-        {
-            InternalItemsRepo.Items.Add(e.ItemToAdd);
-        }
-
         private string CalclistTotalCost(Enums.Stores store)
         {
             return Math.Round(((decimal)CalcListTotalCost(store) / 100), 2).ToString();
@@ -143,10 +138,15 @@ namespace GroceryList.Main
             ItemsMoved(this, new EventArgs());
         }
 
-        private void ResetFilterTextBox(System.Windows.Forms.TextBox textBoxToReset)
+        private void ResetFilterTextBox(TextBox textBoxToReset)
         {
             textBoxToReset.Text = DEFAULT_FILTER_TEXTBOX_VALUE;
             textBoxToReset.ForeColor = Color.LightGray;
+        }
+
+        private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
+        {
+            InternalItemsRepo.Items.Add(e.ItemToAdd);
         }
 
         private void UpdateUiFromRepos(object sender, EventArgs e)
@@ -158,7 +158,8 @@ namespace GroceryList.Main
         }
         #endregion
 
-        #region UI Event Handlers
+        #region UI Interaction Event Handlers
+        #region ListBox Selection
         private void ListListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ListListBox.SelectedIndex > -1)
@@ -195,6 +196,7 @@ namespace GroceryList.Main
         }
         #endregion
 
+        #region Add/Remove Buttons
         private void AddToListButton_Click(object sender, EventArgs e)
         {
             List<GroceryItem> itemsToMove = new List<GroceryItem>();
@@ -231,6 +233,58 @@ namespace GroceryList.Main
                 MoveListToAvailable(item);
             }
         }
+        #endregion
+
+        #region Repo ListBox Buttons
+        private void RepoEditItemButton_Click(object sender, EventArgs e)
+        {
+            GroceryItem itemToEdit = InternalItemsRepo
+                .GetItemFromString(Regex.Split(RepositoryListBox.SelectedItem.ToString(), @"\s{2,}")[0]);
+
+            EditRepoItemForm editItemForm = new EditRepoItemForm(itemToEdit);
+            editItemForm.Show();
+            editItemForm.OkButtonClicked += UpdateUiFromRepos;
+            editItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
+        }
+
+        private void RepoRemoveItemButton_Click(object sender, EventArgs e)
+        {
+            List<GroceryItem> itemsToRemove = new List<GroceryItem>();
+
+            foreach (var item in RepositoryListBox.SelectedItems)
+            {
+                itemsToRemove.Add(
+                    AvailableItemsRepo.Find(x => x.Name == Regex.Split(item.ToString(), @"\s{2,}")[0]));
+            }
+
+            DialogResult r = MessageBox.Show(
+                itemsToRemove.Count > 1 ? CONFIRM_REPO_REMOVE_MULTI : CONFIRM_REPO_REMOVE_SINGLE,
+                "Confirm Item Removal",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (r == DialogResult.Yes)
+            {
+                foreach (var item in itemsToRemove)
+                {
+                    AvailableItemsRepo.Remove(item);
+                }
+
+                RepoItemsChanged(this, new EventArgs());
+                ItemsMoved(this, new EventArgs());
+            }
+        }
+
+        private void RepoAddItemButton_Click(object sender, EventArgs e)
+        {
+            AddRepoItemForm addItemForm = new AddRepoItemForm();
+            addItemForm.Show();
+
+            addItemForm.OkButtonClicked += AddItemFromForm;
+            addItemForm.OkButtonClicked += UpdateUiFromRepos;
+            addItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
+        }
+        #endregion
 
         #region AvailableFilterTextBox
         private void AvailableFilterTextBox_MouseEnter(object sender, EventArgs e)
@@ -305,55 +359,7 @@ namespace GroceryList.Main
         }
         #endregion
 
-        private void RepoEditItemButton_Click(object sender, EventArgs e)
-        {
-            GroceryItem itemToEdit = InternalItemsRepo
-                .GetItemFromString(Regex.Split(RepositoryListBox.SelectedItem.ToString(), @"\s{2,}")[0]);
-
-            EditRepoItemForm editItemForm = new EditRepoItemForm(itemToEdit);
-            editItemForm.Show();
-            editItemForm.OkButtonClicked += UpdateUiFromRepos;
-            editItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
-        }
-
-        private void RepoRemoveItemButton_Click(object sender, EventArgs e)
-        {
-            List<GroceryItem> itemsToRemove = new List<GroceryItem>();
-
-            foreach (var item in RepositoryListBox.SelectedItems)
-            {
-                itemsToRemove.Add(
-                    AvailableItemsRepo.Find(x => x.Name == Regex.Split(item.ToString(), @"\s{2,}")[0]));
-            }
-
-            DialogResult r = MessageBox.Show(
-                itemsToRemove.Count > 1 ? CONFIRM_REPO_REMOVE_MULTI : CONFIRM_REPO_REMOVE_SINGLE,
-                "Confirm Item Removal",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (r == DialogResult.Yes)
-            {
-                foreach (var item in itemsToRemove)
-                {
-                    AvailableItemsRepo.Remove(item);
-                }
-
-                RepoItemsChanged(this, new EventArgs());
-                ItemsMoved(this, new EventArgs());
-            }
-        }
-
-        private void RepoAddItemButton_Click(object sender, EventArgs e)
-        {
-            AddRepoItemForm addItemForm = new AddRepoItemForm();
-            addItemForm.Show();
-
-            addItemForm.OkButtonClicked += AddItemFromForm;
-            addItemForm.OkButtonClicked += UpdateUiFromRepos;
-            addItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
-        }
-
+        #region List ListBox Buttons
         private void ListClearListButton_Click(object sender, EventArgs e)
         {
             DialogResult r = MessageBox.Show(
@@ -386,5 +392,7 @@ namespace GroceryList.Main
                 ItemsMoved(this, new EventArgs()); 
             }
         }
+        #endregion
+        #endregion
     }
 }
