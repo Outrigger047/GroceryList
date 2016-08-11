@@ -61,6 +61,54 @@ namespace GroceryList.Main
             ResetFilterTextBox(AvailableFilterTextBox);
         }
 
+        #region Private Methods
+        private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
+        {
+            InternalItemsRepo.Items.Add(e.ItemToAdd);
+        }
+
+        private string CalclistTotalCost(Enums.Stores store)
+        {
+            return Math.Round(((decimal)CalcListTotalCost(store) / 100), 2).ToString();
+        }
+
+        private int CalcListTotalCost(Enums.Stores store)
+        {
+            int total = 0;
+
+            foreach (var item in ListItemsRepo)
+            {
+                int itemUnitPrice;
+
+                StorePrice currentPrice = item.Key.Prices.Find(x => x.Store == store);
+                itemUnitPrice = currentPrice?.Price ?? 0;
+
+                total += (itemUnitPrice * item.Value);
+            }
+
+            return total;
+        }
+
+        private void DoUiListBoxUpdateFromRepos()
+        {
+            SuspendLayout();
+
+            RepositoryListBox.Items.Clear();
+            ListListBox.Items.Clear();
+
+            foreach (var item in AvailableItemsRepo)
+            {
+                RepositoryListBox.Items.Add(item.ListBoxRowText);
+            }
+
+            foreach (var item in ListItemsRepo)
+            {
+                ListListBox.Items.Add(string.Concat(item.Value, "x  ", item.Key.ListBoxRowText));
+            }
+
+            ResumeLayout();
+        }
+
         private void MoveAvailableToList(GroceryItem itemToMove)
         {
             AvailableItemsRepo.Remove(itemToMove);
@@ -89,9 +137,16 @@ namespace GroceryList.Main
                 ListSaveAsButton.Enabled = false;
                 ListSaveButton.Enabled = false;
                 ListPrintButton.Enabled = false;
+                ListQuantityButton.Enabled = false;
             }
 
             ItemsMoved(this, new EventArgs());
+        }
+
+        private void ResetFilterTextBox(System.Windows.Forms.TextBox textBoxToReset)
+        {
+            textBoxToReset.Text = DEFAULT_FILTER_TEXTBOX_VALUE;
+            textBoxToReset.ForeColor = Color.LightGray;
         }
 
         private void UpdateUiFromRepos(object sender, EventArgs e)
@@ -101,53 +156,21 @@ namespace GroceryList.Main
             InfoTotalPriceLabel.Text = "$" + CalclistTotalCost(Enums.Stores.Hannaford);
             InfoNumItemsLabel.Text = ListListBox.Items.Count.ToString();
         }
+        #endregion
 
-        private void DoUiListBoxUpdateFromRepos()
+        #region UI Event Handlers
+        private void ListListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SuspendLayout();
-
-            RepositoryListBox.Items.Clear();
-            ListListBox.Items.Clear();
-
-            foreach (var item in AvailableItemsRepo)
+            if (ListListBox.SelectedIndex > -1)
             {
-                RepositoryListBox.Items.Add(item.ListBoxRowText);
+                RemoveFromListButton.Enabled = true;
+                ListQuantityButton.Enabled = true;
+                AddToListButton.Enabled = false;
+                RepoEditItemButton.Enabled = false;
+                RepoRemoveItemButton.Enabled = false;
+
+                RepositoryListBox.SelectedIndex = -1;
             }
-
-            foreach (var item in ListItemsRepo)
-            {
-                ListListBox.Items.Add(string.Concat(item.Value, "x  ", item.Key.ListBoxRowText));
-            }
-
-            ResumeLayout();
-        }
-
-        private int CalcListTotalCost(Enums.Stores store)
-        {
-            int total = 0;
-
-            foreach (var item in ListItemsRepo)
-            {
-                int itemUnitPrice;
-
-                StorePrice currentPrice = item.Key.Prices.Find(x => x.Store == store);
-                itemUnitPrice = currentPrice?.Price ?? 0;
-
-                total += (itemUnitPrice * item.Value);
-            }
-
-            return total;
-        }
-
-        private string CalclistTotalCost(Enums.Stores store)
-        {
-            return Math.Round(((decimal)CalcListTotalCost(store) / 100), 2).ToString();
-        }
-
-        private void ResetFilterTextBox(System.Windows.Forms.TextBox textBoxToReset)
-        {
-            textBoxToReset.Text = DEFAULT_FILTER_TEXTBOX_VALUE;
-            textBoxToReset.ForeColor = Color.LightGray;
         }
 
         private void RepositoryListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +180,7 @@ namespace GroceryList.Main
                 AddToListButton.Enabled = true;
                 RepoRemoveItemButton.Enabled = true;
                 RemoveFromListButton.Enabled = false;
+                ListQuantityButton.Enabled = false;
                 if (RepositoryListBox.SelectedItems.Count == 1)
                 {
                     RepoEditItemButton.Enabled = true;
@@ -169,19 +193,7 @@ namespace GroceryList.Main
                 ListListBox.SelectedIndex = -1;
             }
         }
-
-        private void ListListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ListListBox.SelectedIndex > -1)
-            {
-                RemoveFromListButton.Enabled = true;
-                AddToListButton.Enabled = false;
-                RepoEditItemButton.Enabled = false;
-                RepoRemoveItemButton.Enabled = false;
-
-                RepositoryListBox.SelectedIndex = -1;
-            }
-        }
+        #endregion
 
         private void AddToListButton_Click(object sender, EventArgs e)
         {
@@ -220,6 +232,7 @@ namespace GroceryList.Main
             }
         }
 
+        #region AvailableFilterTextBox
         private void AvailableFilterTextBox_MouseEnter(object sender, EventArgs e)
         {
             if (AvailableFilterTextBox.Text == DEFAULT_FILTER_TEXTBOX_VALUE)
@@ -290,6 +303,7 @@ namespace GroceryList.Main
                 DoUiListBoxUpdateFromRepos();
             }
         }
+        #endregion
 
         private void RepoEditItemButton_Click(object sender, EventArgs e)
         {
@@ -338,11 +352,6 @@ namespace GroceryList.Main
             addItemForm.OkButtonClicked += AddItemFromForm;
             addItemForm.OkButtonClicked += UpdateUiFromRepos;
             addItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
-        }
-
-        private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
-        {
-            InternalItemsRepo.Items.Add(e.ItemToAdd);
         }
 
         private void ListClearListButton_Click(object sender, EventArgs e)
