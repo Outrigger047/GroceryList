@@ -1,7 +1,3 @@
-- "Edit Quantity..." list option
-	- UI: Build new form for specify quantity 
-	- Functionality
-	
 - Repo ListBox UI update should sort the listbox contents alphabetically
 
 - Information pane UI elements
@@ -32,6 +28,8 @@
 	
 - Set UI elements to enable/disable at proper times
 
-- Edit tab index order on each form to be intuitive
+- UI cleanup
+	- Tab index order
+	- Borders/button configs/title bar names of child forms
 
 - Look into replacing repo/list ListBox components with some sort of table
