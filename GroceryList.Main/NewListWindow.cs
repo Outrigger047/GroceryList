@@ -149,6 +149,14 @@ namespace GroceryList.Main
             InternalItemsRepo.Items.Add(e.ItemToAdd);
         }
 
+        private void EditQuantityFromForm(object sender, EditListQuantityForm.EditListQuantityEventArgs e)
+        {
+            foreach (var item in e.ItemsToEdit)
+            {
+                ListItemsRepo[item.Key] = item.Value;
+            }
+        }
+
         private void UpdateUiFromRepos(object sender, EventArgs e)
         {
             DoUiListBoxUpdateFromRepos();
@@ -397,16 +405,24 @@ namespace GroceryList.Main
 
         private void ListQuantityButton_Click(object sender, EventArgs e)
         {
-            if (ListListBox.SelectedItems.Count == 1)
-            {
-                ListItemsRepo.Select(x => x.Key.Name == Regex.Match(ListListBox.SelectedItem.ToString(), @"").ToString());
+            Dictionary<GroceryItem, int> itemsToEdit = new Dictionary<GroceryItem, int>();
 
-                EditListQuantityForm quantityForm = new EditListQuantityForm();
-            }
-            else if (ListListBox.SelectedItems.Count > 1)
-            {
+            Dictionary<GroceryItem, int>.KeyCollection groceryItems = ListItemsRepo.Keys;
 
+            foreach (var item in ListListBox.SelectedItems)
+            {
+                string itemNameFromListBox = Regex.Split(item.ToString(), @"\s{2,}")[1];
+                IEnumerable<GroceryItem> g = groceryItems.Where(x => x.Name == itemNameFromListBox);
+                foreach (var gItem in g)
+                {
+                    itemsToEdit.Add(gItem, ListItemsRepo[gItem]);
+                }
             }
+
+            EditListQuantityForm editQuantityForm = new EditListQuantityForm(itemsToEdit);
+            editQuantityForm.Show();
+            editQuantityForm.EditListQuantityFormOkButtonClicked += EditQuantityFromForm;
+            editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
         }
         #endregion
 

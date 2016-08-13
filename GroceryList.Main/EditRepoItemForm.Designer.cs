@@ -33,8 +33,8 @@
             this.HannafordPriceLabel = new System.Windows.Forms.Label();
             this.ShawsPriceLabel = new System.Windows.Forms.Label();
             this.SamsPriceLabel = new System.Windows.Forms.Label();
-            this.OkButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.EditRepoItemOkButton = new System.Windows.Forms.Button();
+            this.EditRepoItemCancelButton = new System.Windows.Forms.Button();
             this.HannafordPriceBox = new System.Windows.Forms.NumericUpDown();
             this.ShawsPriceBox = new System.Windows.Forms.NumericUpDown();
             this.SamsPriceBox = new System.Windows.Forms.NumericUpDown();
@@ -86,25 +86,25 @@
             this.SamsPriceLabel.TabIndex = 4;
             this.SamsPriceLabel.Text = "Sam\'s Club Price";
             // 
-            // OkButton
+            // EditRepoItemOkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(92, 142);
-            this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.TabIndex = 5;
-            this.OkButton.Text = "OK";
-            this.OkButton.UseVisualStyleBackColor = true;
-            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
+            this.EditRepoItemOkButton.Location = new System.Drawing.Point(92, 142);
+            this.EditRepoItemOkButton.Name = "EditRepoItemOkButton";
+            this.EditRepoItemOkButton.Size = new System.Drawing.Size(75, 23);
+            this.EditRepoItemOkButton.TabIndex = 5;
+            this.EditRepoItemOkButton.Text = "OK";
+            this.EditRepoItemOkButton.UseVisualStyleBackColor = true;
+            this.EditRepoItemOkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // CancelButton
+            // EditRepoItemCancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(173, 142);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 6;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.EditRepoItemCancelButton.Location = new System.Drawing.Point(173, 142);
+            this.EditRepoItemCancelButton.Name = "EditRepoItemCancelButton";
+            this.EditRepoItemCancelButton.Size = new System.Drawing.Size(75, 23);
+            this.EditRepoItemCancelButton.TabIndex = 6;
+            this.EditRepoItemCancelButton.Text = "Cancel";
+            this.EditRepoItemCancelButton.UseVisualStyleBackColor = true;
+            this.EditRepoItemCancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // HannafordPriceBox
             // 
@@ -141,8 +141,8 @@
             this.Controls.Add(this.SamsPriceBox);
             this.Controls.Add(this.ShawsPriceBox);
             this.Controls.Add(this.HannafordPriceBox);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.OkButton);
+            this.Controls.Add(this.EditRepoItemCancelButton);
+            this.Controls.Add(this.EditRepoItemOkButton);
             this.Controls.Add(this.SamsPriceLabel);
             this.Controls.Add(this.ShawsPriceLabel);
             this.Controls.Add(this.HannafordPriceLabel);
@@ -173,8 +173,8 @@
         private System.Windows.Forms.Label HannafordPriceLabel;
         private System.Windows.Forms.Label ShawsPriceLabel;
         private System.Windows.Forms.Label SamsPriceLabel;
-        private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button EditRepoItemOkButton;
+        private System.Windows.Forms.Button EditRepoItemCancelButton;
         private System.Windows.Forms.NumericUpDown HannafordPriceBox;
         private System.Windows.Forms.NumericUpDown ShawsPriceBox;
         private System.Windows.Forms.NumericUpDown SamsPriceBox;
