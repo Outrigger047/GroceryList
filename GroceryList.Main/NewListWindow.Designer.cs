@@ -36,6 +36,9 @@
             this.RepoAddItemButton = new System.Windows.Forms.Button();
             this.RepositoryListBox = new System.Windows.Forms.ListBox();
             this.ListGroupBox = new System.Windows.Forms.GroupBox();
+            this.ListSaveAsButton = new System.Windows.Forms.Button();
+            this.ListSaveButton = new System.Windows.Forms.Button();
+            this.OpenListButton = new System.Windows.Forms.Button();
             this.ListPrintButton = new System.Windows.Forms.Button();
             this.ListQuantityButton = new System.Windows.Forms.Button();
             this.ListClearListButton = new System.Windows.Forms.Button();
@@ -47,9 +50,6 @@
             this.InfoNumItemsNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
-            this.OpenListButton = new System.Windows.Forms.Button();
-            this.ListSaveButton = new System.Windows.Forms.Button();
-            this.ListSaveAsButton = new System.Windows.Forms.Button();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.InformationGroupBox.SuspendLayout();
@@ -142,6 +142,35 @@
             this.ListGroupBox.TabStop = false;
             this.ListGroupBox.Text = "Grocery List";
             // 
+            // ListSaveAsButton
+            // 
+            this.ListSaveAsButton.Enabled = false;
+            this.ListSaveAsButton.Location = new System.Drawing.Point(288, 433);
+            this.ListSaveAsButton.Name = "ListSaveAsButton";
+            this.ListSaveAsButton.Size = new System.Drawing.Size(119, 23);
+            this.ListSaveAsButton.TabIndex = 10;
+            this.ListSaveAsButton.Text = "Save As...";
+            this.ListSaveAsButton.UseVisualStyleBackColor = true;
+            // 
+            // ListSaveButton
+            // 
+            this.ListSaveButton.Enabled = false;
+            this.ListSaveButton.Location = new System.Drawing.Point(157, 433);
+            this.ListSaveButton.Name = "ListSaveButton";
+            this.ListSaveButton.Size = new System.Drawing.Size(119, 23);
+            this.ListSaveButton.TabIndex = 9;
+            this.ListSaveButton.Text = "Save List";
+            this.ListSaveButton.UseVisualStyleBackColor = true;
+            // 
+            // OpenListButton
+            // 
+            this.OpenListButton.Location = new System.Drawing.Point(26, 433);
+            this.OpenListButton.Name = "OpenListButton";
+            this.OpenListButton.Size = new System.Drawing.Size(119, 23);
+            this.OpenListButton.TabIndex = 8;
+            this.OpenListButton.Text = "Open Saved List...";
+            this.OpenListButton.UseVisualStyleBackColor = true;
+            // 
             // ListPrintButton
             // 
             this.ListPrintButton.Enabled = false;
@@ -161,6 +190,7 @@
             this.ListQuantityButton.TabIndex = 6;
             this.ListQuantityButton.Text = "Edit Quantity";
             this.ListQuantityButton.UseVisualStyleBackColor = true;
+            this.ListQuantityButton.Click += new System.EventHandler(this.ListQuantityButton_Click);
             // 
             // ListClearListButton
             // 
@@ -255,35 +285,6 @@
             this.InfoTotalPriceLabel.Size = new System.Drawing.Size(34, 13);
             this.InfoTotalPriceLabel.TabIndex = 0;
             this.InfoTotalPriceLabel.Text = "$0.00";
-            // 
-            // OpenListButton
-            // 
-            this.OpenListButton.Location = new System.Drawing.Point(26, 433);
-            this.OpenListButton.Name = "OpenListButton";
-            this.OpenListButton.Size = new System.Drawing.Size(119, 23);
-            this.OpenListButton.TabIndex = 8;
-            this.OpenListButton.Text = "Open Saved List...";
-            this.OpenListButton.UseVisualStyleBackColor = true;
-            // 
-            // ListSaveButton
-            // 
-            this.ListSaveButton.Enabled = false;
-            this.ListSaveButton.Location = new System.Drawing.Point(157, 433);
-            this.ListSaveButton.Name = "ListSaveButton";
-            this.ListSaveButton.Size = new System.Drawing.Size(119, 23);
-            this.ListSaveButton.TabIndex = 9;
-            this.ListSaveButton.Text = "Save List";
-            this.ListSaveButton.UseVisualStyleBackColor = true;
-            // 
-            // ListSaveAsButton
-            // 
-            this.ListSaveAsButton.Enabled = false;
-            this.ListSaveAsButton.Location = new System.Drawing.Point(288, 433);
-            this.ListSaveAsButton.Name = "ListSaveAsButton";
-            this.ListSaveAsButton.Size = new System.Drawing.Size(119, 23);
-            this.ListSaveAsButton.TabIndex = 10;
-            this.ListSaveAsButton.Text = "Save As...";
-            this.ListSaveAsButton.UseVisualStyleBackColor = true;
             // 
             // NewListWindow
             // 

@@ -55,6 +55,12 @@
     <Compile Include="AddRepoItem.Designer.cs">
       <DependentUpon>AddRepoItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditListQuantityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditListQuantityForm.Designer.cs">
+      <DependentUpon>EditListQuantityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditRepoItemForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,9 @@
     <Compile Include="StorePrice.cs" />
     <EmbeddedResource Include="AddRepoItem.resx">
       <DependentUpon>AddRepoItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditListQuantityForm.resx">
+      <DependentUpon>EditListQuantityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditRepoItemForm.resx">
       <DependentUpon>EditRepoItemForm.cs</DependentUpon>

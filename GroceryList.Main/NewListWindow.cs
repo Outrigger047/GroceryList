@@ -232,6 +232,8 @@ namespace GroceryList.Main
             {
                 MoveListToAvailable(item);
             }
+
+            ListQuantityButton.Enabled = false;
         }
         #endregion
 
@@ -392,7 +394,24 @@ namespace GroceryList.Main
                 ItemsMoved(this, new EventArgs()); 
             }
         }
+
+        private void ListQuantityButton_Click(object sender, EventArgs e)
+        {
+            if (ListListBox.SelectedItems.Count == 1)
+            {
+                ListItemsRepo.Select(x => x.Key.Name == Regex.Match(ListListBox.SelectedItem.ToString(), @"").ToString());
+
+                EditListQuantityForm quantityForm = new EditListQuantityForm();
+            }
+            else if (ListListBox.SelectedItems.Count > 1)
+            {
+
+            }
+        }
         #endregion
+
         #endregion
+
+
     }
 }
