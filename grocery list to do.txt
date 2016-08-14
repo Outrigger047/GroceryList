@@ -1,5 +1,3 @@
-- Repo ListBox UI update should sort the listbox contents alphabetically
-
 - Information pane UI elements
 	- Layout
 	- Functionality
@@ -26,10 +24,9 @@
 		- Research
 		- Implement
 	
-- Set UI elements to enable/disable at proper times
-
 - UI cleanup
 	- Tab index order
 	- Borders/button configs/title bar names of child forms
+	- Ensure UI elements enable/disable at proper times
 
-- Look into replacing repo/list ListBox components with some sort of table
+- Add support for Trader Joe's as a store

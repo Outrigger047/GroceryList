@@ -384,6 +384,7 @@ namespace GroceryList.Main
                 ListSaveButton.Enabled = false;
                 ListSaveAsButton.Enabled = false;
                 ListPrintButton.Enabled = false;
+                ListQuantityButton.Enabled = false;
 
                 List<GroceryItem> itemsToMove = new List<GroceryItem>();
 

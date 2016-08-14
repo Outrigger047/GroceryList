@@ -123,6 +123,7 @@
             this.RepositoryListBox.Name = "RepositoryListBox";
             this.RepositoryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.RepositoryListBox.Size = new System.Drawing.Size(413, 355);
+            this.RepositoryListBox.Sorted = true;
             this.RepositoryListBox.TabIndex = 0;
             this.RepositoryListBox.SelectedIndexChanged += new System.EventHandler(this.RepositoryListBox_SelectedIndexChanged);
             // 
@@ -251,18 +252,20 @@
             // InfoNumItemsLabel
             // 
             this.InfoNumItemsLabel.AutoSize = true;
-            this.InfoNumItemsLabel.Location = new System.Drawing.Point(789, 65);
+            this.InfoNumItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoNumItemsLabel.Location = new System.Drawing.Point(768, 65);
             this.InfoNumItemsLabel.Name = "InfoNumItemsLabel";
-            this.InfoNumItemsLabel.Size = new System.Drawing.Size(13, 13);
+            this.InfoNumItemsLabel.Size = new System.Drawing.Size(24, 25);
             this.InfoNumItemsLabel.TabIndex = 3;
             this.InfoNumItemsLabel.Text = "0";
             // 
             // InfoNumItemsNameLabel
             // 
             this.InfoNumItemsNameLabel.AutoSize = true;
-            this.InfoNumItemsNameLabel.Location = new System.Drawing.Point(661, 65);
+            this.InfoNumItemsNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoNumItemsNameLabel.Location = new System.Drawing.Point(524, 65);
             this.InfoNumItemsNameLabel.Name = "InfoNumItemsNameLabel";
-            this.InfoNumItemsNameLabel.Size = new System.Drawing.Size(118, 13);
+            this.InfoNumItemsNameLabel.Size = new System.Drawing.Size(238, 25);
             this.InfoNumItemsNameLabel.TabIndex = 2;
             this.InfoNumItemsNameLabel.Text = "Number of Items on List";
             this.InfoNumItemsNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -270,9 +273,10 @@
             // InfoTotalAmtNameLabel
             // 
             this.InfoTotalAmtNameLabel.AutoSize = true;
-            this.InfoTotalAmtNameLabel.Location = new System.Drawing.Point(690, 35);
+            this.InfoTotalAmtNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoTotalAmtNameLabel.Location = new System.Drawing.Point(583, 35);
             this.InfoTotalAmtNameLabel.Name = "InfoTotalAmtNameLabel";
-            this.InfoTotalAmtNameLabel.Size = new System.Drawing.Size(89, 13);
+            this.InfoTotalAmtNameLabel.Size = new System.Drawing.Size(179, 25);
             this.InfoTotalAmtNameLabel.TabIndex = 1;
             this.InfoTotalAmtNameLabel.Text = "Total List Amount";
             this.InfoTotalAmtNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -280,9 +284,10 @@
             // InfoTotalPriceLabel
             // 
             this.InfoTotalPriceLabel.AutoSize = true;
-            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(789, 35);
+            this.InfoTotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(768, 35);
             this.InfoTotalPriceLabel.Name = "InfoTotalPriceLabel";
-            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(34, 13);
+            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(66, 25);
             this.InfoTotalPriceLabel.TabIndex = 0;
             this.InfoTotalPriceLabel.Text = "$0.00";
             // 
