@@ -17,6 +17,8 @@ namespace GroceryList.Main
 
         private readonly string DEFAULT_COMBOBOX_STORE = "Hannaford";
 
+        private bool listIsDirty;
+
         public GroceryItemRepository InternalItemsRepo { get; private set; }
         public List<GroceryItem> AvailableItemsRepo { get; private set; }
         public Dictionary<GroceryItem, int> ListItemsRepo { get; private set; }
@@ -51,6 +53,8 @@ namespace GroceryList.Main
                         MessageBoxIcon.Error);
                 }
             }
+
+            listIsDirty = false;
 
             AvailableItemsRepo = InternalItemsRepo.Items;
             ListItemsRepo = new Dictionary<GroceryItem, int>();
@@ -119,6 +123,7 @@ namespace GroceryList.Main
         {
             AvailableItemsRepo.Remove(itemToMove);
             ListItemsRepo.Add(itemToMove, 1);
+            listIsDirty = true;
 
             RepositoryListBox.SelectedIndex = -1;
             AddToListButton.Enabled = false;
@@ -144,6 +149,7 @@ namespace GroceryList.Main
                 ListSaveButton.Enabled = false;
                 ListPrintButton.Enabled = false;
                 ListQuantityButton.Enabled = false;
+                listIsDirty = false;
             }
 
             ItemsMoved(this, new EventArgs());
@@ -398,6 +404,8 @@ namespace GroceryList.Main
                 ListPrintButton.Enabled = false;
                 ListQuantityButton.Enabled = false;
 
+                listIsDirty = false;
+
                 List<GroceryItem> itemsToMove = new List<GroceryItem>();
 
                 foreach (var item in ListItemsRepo)
@@ -436,6 +444,11 @@ namespace GroceryList.Main
             editQuantityForm.Show();
             editQuantityForm.EditListQuantityFormOkButtonClicked += EditQuantityFromForm;
             editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
+        }
+
+        private void ListSaveAsButton_Click(object sender, EventArgs e)
+        {
+            // Do save operation here
         }
 
         #endregion

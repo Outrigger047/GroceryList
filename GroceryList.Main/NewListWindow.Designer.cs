@@ -154,6 +154,7 @@
             this.ListSaveAsButton.TabIndex = 10;
             this.ListSaveAsButton.Text = "Save As...";
             this.ListSaveAsButton.UseVisualStyleBackColor = true;
+            this.ListSaveAsButton.Click += new System.EventHandler(this.ListSaveAsButton_Click);
             // 
             // ListSaveButton
             // 
