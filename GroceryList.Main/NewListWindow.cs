@@ -15,12 +15,15 @@ namespace GroceryList.Main
         private readonly string CONFIRM_REPO_REMOVE_MULTI = "Are you sure you want to remove these items?";
         private readonly string DEFAULT_FILTER_TEXTBOX_VALUE = "\uD83D\uDD0E Type to filter...";
 
+        private readonly string DEFAULT_COMBOBOX_STORE = "Hannaford";
+
         public GroceryItemRepository InternalItemsRepo { get; private set; }
         public List<GroceryItem> AvailableItemsRepo { get; private set; }
         public Dictionary<GroceryItem, int> ListItemsRepo { get; private set; }
 
         public event EventHandler ItemsMoved;
         public event EventHandler RepoItemsChanged;
+        public event EventHandler InfoStoreSelectedChanged;
 
         public NewListWindow()
         {
@@ -54,8 +57,16 @@ namespace GroceryList.Main
 
             ItemsMoved += UpdateUiFromRepos;
             RepoItemsChanged += InternalItemsRepo.WriteRepoToDisk;
+            InfoStoreSelectedChanged += UpdateUiFromRepos;
 
             InitializeComponent();
+
+            string[] stores = Enum.GetNames(typeof(Enums.Stores));
+            foreach (var item in stores)
+            {
+                StoreComboBox.Items.Add(item);
+            }
+            StoreComboBox.Text = DEFAULT_COMBOBOX_STORE;
 
             DoUiListBoxUpdateFromRepos();
             ResetFilterTextBox(AvailableFilterTextBox);
@@ -161,7 +172,8 @@ namespace GroceryList.Main
         {
             DoUiListBoxUpdateFromRepos();
 
-            InfoTotalPriceLabel.Text = "$" + CalclistTotalCost(Enums.Stores.Hannaford);
+            var selectedStore = (Enums.Stores)Enum.Parse(typeof(Enums.Stores), (string)StoreComboBox.SelectedItem);
+            InfoTotalPriceLabel.Text = "$" + CalclistTotalCost(selectedStore);
             InfoNumItemsLabel.Text = ListListBox.Items.Count.ToString();
         }
         #endregion
@@ -425,10 +437,18 @@ namespace GroceryList.Main
             editQuantityForm.EditListQuantityFormOkButtonClicked += EditQuantityFromForm;
             editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
         }
-        #endregion
 
         #endregion
 
+        #region Information Pane
 
+        private void StoreComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            InfoStoreSelectedChanged(this, new EventArgs());
+        }
+
+        #endregion
+
+        #endregion
     }
 }
