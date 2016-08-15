@@ -1,7 +1,9 @@
-﻿using GroceryList.Main.Helpers;
+﻿using System;
+using GroceryList.Main.Helpers;
 
 namespace GroceryList.Main
 {
+    [Serializable]
     public class StorePrice
     {
         public Enums.Stores Store { get; private set; }

@@ -17,8 +17,8 @@ namespace GroceryList.Main
 
         private readonly string DEFAULT_COMBOBOX_STORE = "Hannaford";
 
-        private readonly string DEFAULT_SAVEAS_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        private readonly string DEFAULT_SAVEAS_FILE_EXTENSION = ".nom";
+        private readonly string DEFAULT_PERSIST_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        private readonly string DEFAULT_PERSIST_EXTENSION = ".nom";
 
         private bool listIsDirty;
 
@@ -68,9 +68,13 @@ namespace GroceryList.Main
 
             InitializeComponent();
 
-            ListSaveAsDialog.InitialDirectory = DEFAULT_SAVEAS_PATH;
-            ListSaveAsDialog.DefaultExt = DEFAULT_SAVEAS_FILE_EXTENSION;
+            ListSaveAsDialog.InitialDirectory = DEFAULT_PERSIST_PATH;
+            ListSaveAsDialog.DefaultExt = DEFAULT_PERSIST_EXTENSION;
             ListSaveAsDialog.FileOk += SaveListToDisk;
+
+            ListOpenFileDialog.InitialDirectory = DEFAULT_PERSIST_PATH;
+            ListOpenFileDialog.DefaultExt = DEFAULT_PERSIST_EXTENSION;
+            ListOpenFileDialog.FileOk += ReadListFromDisk;
 
             string[] stores = Enum.GetNames(typeof(Enums.Stores));
             foreach (var item in stores)
@@ -193,6 +197,13 @@ namespace GroceryList.Main
         private void SaveListToDisk(object sender, EventArgs e)
         {
             // DO THIS!!!!! Call the static method to write data to disk and pass in data from the list repo.
+            DiskRepoHelpers.WriteListToDisk(new System.IO.FileInfo(ListSaveAsDialog.FileName), ListItemsRepo);
+            
+        }
+
+        private void ReadListFromDisk(object sender, EventArgs e)
+        {
+            DiskRepoHelpers.ReadListFromDisk(new System.IO.FileInfo(ListOpenFileDialog.FileName), ListItemsRepo);
         }
         #endregion
 
@@ -466,7 +477,7 @@ namespace GroceryList.Main
 
         private void OpenListButton_Click(object sender, EventArgs e)
         {
-            // Do open operation here
+            ListOpenFileDialog.ShowDialog();
         }
 
         #endregion

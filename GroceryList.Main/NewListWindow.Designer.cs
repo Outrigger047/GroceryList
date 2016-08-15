@@ -53,6 +53,7 @@
             this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
             this.ListSaveAsDialog = new System.Windows.Forms.SaveFileDialog();
+            this.ListOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.InformationGroupBox.SuspendLayout();
@@ -317,6 +318,10 @@
             this.InfoTotalPriceLabel.TabIndex = 0;
             this.InfoTotalPriceLabel.Text = "$0.00";
             // 
+            // ListOpenFileDialog
+            // 
+            this.ListOpenFileDialog.FileName = "ListOpenFileDialog";
+            // 
             // NewListWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,6 +373,7 @@
         private System.Windows.Forms.Label StoreComboBoxLabel;
         private System.Windows.Forms.ComboBox StoreComboBox;
         private System.Windows.Forms.SaveFileDialog ListSaveAsDialog;
+        private System.Windows.Forms.OpenFileDialog ListOpenFileDialog;
     }
 }
 
