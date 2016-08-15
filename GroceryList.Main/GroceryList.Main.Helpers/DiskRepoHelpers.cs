@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 
 namespace GroceryList.Main.Helpers
@@ -149,6 +150,22 @@ namespace GroceryList.Main.Helpers
                     sw.WriteLine();
                 }
             }
+        }
+
+        public static void WriteListToDisk(FileInfo pathToWrite, Dictionary<GroceryItem, int> list)
+        {
+            Stream fs = File.Create(pathToWrite.FullName);
+            BinaryFormatter serializer = new BinaryFormatter();
+            serializer.Serialize(fs, list);
+            fs.Close();
+        }
+
+        public static void ReadListFromDisk(FileInfo pathToRead, Dictionary<GroceryItem, int> list)
+        {
+            Stream fs = File.OpenRead(pathToRead.FullName);
+            BinaryFormatter deserializer = new BinaryFormatter();
+            list = (Dictionary<GroceryItem, int>)deserializer.Deserialize(fs);
+            fs.Close();
         }
 
         private static bool RowHasPrices(string[] currentLine)

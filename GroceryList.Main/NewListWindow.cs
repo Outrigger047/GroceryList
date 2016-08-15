@@ -17,6 +17,9 @@ namespace GroceryList.Main
 
         private readonly string DEFAULT_COMBOBOX_STORE = "Hannaford";
 
+        private readonly string DEFAULT_SAVEAS_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        private readonly string DEFAULT_SAVEAS_FILE_EXTENSION = ".nom";
+
         private bool listIsDirty;
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
@@ -64,6 +67,10 @@ namespace GroceryList.Main
             InfoStoreSelectedChanged += UpdateUiFromRepos;
 
             InitializeComponent();
+
+            ListSaveAsDialog.InitialDirectory = DEFAULT_SAVEAS_PATH;
+            ListSaveAsDialog.DefaultExt = DEFAULT_SAVEAS_FILE_EXTENSION;
+            ListSaveAsDialog.FileOk += SaveListToDisk;
 
             string[] stores = Enum.GetNames(typeof(Enums.Stores));
             foreach (var item in stores)
@@ -181,6 +188,11 @@ namespace GroceryList.Main
             var selectedStore = (Enums.Stores)Enum.Parse(typeof(Enums.Stores), (string)StoreComboBox.SelectedItem);
             InfoTotalPriceLabel.Text = "$" + CalclistTotalCost(selectedStore);
             InfoNumItemsLabel.Text = ListListBox.Items.Count.ToString();
+        }
+
+        private void SaveListToDisk(object sender, EventArgs e)
+        {
+            // DO THIS!!!!! Call the static method to write data to disk and pass in data from the list repo.
         }
         #endregion
 
@@ -448,7 +460,13 @@ namespace GroceryList.Main
 
         private void ListSaveAsButton_Click(object sender, EventArgs e)
         {
-            // Do save operation here
+            ListSaveAsDialog.ShowDialog();
+
+        }
+
+        private void OpenListButton_Click(object sender, EventArgs e)
+        {
+            // Do open operation here
         }
 
         #endregion

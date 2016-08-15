@@ -46,12 +46,13 @@
             this.AddToListButton = new System.Windows.Forms.Button();
             this.RemoveFromListButton = new System.Windows.Forms.Button();
             this.InformationGroupBox = new System.Windows.Forms.GroupBox();
+            this.StoreComboBoxLabel = new System.Windows.Forms.Label();
+            this.StoreComboBox = new System.Windows.Forms.ComboBox();
             this.InfoNumItemsLabel = new System.Windows.Forms.Label();
             this.InfoNumItemsNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalAmtNameLabel = new System.Windows.Forms.Label();
             this.InfoTotalPriceLabel = new System.Windows.Forms.Label();
-            this.StoreComboBox = new System.Windows.Forms.ComboBox();
-            this.StoreComboBoxLabel = new System.Windows.Forms.Label();
+            this.ListSaveAsDialog = new System.Windows.Forms.SaveFileDialog();
             this.RepositoryGroupBox.SuspendLayout();
             this.ListGroupBox.SuspendLayout();
             this.InformationGroupBox.SuspendLayout();
@@ -174,6 +175,7 @@
             this.OpenListButton.TabIndex = 8;
             this.OpenListButton.Text = "Open Saved List...";
             this.OpenListButton.UseVisualStyleBackColor = true;
+            this.OpenListButton.Click += new System.EventHandler(this.OpenListButton_Click);
             // 
             // ListPrintButton
             // 
@@ -254,47 +256,14 @@
             this.InformationGroupBox.TabStop = false;
             this.InformationGroupBox.Text = "Information";
             // 
-            // InfoNumItemsLabel
+            // StoreComboBoxLabel
             // 
-            this.InfoNumItemsLabel.AutoSize = true;
-            this.InfoNumItemsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoNumItemsLabel.Location = new System.Drawing.Point(758, 76);
-            this.InfoNumItemsLabel.Name = "InfoNumItemsLabel";
-            this.InfoNumItemsLabel.Size = new System.Drawing.Size(24, 25);
-            this.InfoNumItemsLabel.TabIndex = 3;
-            this.InfoNumItemsLabel.Text = "0";
-            // 
-            // InfoNumItemsNameLabel
-            // 
-            this.InfoNumItemsNameLabel.AutoSize = true;
-            this.InfoNumItemsNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoNumItemsNameLabel.Location = new System.Drawing.Point(514, 76);
-            this.InfoNumItemsNameLabel.Name = "InfoNumItemsNameLabel";
-            this.InfoNumItemsNameLabel.Size = new System.Drawing.Size(238, 25);
-            this.InfoNumItemsNameLabel.TabIndex = 2;
-            this.InfoNumItemsNameLabel.Text = "Number of Items on List";
-            this.InfoNumItemsNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // InfoTotalAmtNameLabel
-            // 
-            this.InfoTotalAmtNameLabel.AutoSize = true;
-            this.InfoTotalAmtNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoTotalAmtNameLabel.Location = new System.Drawing.Point(573, 46);
-            this.InfoTotalAmtNameLabel.Name = "InfoTotalAmtNameLabel";
-            this.InfoTotalAmtNameLabel.Size = new System.Drawing.Size(179, 25);
-            this.InfoTotalAmtNameLabel.TabIndex = 1;
-            this.InfoTotalAmtNameLabel.Text = "Total List Amount";
-            this.InfoTotalAmtNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // InfoTotalPriceLabel
-            // 
-            this.InfoTotalPriceLabel.AutoSize = true;
-            this.InfoTotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(758, 46);
-            this.InfoTotalPriceLabel.Name = "InfoTotalPriceLabel";
-            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(66, 25);
-            this.InfoTotalPriceLabel.TabIndex = 0;
-            this.InfoTotalPriceLabel.Text = "$0.00";
+            this.StoreComboBoxLabel.AutoSize = true;
+            this.StoreComboBoxLabel.Location = new System.Drawing.Point(267, 49);
+            this.StoreComboBoxLabel.Name = "StoreComboBoxLabel";
+            this.StoreComboBoxLabel.Size = new System.Drawing.Size(32, 13);
+            this.StoreComboBoxLabel.TabIndex = 5;
+            this.StoreComboBoxLabel.Text = "Store";
             // 
             // StoreComboBox
             // 
@@ -306,14 +275,47 @@
             this.StoreComboBox.TabIndex = 4;
             this.StoreComboBox.SelectedValueChanged += new System.EventHandler(this.StoreComboBox_SelectedValueChanged);
             // 
-            // StoreComboBoxLabel
+            // InfoNumItemsLabel
             // 
-            this.StoreComboBoxLabel.AutoSize = true;
-            this.StoreComboBoxLabel.Location = new System.Drawing.Point(267, 49);
-            this.StoreComboBoxLabel.Name = "StoreComboBoxLabel";
-            this.StoreComboBoxLabel.Size = new System.Drawing.Size(32, 13);
-            this.StoreComboBoxLabel.TabIndex = 5;
-            this.StoreComboBoxLabel.Text = "Store";
+            this.InfoNumItemsLabel.AutoSize = true;
+            this.InfoNumItemsLabel.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoNumItemsLabel.Location = new System.Drawing.Point(729, 76);
+            this.InfoNumItemsLabel.Name = "InfoNumItemsLabel";
+            this.InfoNumItemsLabel.Size = new System.Drawing.Size(22, 25);
+            this.InfoNumItemsLabel.TabIndex = 3;
+            this.InfoNumItemsLabel.Text = "0";
+            // 
+            // InfoNumItemsNameLabel
+            // 
+            this.InfoNumItemsNameLabel.AutoSize = true;
+            this.InfoNumItemsNameLabel.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoNumItemsNameLabel.Location = new System.Drawing.Point(524, 76);
+            this.InfoNumItemsNameLabel.Name = "InfoNumItemsNameLabel";
+            this.InfoNumItemsNameLabel.Size = new System.Drawing.Size(199, 25);
+            this.InfoNumItemsNameLabel.TabIndex = 2;
+            this.InfoNumItemsNameLabel.Text = "Number of Items on List";
+            this.InfoNumItemsNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // InfoTotalAmtNameLabel
+            // 
+            this.InfoTotalAmtNameLabel.AutoSize = true;
+            this.InfoTotalAmtNameLabel.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoTotalAmtNameLabel.Location = new System.Drawing.Point(573, 46);
+            this.InfoTotalAmtNameLabel.Name = "InfoTotalAmtNameLabel";
+            this.InfoTotalAmtNameLabel.Size = new System.Drawing.Size(150, 25);
+            this.InfoTotalAmtNameLabel.TabIndex = 1;
+            this.InfoTotalAmtNameLabel.Text = "Total List Amount";
+            this.InfoTotalAmtNameLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // InfoTotalPriceLabel
+            // 
+            this.InfoTotalPriceLabel.AutoSize = true;
+            this.InfoTotalPriceLabel.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InfoTotalPriceLabel.Location = new System.Drawing.Point(729, 46);
+            this.InfoTotalPriceLabel.Name = "InfoTotalPriceLabel";
+            this.InfoTotalPriceLabel.Size = new System.Drawing.Size(57, 25);
+            this.InfoTotalPriceLabel.TabIndex = 0;
+            this.InfoTotalPriceLabel.Text = "$0.00";
             // 
             // NewListWindow
             // 
@@ -365,6 +367,7 @@
         private System.Windows.Forms.Button OpenListButton;
         private System.Windows.Forms.Label StoreComboBoxLabel;
         private System.Windows.Forms.ComboBox StoreComboBox;
+        private System.Windows.Forms.SaveFileDialog ListSaveAsDialog;
     }
 }
 

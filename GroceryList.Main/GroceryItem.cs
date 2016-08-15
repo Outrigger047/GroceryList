@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using GroceryList.Main.Helpers;
 
 namespace GroceryList.Main
 {
+    [Serializable]
     public class GroceryItem
     {
         public string Name { get; private set; }
