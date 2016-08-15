@@ -196,7 +196,6 @@ namespace GroceryList.Main
 
         private void SaveListToDisk(object sender, EventArgs e)
         {
-            // DO THIS!!!!! Call the static method to write data to disk and pass in data from the list repo.
             DiskRepoHelpers.WriteListToDisk(new System.IO.FileInfo(ListSaveAsDialog.FileName), ListItemsRepo);
             
         }
