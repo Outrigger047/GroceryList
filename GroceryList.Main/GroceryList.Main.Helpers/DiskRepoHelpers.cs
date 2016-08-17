@@ -162,10 +162,16 @@ namespace GroceryList.Main.Helpers
 
         public static void ReadListFromDisk(FileInfo pathToRead, Dictionary<GroceryItem, int> list)
         {
+            Dictionary<GroceryItem, int> tempList;
             Stream fs = File.OpenRead(pathToRead.FullName);
             BinaryFormatter deserializer = new BinaryFormatter();
-            list = (Dictionary<GroceryItem, int>)deserializer.Deserialize(fs);
+            tempList = (Dictionary<GroceryItem, int>)deserializer.Deserialize(fs);
             fs.Close();
+
+            foreach (var item in tempList)
+            {
+                list.Add(item.Key, item.Value);
+            }
         }
 
         private static bool RowHasPrices(string[] currentLine)

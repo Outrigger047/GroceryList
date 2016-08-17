@@ -1,13 +1,8 @@
-- "Save/Save as..." list options
-	- UI: Save dialog
-	- Functionality
-		- Come up with serializable data structures
-		- Write to disk
-
 - "Open..." list option
 	- UI: Open dialog
 	- Functionality
 		- Read serialized data from disk
+		- Items on ListItemsRepo need to be removed from AvailableItemsRepo once the file is loaded
 
 - "Print..." list option
 	- UI: Print dialog
@@ -16,6 +11,7 @@
 		- Implement
 	
 - UI cleanup
+	- Save option should execute Save As unless the existing list is dirty
 	- Tab index order
 	- Borders/button configs/title bar names of child forms
 	- Ensure UI elements enable/disable at proper times

@@ -10,6 +10,7 @@ namespace GroceryList.Main
 {
     public partial class NewListWindow : Form
     {
+        #region Fields/Trivial properties
         private readonly string CONFIRM_LIST_CLEAR = "Are you sure you want to clear the grocery list?";
         private readonly string CONFIRM_REPO_REMOVE_SINGLE = "Are you sure you want to remove this item?";
         private readonly string CONFIRM_REPO_REMOVE_MULTI = "Are you sure you want to remove these items?";
@@ -29,7 +30,9 @@ namespace GroceryList.Main
         public event EventHandler ItemsMoved;
         public event EventHandler RepoItemsChanged;
         public event EventHandler InfoStoreSelectedChanged;
+        #endregion
 
+        #region Constructor
         public NewListWindow()
         {
             // GroceryItemRepository constructor loads repository from disk
@@ -86,6 +89,7 @@ namespace GroceryList.Main
             DoUiListBoxUpdateFromRepos();
             ResetFilterTextBox(AvailableFilterTextBox);
         }
+        #endregion
 
         #region Private Methods
         private string CalclistTotalCost(Enums.Stores store)
