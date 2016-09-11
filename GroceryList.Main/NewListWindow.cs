@@ -22,6 +22,7 @@ namespace GroceryList.Main
         private readonly string DEFAULT_PERSIST_EXTENSION = ".nom";
 
         private bool listIsDirty;
+        private string lastSaveAsPath;
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
         public List<GroceryItem> AvailableItemsRepo { get; private set; }
@@ -114,6 +115,33 @@ namespace GroceryList.Main
             return total;
         }
 
+        private void DoListClear()
+        {
+            ListClearListButton.Enabled = false;
+            ListSaveButton.Enabled = false;
+            ListSaveAsButton.Enabled = false;
+            ListPrintButton.Enabled = false;
+            ListQuantityButton.Enabled = false;
+
+            listIsDirty = false;
+
+            List<GroceryItem> itemsToMove = new List<GroceryItem>();
+
+            foreach (var item in ListItemsRepo)
+            {
+                itemsToMove.Add(item.Key);
+            }
+
+            ListItemsRepo.Clear();
+
+            foreach (var item in itemsToMove)
+            {
+                AvailableItemsRepo.Add(item);
+            }
+
+            ItemsMoved(this, new EventArgs());
+        }
+
         private void DoUiListBoxUpdateFromRepos()
         {
             SuspendLayout();
@@ -200,13 +228,27 @@ namespace GroceryList.Main
 
         private void SaveListToDisk(object sender, EventArgs e)
         {
-            DiskRepoHelpers.WriteListToDisk(new System.IO.FileInfo(ListSaveAsDialog.FileName), ListItemsRepo);
-            
+            lastSaveAsPath = ListSaveAsDialog.FileName;
+
+            DiskRepoHelpers.WriteListToDisk(
+                new System.IO.FileInfo(lastSaveAsPath), ListItemsRepo, AvailableItemsRepo);
+
+            listIsDirty = false;
         }
 
         private void ReadListFromDisk(object sender, EventArgs e)
         {
-            DiskRepoHelpers.ReadListFromDisk(new System.IO.FileInfo(ListOpenFileDialog.FileName), ListItemsRepo);
+            DoListClear();
+
+            AvailableItemsRepo.Clear();
+
+            DiskRepoHelpers.ReadListFromDisk(
+                new System.IO.FileInfo(ListOpenFileDialog.FileName), ListItemsRepo, AvailableItemsRepo);
+
+
+
+            listIsDirty = false;
+            ItemsMoved(this, new EventArgs());
         }
         #endregion
 
@@ -424,29 +466,7 @@ namespace GroceryList.Main
 
             if (r == DialogResult.Yes)
             {
-                ListClearListButton.Enabled = false;
-                ListSaveButton.Enabled = false;
-                ListSaveAsButton.Enabled = false;
-                ListPrintButton.Enabled = false;
-                ListQuantityButton.Enabled = false;
-
-                listIsDirty = false;
-
-                List<GroceryItem> itemsToMove = new List<GroceryItem>();
-
-                foreach (var item in ListItemsRepo)
-                {
-                    itemsToMove.Add(item.Key);
-                }
-
-                ListItemsRepo.Clear();
-
-                foreach (var item in itemsToMove)
-                {
-                    AvailableItemsRepo.Add(item);
-                }
-
-                ItemsMoved(this, new EventArgs()); 
+                DoListClear();
             }
         }
 
@@ -472,15 +492,43 @@ namespace GroceryList.Main
             editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
         }
 
+        private void ListSaveButton_Click(object sender, EventArgs e)
+        {
+            if (listIsDirty)
+            {
+                System.IO.FileInfo f = new System.IO.FileInfo(lastSaveAsPath);
+                DiskRepoHelpers.WriteListToDisk(f, ListItemsRepo, AvailableItemsRepo);
+            }
+            else
+            {
+                ListSaveAsDialog.ShowDialog();
+            }
+        }
+
         private void ListSaveAsButton_Click(object sender, EventArgs e)
         {
             ListSaveAsDialog.ShowDialog();
-
         }
 
         private void OpenListButton_Click(object sender, EventArgs e)
         {
-            ListOpenFileDialog.ShowDialog();
+            if (ListListBox.Items.Count > 0)
+            {
+                DialogResult r = MessageBox.Show(
+                    CONFIRM_LIST_CLEAR,
+                    "Comfirm Clear Grocery List",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (r == DialogResult.Yes)
+                {
+                    ListOpenFileDialog.ShowDialog();
+                }
+            }
+            else
+            {
+                ListOpenFileDialog.ShowDialog();
+            }
         }
 
         #endregion

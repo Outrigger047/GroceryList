@@ -1,15 +1,3 @@
-- "Open..." list option
-	- UI: Open dialog
-	- Functionality
-		- Read serialized data from disk
-		- Items on ListItemsRepo need to be removed from AvailableItemsRepo once the file is loaded
-
-- "Print..." list option
-	- UI: Print dialog
-	- Functionality
-		- Research
-		- Implement
-	
 - UI cleanup
 	- Save option should execute Save As unless the existing list is dirty
 	- Tab index order
@@ -17,3 +5,9 @@
 	- Ensure UI elements enable/disable at proper times
 
 - Add support for Trader Joe's as a store
+
+- "Print..." list option
+	- UI: Print dialog
+	- Functionality
+		- Research
+		- Implement

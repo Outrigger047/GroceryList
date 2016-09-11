@@ -152,25 +152,35 @@ namespace GroceryList.Main.Helpers
             }
         }
 
-        public static void WriteListToDisk(FileInfo pathToWrite, Dictionary<GroceryItem, int> list)
+        public static void WriteListToDisk(FileInfo pathToWrite, 
+            Dictionary<GroceryItem, int> listToWrite, 
+            List<GroceryItem> repoToWrite)
         {
+            DiskData data = new DiskData(repoToWrite, listToWrite);
             Stream fs = File.Create(pathToWrite.FullName);
             BinaryFormatter serializer = new BinaryFormatter();
-            serializer.Serialize(fs, list);
+            serializer.Serialize(fs, data);
             fs.Close();
         }
 
-        public static void ReadListFromDisk(FileInfo pathToRead, Dictionary<GroceryItem, int> list)
+        public static void ReadListFromDisk(FileInfo pathToRead, 
+            Dictionary<GroceryItem, int> listToLoadInto,
+            List<GroceryItem> repoToLoadInto)
         {
-            Dictionary<GroceryItem, int> tempList;
+            DiskData data = new DiskData();
             Stream fs = File.OpenRead(pathToRead.FullName);
             BinaryFormatter deserializer = new BinaryFormatter();
-            tempList = (Dictionary<GroceryItem, int>)deserializer.Deserialize(fs);
+            data = (DiskData)deserializer.Deserialize(fs);
             fs.Close();
 
-            foreach (var item in tempList)
+            foreach (var item in data.List)
             {
-                list.Add(item.Key, item.Value);
+                listToLoadInto.Add(item.Key, item.Value);
+            }
+
+            foreach (var item in data.Repo)
+            {
+                repoToLoadInto.Add(item);
             }
         }
 
@@ -203,6 +213,24 @@ namespace GroceryList.Main.Helpers
             }
 
             return pricesFromRow;
+        }
+
+        [Serializable]
+        private class DiskData
+        {
+            public List<GroceryItem> Repo { get; set; }
+            public Dictionary<GroceryItem, int> List { get; set; }
+
+            public DiskData()
+            {
+
+            }
+
+            public DiskData(List<GroceryItem> repo, Dictionary<GroceryItem, int> list)
+            {
+                Repo = repo;
+                List = list;
+            }
         }
     }
 }
