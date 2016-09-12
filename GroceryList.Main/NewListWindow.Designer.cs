@@ -80,7 +80,7 @@
             this.AvailableFilterTextBox.MaxLength = 100;
             this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
             this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
-            this.AvailableFilterTextBox.TabIndex = 4;
+            this.AvailableFilterTextBox.TabIndex = 0;
             this.AvailableFilterTextBox.TextChanged += new System.EventHandler(this.AvailableFilterTextBox_TextChanged);
             this.AvailableFilterTextBox.Enter += new System.EventHandler(this.AvailableFilterTextBox_Enter);
             this.AvailableFilterTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AvailableFilterTextBox_KeyPress);
@@ -94,7 +94,7 @@
             this.RepoEditItemButton.Location = new System.Drawing.Point(28, 408);
             this.RepoEditItemButton.Name = "RepoEditItemButton";
             this.RepoEditItemButton.Size = new System.Drawing.Size(115, 48);
-            this.RepoEditItemButton.TabIndex = 3;
+            this.RepoEditItemButton.TabIndex = 2;
             this.RepoEditItemButton.Text = "Edit Selected Item";
             this.RepoEditItemButton.UseVisualStyleBackColor = true;
             this.RepoEditItemButton.Click += new System.EventHandler(this.RepoEditItemButton_Click);
@@ -105,7 +105,7 @@
             this.RepoRemoveItemButton.Location = new System.Drawing.Point(152, 408);
             this.RepoRemoveItemButton.Name = "RepoRemoveItemButton";
             this.RepoRemoveItemButton.Size = new System.Drawing.Size(115, 48);
-            this.RepoRemoveItemButton.TabIndex = 2;
+            this.RepoRemoveItemButton.TabIndex = 3;
             this.RepoRemoveItemButton.Text = "Remove Item";
             this.RepoRemoveItemButton.UseVisualStyleBackColor = true;
             this.RepoRemoveItemButton.Click += new System.EventHandler(this.RepoRemoveItemButton_Click);
@@ -115,7 +115,7 @@
             this.RepoAddItemButton.Location = new System.Drawing.Point(276, 408);
             this.RepoAddItemButton.Name = "RepoAddItemButton";
             this.RepoAddItemButton.Size = new System.Drawing.Size(115, 48);
-            this.RepoAddItemButton.TabIndex = 1;
+            this.RepoAddItemButton.TabIndex = 4;
             this.RepoAddItemButton.Text = "Add Item";
             this.RepoAddItemButton.UseVisualStyleBackColor = true;
             this.RepoAddItemButton.Click += new System.EventHandler(this.RepoAddItemButton_Click);
@@ -128,7 +128,7 @@
             this.RepositoryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.RepositoryListBox.Size = new System.Drawing.Size(413, 355);
             this.RepositoryListBox.Sorted = true;
-            this.RepositoryListBox.TabIndex = 0;
+            this.RepositoryListBox.TabIndex = 1;
             this.RepositoryListBox.SelectedIndexChanged += new System.EventHandler(this.RepositoryListBox_SelectedIndexChanged);
             // 
             // ListGroupBox
@@ -153,7 +153,7 @@
             this.ListSaveAsButton.Location = new System.Drawing.Point(288, 433);
             this.ListSaveAsButton.Name = "ListSaveAsButton";
             this.ListSaveAsButton.Size = new System.Drawing.Size(119, 23);
-            this.ListSaveAsButton.TabIndex = 10;
+            this.ListSaveAsButton.TabIndex = 13;
             this.ListSaveAsButton.Text = "Save As...";
             this.ListSaveAsButton.UseVisualStyleBackColor = true;
             this.ListSaveAsButton.Click += new System.EventHandler(this.ListSaveAsButton_Click);
@@ -164,7 +164,7 @@
             this.ListSaveButton.Location = new System.Drawing.Point(157, 433);
             this.ListSaveButton.Name = "ListSaveButton";
             this.ListSaveButton.Size = new System.Drawing.Size(119, 23);
-            this.ListSaveButton.TabIndex = 9;
+            this.ListSaveButton.TabIndex = 12;
             this.ListSaveButton.Text = "Save List";
             this.ListSaveButton.UseVisualStyleBackColor = true;
             this.ListSaveButton.Click += new System.EventHandler(this.ListSaveButton_Click);
@@ -174,7 +174,7 @@
             this.OpenListButton.Location = new System.Drawing.Point(26, 433);
             this.OpenListButton.Name = "OpenListButton";
             this.OpenListButton.Size = new System.Drawing.Size(119, 23);
-            this.OpenListButton.TabIndex = 8;
+            this.OpenListButton.TabIndex = 11;
             this.OpenListButton.Text = "Open Saved List...";
             this.OpenListButton.UseVisualStyleBackColor = true;
             this.OpenListButton.Click += new System.EventHandler(this.OpenListButton_Click);
@@ -185,7 +185,7 @@
             this.ListPrintButton.Location = new System.Drawing.Point(288, 408);
             this.ListPrintButton.Name = "ListPrintButton";
             this.ListPrintButton.Size = new System.Drawing.Size(119, 23);
-            this.ListPrintButton.TabIndex = 7;
+            this.ListPrintButton.TabIndex = 10;
             this.ListPrintButton.Text = "Print";
             this.ListPrintButton.UseVisualStyleBackColor = true;
             // 
@@ -195,7 +195,7 @@
             this.ListQuantityButton.Location = new System.Drawing.Point(26, 408);
             this.ListQuantityButton.Name = "ListQuantityButton";
             this.ListQuantityButton.Size = new System.Drawing.Size(119, 23);
-            this.ListQuantityButton.TabIndex = 6;
+            this.ListQuantityButton.TabIndex = 8;
             this.ListQuantityButton.Text = "Edit Quantity";
             this.ListQuantityButton.UseVisualStyleBackColor = true;
             this.ListQuantityButton.Click += new System.EventHandler(this.ListQuantityButton_Click);
@@ -206,7 +206,7 @@
             this.ListClearListButton.Location = new System.Drawing.Point(157, 408);
             this.ListClearListButton.Name = "ListClearListButton";
             this.ListClearListButton.Size = new System.Drawing.Size(119, 23);
-            this.ListClearListButton.TabIndex = 2;
+            this.ListClearListButton.TabIndex = 9;
             this.ListClearListButton.Text = "Clear List";
             this.ListClearListButton.UseVisualStyleBackColor = true;
             this.ListClearListButton.Click += new System.EventHandler(this.ListClearListButton_Click);
@@ -218,7 +218,7 @@
             this.ListListBox.Name = "ListListBox";
             this.ListListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListListBox.Size = new System.Drawing.Size(413, 381);
-            this.ListListBox.TabIndex = 1;
+            this.ListListBox.TabIndex = 7;
             this.ListListBox.SelectedIndexChanged += new System.EventHandler(this.ListListBox_SelectedIndexChanged);
             // 
             // AddToListButton
@@ -227,7 +227,7 @@
             this.AddToListButton.Location = new System.Drawing.Point(445, 142);
             this.AddToListButton.Name = "AddToListButton";
             this.AddToListButton.Size = new System.Drawing.Size(150, 72);
-            this.AddToListButton.TabIndex = 2;
+            this.AddToListButton.TabIndex = 5;
             this.AddToListButton.Text = "Add To Grocery List";
             this.AddToListButton.UseVisualStyleBackColor = true;
             this.AddToListButton.Click += new System.EventHandler(this.AddToListButton_Click);
@@ -238,7 +238,7 @@
             this.RemoveFromListButton.Location = new System.Drawing.Point(445, 220);
             this.RemoveFromListButton.Name = "RemoveFromListButton";
             this.RemoveFromListButton.Size = new System.Drawing.Size(150, 72);
-            this.RemoveFromListButton.TabIndex = 3;
+            this.RemoveFromListButton.TabIndex = 6;
             this.RemoveFromListButton.Text = "Remove From Grocery List";
             this.RemoveFromListButton.UseVisualStyleBackColor = true;
             this.RemoveFromListButton.Click += new System.EventHandler(this.RemoveFromListButton_Click);
@@ -274,7 +274,7 @@
             this.StoreComboBox.Location = new System.Drawing.Point(305, 46);
             this.StoreComboBox.Name = "StoreComboBox";
             this.StoreComboBox.Size = new System.Drawing.Size(121, 21);
-            this.StoreComboBox.TabIndex = 4;
+            this.StoreComboBox.TabIndex = 14;
             this.StoreComboBox.SelectedValueChanged += new System.EventHandler(this.StoreComboBox_SelectedValueChanged);
             // 
             // InfoNumItemsLabel

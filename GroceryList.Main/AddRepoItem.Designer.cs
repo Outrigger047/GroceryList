@@ -57,7 +57,7 @@
             this.ItemNameTextBox.Location = new System.Drawing.Point(137, 23);
             this.ItemNameTextBox.Name = "ItemNameTextBox";
             this.ItemNameTextBox.Size = new System.Drawing.Size(142, 20);
-            this.ItemNameTextBox.TabIndex = 1;
+            this.ItemNameTextBox.TabIndex = 0;
             // 
             // HannafordPriceLabel
             // 
@@ -91,7 +91,7 @@
             this.AddRepoItemOkButton.Location = new System.Drawing.Point(92, 142);
             this.AddRepoItemOkButton.Name = "AddRepoItemOkButton";
             this.AddRepoItemOkButton.Size = new System.Drawing.Size(75, 23);
-            this.AddRepoItemOkButton.TabIndex = 5;
+            this.AddRepoItemOkButton.TabIndex = 4;
             this.AddRepoItemOkButton.Text = "OK";
             this.AddRepoItemOkButton.UseVisualStyleBackColor = true;
             this.AddRepoItemOkButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -101,7 +101,7 @@
             this.AddRepoItemCancelButton.Location = new System.Drawing.Point(173, 142);
             this.AddRepoItemCancelButton.Name = "AddRepoItemCancelButton";
             this.AddRepoItemCancelButton.Size = new System.Drawing.Size(75, 23);
-            this.AddRepoItemCancelButton.TabIndex = 6;
+            this.AddRepoItemCancelButton.TabIndex = 5;
             this.AddRepoItemCancelButton.Text = "Cancel";
             this.AddRepoItemCancelButton.UseVisualStyleBackColor = true;
             this.AddRepoItemCancelButton.Click += new System.EventHandler(this.CancelButton_Click);
@@ -112,7 +112,7 @@
             this.HannafordPriceBox.Location = new System.Drawing.Point(137, 59);
             this.HannafordPriceBox.Name = "HannafordPriceBox";
             this.HannafordPriceBox.Size = new System.Drawing.Size(120, 20);
-            this.HannafordPriceBox.TabIndex = 7;
+            this.HannafordPriceBox.TabIndex = 1;
             this.HannafordPriceBox.ThousandsSeparator = true;
             // 
             // ShawsPriceBox
@@ -121,7 +121,7 @@
             this.ShawsPriceBox.Location = new System.Drawing.Point(137, 83);
             this.ShawsPriceBox.Name = "ShawsPriceBox";
             this.ShawsPriceBox.Size = new System.Drawing.Size(120, 20);
-            this.ShawsPriceBox.TabIndex = 8;
+            this.ShawsPriceBox.TabIndex = 2;
             this.ShawsPriceBox.ThousandsSeparator = true;
             // 
             // SamsPriceBox
@@ -130,7 +130,7 @@
             this.SamsPriceBox.Location = new System.Drawing.Point(137, 108);
             this.SamsPriceBox.Name = "SamsPriceBox";
             this.SamsPriceBox.Size = new System.Drawing.Size(120, 20);
-            this.SamsPriceBox.TabIndex = 9;
+            this.SamsPriceBox.TabIndex = 3;
             this.SamsPriceBox.ThousandsSeparator = true;
             // 
             // AddRepoItemForm
