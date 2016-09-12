@@ -21,7 +21,6 @@ namespace GroceryList.Main
         private readonly string DEFAULT_PERSIST_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         private readonly string DEFAULT_PERSIST_EXTENSION = ".nom";
 
-        private bool listIsDirty;
         private string lastSaveAsPath;
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
@@ -61,7 +60,7 @@ namespace GroceryList.Main
                 }
             }
 
-            listIsDirty = false;
+            lastSaveAsPath = "";
 
             AvailableItemsRepo = InternalItemsRepo.Items;
             ListItemsRepo = new Dictionary<GroceryItem, int>();
@@ -123,8 +122,6 @@ namespace GroceryList.Main
             ListPrintButton.Enabled = false;
             ListQuantityButton.Enabled = false;
 
-            listIsDirty = false;
-
             List<GroceryItem> itemsToMove = new List<GroceryItem>();
 
             foreach (var item in ListItemsRepo)
@@ -166,7 +163,6 @@ namespace GroceryList.Main
         {
             AvailableItemsRepo.Remove(itemToMove);
             ListItemsRepo.Add(itemToMove, 1);
-            listIsDirty = true;
 
             RepositoryListBox.SelectedIndex = -1;
             AddToListButton.Enabled = false;
@@ -192,7 +188,10 @@ namespace GroceryList.Main
                 ListSaveButton.Enabled = false;
                 ListPrintButton.Enabled = false;
                 ListQuantityButton.Enabled = false;
-                listIsDirty = false;
+            }
+            else
+            {
+                ListSaveButton.Enabled = true;
             }
 
             ItemsMoved(this, new EventArgs());
@@ -233,7 +232,6 @@ namespace GroceryList.Main
             DiskRepoHelpers.WriteListToDisk(
                 new System.IO.FileInfo(lastSaveAsPath), ListItemsRepo, AvailableItemsRepo);
 
-            listIsDirty = false;
         }
 
         private void ReadListFromDisk(object sender, EventArgs e)
@@ -245,9 +243,12 @@ namespace GroceryList.Main
             DiskRepoHelpers.ReadListFromDisk(
                 new System.IO.FileInfo(ListOpenFileDialog.FileName), ListItemsRepo, AvailableItemsRepo);
 
+            lastSaveAsPath = ListOpenFileDialog.FileName;
 
+            ListPrintButton.Enabled = true;
+            ListClearListButton.Enabled = true;
+            ListSaveAsButton.Enabled = true;
 
-            listIsDirty = false;
             ItemsMoved(this, new EventArgs());
         }
         #endregion
@@ -494,7 +495,7 @@ namespace GroceryList.Main
 
         private void ListSaveButton_Click(object sender, EventArgs e)
         {
-            if (listIsDirty)
+            if (lastSaveAsPath != "")
             {
                 System.IO.FileInfo f = new System.IO.FileInfo(lastSaveAsPath);
                 DiskRepoHelpers.WriteListToDisk(f, ListItemsRepo, AvailableItemsRepo);
