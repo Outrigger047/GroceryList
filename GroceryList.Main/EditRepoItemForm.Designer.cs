@@ -156,7 +156,7 @@
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "EditRepoItemForm";
+            this.Text = "Edit Item";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.HannafordPriceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ShawsPriceBox)).EndInit();

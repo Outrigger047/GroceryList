@@ -81,7 +81,7 @@
             this.Controls.Add(this.QuantityUpDown);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "EditListQuantityForm";
-            this.Text = "EditListQuantityForm";
+            this.Text = "Edit Quantity";
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpDown)).EndInit();
             this.ResumeLayout(false);
 
