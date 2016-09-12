@@ -21,6 +21,8 @@ namespace GroceryList.Main
         private readonly string DEFAULT_PERSIST_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         private readonly string DEFAULT_PERSIST_EXTENSION = ".nom";
 
+        private readonly string TITLE = "Grocery List Manager";
+
         private string lastSaveAsPath;
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
@@ -85,6 +87,8 @@ namespace GroceryList.Main
                 StoreComboBox.Items.Add(item);
             }
             StoreComboBox.Text = DEFAULT_COMBOBOX_STORE;
+
+            Text = TITLE;
 
             DoUiListBoxUpdateFromRepos();
             ResetFilterTextBox(AvailableFilterTextBox);
@@ -197,6 +201,11 @@ namespace GroceryList.Main
             ItemsMoved(this, new EventArgs());
         }
 
+        private void UpdateMainFormTitle()
+        {
+            Text = TITLE + " - " + lastSaveAsPath;
+        }
+
         private void ResetFilterTextBox(TextBox textBoxToReset)
         {
             textBoxToReset.Text = DEFAULT_FILTER_TEXTBOX_VALUE;
@@ -232,6 +241,7 @@ namespace GroceryList.Main
             DiskRepoHelpers.WriteListToDisk(
                 new System.IO.FileInfo(lastSaveAsPath), ListItemsRepo, AvailableItemsRepo);
 
+            UpdateMainFormTitle();
         }
 
         private void ReadListFromDisk(object sender, EventArgs e)
@@ -244,6 +254,8 @@ namespace GroceryList.Main
                 new System.IO.FileInfo(ListOpenFileDialog.FileName), ListItemsRepo, AvailableItemsRepo);
 
             lastSaveAsPath = ListOpenFileDialog.FileName;
+
+            UpdateMainFormTitle();
 
             ListPrintButton.Enabled = true;
             ListClearListButton.Enabled = true;

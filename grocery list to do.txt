@@ -1,7 +1,6 @@
 - UI cleanup
 	- Tab index order
 	- Borders/button configs/title bar names of child forms
-	- Ensure UI elements enable/disable at proper times
 
 - Add support for Trader Joe's as a store
 
