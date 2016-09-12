@@ -1,5 +1,4 @@
 - UI cleanup
-	- Save option should execute Save As unless the existing list is dirty
 	- Tab index order
 	- Borders/button configs/title bar names of child forms
 	- Ensure UI elements enable/disable at proper times
