@@ -23,7 +23,7 @@ namespace GroceryList.Main
 
         private readonly string TITLE = "Grocery List Manager";
 
-        private string lastSaveAsPath;
+        private string lastSaveAsPath = "";
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
         public List<GroceryItem> AvailableItemsRepo { get; private set; }
@@ -61,8 +61,6 @@ namespace GroceryList.Main
                         MessageBoxIcon.Error);
                 }
             }
-
-            lastSaveAsPath = "";
 
             AvailableItemsRepo = InternalItemsRepo.Items;
             ListItemsRepo = new Dictionary<GroceryItem, int>();
