@@ -1,5 +1,3 @@
-- Prevent focus from moving away from popup dialogs (add/edit/etc)
-
 - Add support for Trader Joe's as a store
 
 - "Print..." list option
