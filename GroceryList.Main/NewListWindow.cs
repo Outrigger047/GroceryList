@@ -349,9 +349,10 @@ namespace GroceryList.Main
                 .GetItemFromString(Regex.Split(RepositoryListBox.SelectedItem.ToString(), @"\s{2,}")[0]);
 
             EditRepoItemForm editItemForm = new EditRepoItemForm(itemToEdit);
-            editItemForm.Show();
             editItemForm.OkButtonClicked += UpdateUiFromRepos;
             editItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
+            editItemForm.Location = new Point(Location.X + 200, Location.Y + 100);
+            editItemForm.Show();
         }
 
         private void RepoRemoveItemButton_Click(object sender, EventArgs e)
@@ -385,11 +386,11 @@ namespace GroceryList.Main
         private void RepoAddItemButton_Click(object sender, EventArgs e)
         {
             AddRepoItemForm addItemForm = new AddRepoItemForm();
-            addItemForm.Show();
-
             addItemForm.OkButtonClicked += AddItemFromForm;
             addItemForm.OkButtonClicked += UpdateUiFromRepos;
             addItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;
+            addItemForm.Location = new Point(Location.X + 200, Location.Y + 100);
+            addItemForm.Show();
         }
         #endregion
 
@@ -498,9 +499,10 @@ namespace GroceryList.Main
             }
 
             EditListQuantityForm editQuantityForm = new EditListQuantityForm(itemsToEdit);
-            editQuantityForm.Show();
             editQuantityForm.EditListQuantityFormOkButtonClicked += EditQuantityFromForm;
             editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
+            editQuantityForm.Location = new Point(Location.X + 200, Location.Y + 100);
+            editQuantityForm.Show();
         }
 
         private void ListSaveButton_Click(object sender, EventArgs e)

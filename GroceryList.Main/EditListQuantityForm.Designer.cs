@@ -80,7 +80,11 @@
             this.Controls.Add(this.EditQuantityOkButton);
             this.Controls.Add(this.QuantityUpDown);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "EditListQuantityForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Edit Quantity";
             ((System.ComponentModel.ISupportInitialize)(this.QuantityUpDown)).EndInit();
             this.ResumeLayout(false);
