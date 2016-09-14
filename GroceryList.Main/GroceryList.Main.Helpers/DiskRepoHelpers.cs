@@ -14,16 +14,18 @@ namespace GroceryList.Main.Helpers
         private const int DISK_REPO_HANNAFORD_COL_INDEX = 2;
         private const int DISK_REPO_SHAWS_COL_INDEX = 3;
         private const int DISK_REPO_SAMS_COL_INDEX = 4;
+        private const int DISK_REPO_TJS_COL_INDEX = 5;
 
         private static readonly string DISK_REPO_VALID_HEADER_ROW = 
-            "ITEM\tCATEGORY\tHANNAFORD_PRICE\tSHAWS_PRICE\tSAMS_PRICE";
+            "ITEM\tCATEGORY\tHANNAFORD_PRICE\tSHAWS_PRICE\tSAMS_PRICE\tTJS_PRICE";
 
         public static Dictionary<int, Enums.Stores> DiskRepoStoreColIndexLookup =
             new Dictionary<int, Enums.Stores>()
             {
                 { 2, Enums.Stores.Hannaford },
                 { 3, Enums.Stores.Shaws },
-                { 4, Enums.Stores.Sams }
+                { 4, Enums.Stores.Sams },
+                { 5, Enums.Stores.TraderJoes }
             };
 
         public static FileInfo GetMostRecentRepo(string repoFilesPath)
@@ -146,6 +148,16 @@ namespace GroceryList.Main.Helpers
                     {
                         sw.Write(MoneyShit.PenniesToDecimal((int)samsPrice).ToString());
                     }
+                    else
+                    {
+                        sw.Write("\t");
+                    }
+
+                    var tjsPrice = item.Prices.Find(x => x.Store == Enums.Stores.TraderJoes)?.Price;
+                    if (tjsPrice != null)
+                    {
+                        sw.Write(MoneyShit.PenniesToDecimal((int)tjsPrice).ToString());
+                    }
 
                     sw.WriteLine();
                 }
@@ -188,7 +200,8 @@ namespace GroceryList.Main.Helpers
         {
             if (currentLine[DISK_REPO_HANNAFORD_COL_INDEX] != "" ||
                 currentLine[DISK_REPO_SHAWS_COL_INDEX] != "" ||
-                currentLine[DISK_REPO_SAMS_COL_INDEX] != "")
+                currentLine[DISK_REPO_SAMS_COL_INDEX] != "" ||
+                currentLine[DISK_REPO_TJS_COL_INDEX] != "")
             {
                 return true;
             }
@@ -202,7 +215,7 @@ namespace GroceryList.Main.Helpers
         {
             List<StorePrice> pricesFromRow = new List<StorePrice>();
 
-            for (int i = DISK_REPO_HANNAFORD_COL_INDEX; i <= DISK_REPO_SAMS_COL_INDEX; i++)
+            for (int i = DISK_REPO_HANNAFORD_COL_INDEX; i <= DISK_REPO_TJS_COL_INDEX; i++)
             {
                 if (currentLine[i] != "")
                 {

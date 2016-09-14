@@ -4,7 +4,7 @@
     {
         public enum Stores
         {
-            Hannaford, Sams, Shaws
+            Hannaford, Sams, Shaws, TraderJoes
         }
     }
 }
