@@ -146,7 +146,7 @@ namespace GroceryList.Main.Helpers
                     var samsPrice = item.Prices.Find(x => x.Store == Enums.Stores.Sams)?.Price;
                     if (samsPrice != null)
                     {
-                        sw.Write(MoneyShit.PenniesToDecimal((int)samsPrice).ToString());
+                        sw.Write(MoneyShit.PenniesToDecimal((int)samsPrice).ToString() + "\t");
                     }
                     else
                     {
