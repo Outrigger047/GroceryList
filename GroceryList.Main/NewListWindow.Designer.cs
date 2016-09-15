@@ -319,9 +319,13 @@
             this.InfoTotalPriceLabel.TabIndex = 0;
             this.InfoTotalPriceLabel.Text = "$0.00";
             // 
+            // ListSaveAsDialog
+            // 
+            this.ListSaveAsDialog.Filter = "NOM files|*.nom|All files|*.*";
+            // 
             // ListOpenFileDialog
             // 
-            this.ListOpenFileDialog.FileName = "ListOpenFileDialog";
+            this.ListOpenFileDialog.Filter = "NOM files|*.nom|All files|*.*";
             // 
             // NewListWindow
             // 
