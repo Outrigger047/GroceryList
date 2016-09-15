@@ -50,6 +50,12 @@ namespace GroceryList.Main
                     ItemToAdd.AddNewPrice(Enums.Stores.Shaws, MoneyShit.DecimalToPennies(ShawsPriceBox.Value));
                 }
 
+                if (TraderJoesPriceBox.Value != 0)
+                {
+                    ItemToAdd.AddNewPrice(Enums.Stores.TraderJoes, 
+                        MoneyShit.DecimalToPennies(TraderJoesPriceBox.Value));
+                }
+
                 OkButtonClicked(this, new AddRepoItemEventArgs(ItemToAdd));
 
                 Close();

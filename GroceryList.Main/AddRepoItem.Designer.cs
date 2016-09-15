@@ -38,9 +38,12 @@
             this.HannafordPriceBox = new System.Windows.Forms.NumericUpDown();
             this.ShawsPriceBox = new System.Windows.Forms.NumericUpDown();
             this.SamsPriceBox = new System.Windows.Forms.NumericUpDown();
+            this.TraderJoesPriceBox = new System.Windows.Forms.NumericUpDown();
+            this.TraderJoesPriceLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.HannafordPriceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ShawsPriceBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SamsPriceBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TraderJoesPriceBox)).BeginInit();
             this.SuspendLayout();
             // 
             // ItemNameLabel
@@ -88,7 +91,7 @@
             // 
             // AddRepoItemOkButton
             // 
-            this.AddRepoItemOkButton.Location = new System.Drawing.Point(92, 142);
+            this.AddRepoItemOkButton.Location = new System.Drawing.Point(90, 167);
             this.AddRepoItemOkButton.Name = "AddRepoItemOkButton";
             this.AddRepoItemOkButton.Size = new System.Drawing.Size(75, 23);
             this.AddRepoItemOkButton.TabIndex = 4;
@@ -98,7 +101,7 @@
             // 
             // AddRepoItemCancelButton
             // 
-            this.AddRepoItemCancelButton.Location = new System.Drawing.Point(173, 142);
+            this.AddRepoItemCancelButton.Location = new System.Drawing.Point(171, 167);
             this.AddRepoItemCancelButton.Name = "AddRepoItemCancelButton";
             this.AddRepoItemCancelButton.Size = new System.Drawing.Size(75, 23);
             this.AddRepoItemCancelButton.TabIndex = 5;
@@ -133,11 +136,31 @@
             this.SamsPriceBox.TabIndex = 3;
             this.SamsPriceBox.ThousandsSeparator = true;
             // 
+            // TraderJoesPriceBox
+            // 
+            this.TraderJoesPriceBox.DecimalPlaces = 2;
+            this.TraderJoesPriceBox.Location = new System.Drawing.Point(137, 134);
+            this.TraderJoesPriceBox.Name = "TraderJoesPriceBox";
+            this.TraderJoesPriceBox.Size = new System.Drawing.Size(120, 20);
+            this.TraderJoesPriceBox.TabIndex = 6;
+            this.TraderJoesPriceBox.ThousandsSeparator = true;
+            // 
+            // TraderJoesPriceLabel
+            // 
+            this.TraderJoesPriceLabel.AutoSize = true;
+            this.TraderJoesPriceLabel.Location = new System.Drawing.Point(36, 136);
+            this.TraderJoesPriceLabel.Name = "TraderJoesPriceLabel";
+            this.TraderJoesPriceLabel.Size = new System.Drawing.Size(92, 13);
+            this.TraderJoesPriceLabel.TabIndex = 7;
+            this.TraderJoesPriceLabel.Text = "Trader Joe\'s Price";
+            // 
             // AddRepoItemForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 184);
+            this.ClientSize = new System.Drawing.Size(349, 216);
+            this.Controls.Add(this.TraderJoesPriceBox);
+            this.Controls.Add(this.TraderJoesPriceLabel);
             this.Controls.Add(this.SamsPriceBox);
             this.Controls.Add(this.ShawsPriceBox);
             this.Controls.Add(this.HannafordPriceBox);
@@ -161,6 +184,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.HannafordPriceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ShawsPriceBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SamsPriceBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TraderJoesPriceBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +202,7 @@
         private System.Windows.Forms.NumericUpDown HannafordPriceBox;
         private System.Windows.Forms.NumericUpDown ShawsPriceBox;
         private System.Windows.Forms.NumericUpDown SamsPriceBox;
+        private System.Windows.Forms.NumericUpDown TraderJoesPriceBox;
+        private System.Windows.Forms.Label TraderJoesPriceLabel;
     }
 }

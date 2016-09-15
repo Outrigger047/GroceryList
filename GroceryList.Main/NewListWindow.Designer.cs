@@ -68,7 +68,7 @@
             this.RepositoryGroupBox.Controls.Add(this.RepositoryListBox);
             this.RepositoryGroupBox.Location = new System.Drawing.Point(13, 13);
             this.RepositoryGroupBox.Name = "RepositoryGroupBox";
-            this.RepositoryGroupBox.Size = new System.Drawing.Size(426, 462);
+            this.RepositoryGroupBox.Size = new System.Drawing.Size(464, 462);
             this.RepositoryGroupBox.TabIndex = 0;
             this.RepositoryGroupBox.TabStop = false;
             this.RepositoryGroupBox.Text = "Available Items";
@@ -79,7 +79,7 @@
             this.AvailableFilterTextBox.Location = new System.Drawing.Point(7, 19);
             this.AvailableFilterTextBox.MaxLength = 100;
             this.AvailableFilterTextBox.Name = "AvailableFilterTextBox";
-            this.AvailableFilterTextBox.Size = new System.Drawing.Size(413, 20);
+            this.AvailableFilterTextBox.Size = new System.Drawing.Size(451, 20);
             this.AvailableFilterTextBox.TabIndex = 0;
             this.AvailableFilterTextBox.TextChanged += new System.EventHandler(this.AvailableFilterTextBox_TextChanged);
             this.AvailableFilterTextBox.Enter += new System.EventHandler(this.AvailableFilterTextBox_Enter);
@@ -91,7 +91,7 @@
             // RepoEditItemButton
             // 
             this.RepoEditItemButton.Enabled = false;
-            this.RepoEditItemButton.Location = new System.Drawing.Point(28, 408);
+            this.RepoEditItemButton.Location = new System.Drawing.Point(48, 407);
             this.RepoEditItemButton.Name = "RepoEditItemButton";
             this.RepoEditItemButton.Size = new System.Drawing.Size(115, 48);
             this.RepoEditItemButton.TabIndex = 2;
@@ -102,7 +102,7 @@
             // RepoRemoveItemButton
             // 
             this.RepoRemoveItemButton.Enabled = false;
-            this.RepoRemoveItemButton.Location = new System.Drawing.Point(152, 408);
+            this.RepoRemoveItemButton.Location = new System.Drawing.Point(172, 407);
             this.RepoRemoveItemButton.Name = "RepoRemoveItemButton";
             this.RepoRemoveItemButton.Size = new System.Drawing.Size(115, 48);
             this.RepoRemoveItemButton.TabIndex = 3;
@@ -112,7 +112,7 @@
             // 
             // RepoAddItemButton
             // 
-            this.RepoAddItemButton.Location = new System.Drawing.Point(276, 408);
+            this.RepoAddItemButton.Location = new System.Drawing.Point(296, 407);
             this.RepoAddItemButton.Name = "RepoAddItemButton";
             this.RepoAddItemButton.Size = new System.Drawing.Size(115, 48);
             this.RepoAddItemButton.TabIndex = 4;
@@ -126,7 +126,7 @@
             this.RepositoryListBox.Location = new System.Drawing.Point(7, 46);
             this.RepositoryListBox.Name = "RepositoryListBox";
             this.RepositoryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.RepositoryListBox.Size = new System.Drawing.Size(413, 355);
+            this.RepositoryListBox.Size = new System.Drawing.Size(451, 355);
             this.RepositoryListBox.Sorted = true;
             this.RepositoryListBox.TabIndex = 1;
             this.RepositoryListBox.SelectedIndexChanged += new System.EventHandler(this.RepositoryListBox_SelectedIndexChanged);
@@ -140,9 +140,9 @@
             this.ListGroupBox.Controls.Add(this.ListQuantityButton);
             this.ListGroupBox.Controls.Add(this.ListClearListButton);
             this.ListGroupBox.Controls.Add(this.ListListBox);
-            this.ListGroupBox.Location = new System.Drawing.Point(601, 13);
+            this.ListGroupBox.Location = new System.Drawing.Point(639, 13);
             this.ListGroupBox.Name = "ListGroupBox";
-            this.ListGroupBox.Size = new System.Drawing.Size(426, 462);
+            this.ListGroupBox.Size = new System.Drawing.Size(491, 462);
             this.ListGroupBox.TabIndex = 1;
             this.ListGroupBox.TabStop = false;
             this.ListGroupBox.Text = "Grocery List";
@@ -150,7 +150,7 @@
             // ListSaveAsButton
             // 
             this.ListSaveAsButton.Enabled = false;
-            this.ListSaveAsButton.Location = new System.Drawing.Point(288, 433);
+            this.ListSaveAsButton.Location = new System.Drawing.Point(322, 432);
             this.ListSaveAsButton.Name = "ListSaveAsButton";
             this.ListSaveAsButton.Size = new System.Drawing.Size(119, 23);
             this.ListSaveAsButton.TabIndex = 13;
@@ -161,7 +161,7 @@
             // ListSaveButton
             // 
             this.ListSaveButton.Enabled = false;
-            this.ListSaveButton.Location = new System.Drawing.Point(157, 433);
+            this.ListSaveButton.Location = new System.Drawing.Point(191, 432);
             this.ListSaveButton.Name = "ListSaveButton";
             this.ListSaveButton.Size = new System.Drawing.Size(119, 23);
             this.ListSaveButton.TabIndex = 12;
@@ -171,7 +171,7 @@
             // 
             // OpenListButton
             // 
-            this.OpenListButton.Location = new System.Drawing.Point(26, 433);
+            this.OpenListButton.Location = new System.Drawing.Point(60, 432);
             this.OpenListButton.Name = "OpenListButton";
             this.OpenListButton.Size = new System.Drawing.Size(119, 23);
             this.OpenListButton.TabIndex = 11;
@@ -182,7 +182,7 @@
             // ListPrintButton
             // 
             this.ListPrintButton.Enabled = false;
-            this.ListPrintButton.Location = new System.Drawing.Point(288, 408);
+            this.ListPrintButton.Location = new System.Drawing.Point(322, 407);
             this.ListPrintButton.Name = "ListPrintButton";
             this.ListPrintButton.Size = new System.Drawing.Size(119, 23);
             this.ListPrintButton.TabIndex = 10;
@@ -192,7 +192,7 @@
             // ListQuantityButton
             // 
             this.ListQuantityButton.Enabled = false;
-            this.ListQuantityButton.Location = new System.Drawing.Point(26, 408);
+            this.ListQuantityButton.Location = new System.Drawing.Point(60, 407);
             this.ListQuantityButton.Name = "ListQuantityButton";
             this.ListQuantityButton.Size = new System.Drawing.Size(119, 23);
             this.ListQuantityButton.TabIndex = 8;
@@ -203,7 +203,7 @@
             // ListClearListButton
             // 
             this.ListClearListButton.Enabled = false;
-            this.ListClearListButton.Location = new System.Drawing.Point(157, 408);
+            this.ListClearListButton.Location = new System.Drawing.Point(191, 407);
             this.ListClearListButton.Name = "ListClearListButton";
             this.ListClearListButton.Size = new System.Drawing.Size(119, 23);
             this.ListClearListButton.TabIndex = 9;
@@ -217,14 +217,14 @@
             this.ListListBox.Location = new System.Drawing.Point(7, 20);
             this.ListListBox.Name = "ListListBox";
             this.ListListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListListBox.Size = new System.Drawing.Size(413, 381);
+            this.ListListBox.Size = new System.Drawing.Size(478, 381);
             this.ListListBox.TabIndex = 7;
             this.ListListBox.SelectedIndexChanged += new System.EventHandler(this.ListListBox_SelectedIndexChanged);
             // 
             // AddToListButton
             // 
             this.AddToListButton.Enabled = false;
-            this.AddToListButton.Location = new System.Drawing.Point(445, 142);
+            this.AddToListButton.Location = new System.Drawing.Point(483, 144);
             this.AddToListButton.Name = "AddToListButton";
             this.AddToListButton.Size = new System.Drawing.Size(150, 72);
             this.AddToListButton.TabIndex = 5;
@@ -235,7 +235,7 @@
             // RemoveFromListButton
             // 
             this.RemoveFromListButton.Enabled = false;
-            this.RemoveFromListButton.Location = new System.Drawing.Point(445, 220);
+            this.RemoveFromListButton.Location = new System.Drawing.Point(483, 222);
             this.RemoveFromListButton.Name = "RemoveFromListButton";
             this.RemoveFromListButton.Size = new System.Drawing.Size(150, 72);
             this.RemoveFromListButton.TabIndex = 6;
@@ -251,7 +251,7 @@
             this.InformationGroupBox.Controls.Add(this.InfoNumItemsNameLabel);
             this.InformationGroupBox.Controls.Add(this.InfoTotalAmtNameLabel);
             this.InformationGroupBox.Controls.Add(this.InfoTotalPriceLabel);
-            this.InformationGroupBox.Location = new System.Drawing.Point(13, 482);
+            this.InformationGroupBox.Location = new System.Drawing.Point(61, 481);
             this.InformationGroupBox.Name = "InformationGroupBox";
             this.InformationGroupBox.Size = new System.Drawing.Size(1014, 139);
             this.InformationGroupBox.TabIndex = 4;
@@ -327,7 +327,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 633);
+            this.ClientSize = new System.Drawing.Size(1142, 633);
             this.Controls.Add(this.InformationGroupBox);
             this.Controls.Add(this.RemoveFromListButton);
             this.Controls.Add(this.AddToListButton);
