@@ -35,6 +35,9 @@ namespace GroceryList.Main
                     case Enums.Stores.Shaws:
                         ShawsPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
                         break;
+                    case Enums.Stores.TraderJoes:
+                        TraderJoesPriceBox.Value = MoneyShit.PenniesToDecimal(price.Price);
+                        break;
                     default:
                         break;
                 }
@@ -71,6 +74,12 @@ namespace GroceryList.Main
             if (ShawsPriceBox.Value != 0)
             {
                 ItemToEdit.AddNewPrice(Enums.Stores.Shaws, MoneyShit.DecimalToPennies(ShawsPriceBox.Value));
+                ItemUpdated = true;
+            }
+
+            if (TraderJoesPriceBox.Value != 0)
+            {
+                ItemToEdit.AddNewPrice(Enums.Stores.TraderJoes, MoneyShit.DecimalToPennies(TraderJoesPriceBox.Value));
                 ItemUpdated = true;
             }
 
