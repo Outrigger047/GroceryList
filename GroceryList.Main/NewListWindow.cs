@@ -282,13 +282,7 @@ namespace GroceryList.Main
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                PrintPreviewDialog previewDialog = new PrintPreviewDialog();
-                previewDialog.Document = document;
-                result = previewDialog.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    document.Print();
-                }
+                document.Print();
             }
         }
 
@@ -353,7 +347,7 @@ namespace GroceryList.Main
 
             documentContents.Add("");
             documentContents.Add("");
-            documentContents.Add("Total: " + runningTotal);
+            documentContents.Add("Total: $" + runningTotal);
 
             return documentContents;
         }
