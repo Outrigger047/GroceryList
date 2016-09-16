@@ -188,6 +188,7 @@
             this.ListPrintButton.TabIndex = 10;
             this.ListPrintButton.Text = "Print";
             this.ListPrintButton.UseVisualStyleBackColor = true;
+            this.ListPrintButton.Click += new System.EventHandler(this.ListPrintButton_Click);
             // 
             // ListQuantityButton
             // 

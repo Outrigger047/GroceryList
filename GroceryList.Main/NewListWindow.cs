@@ -267,7 +267,29 @@ namespace GroceryList.Main
         #region Printing
         private void PrintGroceryList()
         {
+            PrintDialog dialog = new PrintDialog();
+            PrintDocument document = new PrintDocument();
+            PrinterSettings settings = new PrinterSettings();
+            PaperSize size = new PaperSize("Custom", 100, 200);
 
+            dialog.Document = document;
+            dialog.Document.DefaultPageSettings.PaperSize = size;
+
+            document.DefaultPageSettings.PaperSize.Height = 820;
+            document.DefaultPageSettings.PaperSize.Width = 520;
+            document.PrintPage += new PrintPageEventHandler(PrintGroceryList_PrintPage);
+
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                PrintPreviewDialog previewDialog = new PrintPreviewDialog();
+                previewDialog.Document = document;
+                result = previewDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    document.Print();
+                }
+            }
         }
 
         private void PrintGroceryList_PrintPage(object sender, PrintPageEventArgs e)
@@ -612,6 +634,10 @@ namespace GroceryList.Main
             }
         }
 
+        private void ListPrintButton_Click(object sender, EventArgs e)
+        {
+            PrintGroceryList();
+        }
         #endregion
 
         #region Information Pane
