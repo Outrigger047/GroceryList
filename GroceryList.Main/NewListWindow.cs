@@ -315,6 +315,7 @@ namespace GroceryList.Main
         private List<string> PrepDocumentContents(Enums.Stores store)
         {
             List<string> documentContents = new List<string>();
+            decimal runningTotal = 0;
 
             documentContents.Add(lastSaveAsPath);
             documentContents.Add("");
@@ -336,6 +337,8 @@ namespace GroceryList.Main
                 decimal unitCost = MoneyShit.PenniesToDecimal(item.Key.Prices.Find(x => x.Store == store).Price);
                 decimal totalItemCost = unitCost * item.Value;
 
+                runningTotal = runningTotal + totalItemCost;
+
                 if (item.Value > 1)
                 {
                     lineText.Append("$" + totalItemCost + " (" + "$" + unitCost + " ea.)");
@@ -347,6 +350,10 @@ namespace GroceryList.Main
 
                 documentContents.Add(lineText.ToString());
             }
+
+            documentContents.Add("");
+            documentContents.Add("");
+            documentContents.Add("Total: " + runningTotal);
 
             return documentContents;
         }
