@@ -288,7 +288,8 @@ namespace GroceryList.Main
 
         private void PrintGroceryList_PrintPage(object sender, PrintPageEventArgs e)
         {
-            List<string> documentContents = PrepDocumentContents(Enums.Stores.Hannaford); // CHANGE THIS!!!
+            var selectedStore = (Enums.Stores)Enum.Parse(typeof(Enums.Stores), (string)StoreComboBox.SelectedItem);
+            List<string> documentContents = PrepDocumentContents(selectedStore);
 
             Graphics graphics = e.Graphics;
             Font font = new Font("Arial", 12);
@@ -319,6 +320,9 @@ namespace GroceryList.Main
             {
                 StringBuilder lineText = new StringBuilder();
 
+                // Checkbox
+                lineText.Append("\u2610  ");
+
                 // Quantity
                 lineText.Append(item.Value.ToString());
                 lineText.Append("x   ");
@@ -348,6 +352,7 @@ namespace GroceryList.Main
             documentContents.Add("");
             documentContents.Add("");
             documentContents.Add("Total: $" + runningTotal);
+            documentContents.Add("Number of items: " + ListItemsRepo.Count);
 
             return documentContents;
         }
