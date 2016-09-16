@@ -270,11 +270,33 @@ namespace GroceryList.Main
 
         }
 
+        private void PrintGroceryList_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            List<string> documentContents = PrepDocumentContents(Enums.Stores.Hannaford); // CHANGE THIS!!!
+
+            Graphics graphics = e.Graphics;
+            Font font = new Font("Arial", 14);
+            SolidBrush brush = new SolidBrush(Color.Black);
+
+            int fontHeight = Convert.ToInt32(font.GetHeight());
+            int startX = 50;
+            int startY = 55;
+            int offset = 40;
+
+            foreach (var line in documentContents)
+            {
+                graphics.DrawString(line, font, brush, startX, startY + offset);
+                offset = offset + fontHeight + 10;
+            }
+        }
+
         private List<string> PrepDocumentContents(Enums.Stores store)
         {
             List<string> documentContents = new List<string>();
 
             documentContents.Add(lastSaveAsPath);
+            documentContents.Add("");
+            documentContents.Add("");
 
             foreach (var item in ListItemsRepo)
             {
@@ -305,15 +327,6 @@ namespace GroceryList.Main
             }
 
             return documentContents;
-        }
-
-        private void PrintGroceryList_PrintPage(object sender, PrintPageEventArgs e)
-        {
-            Graphics graphics = e.Graphics;
-            Font font = new Font("Arial", 14);
-            float fontHeight = font.GetHeight();
-
-            
         }
         #endregion
         #endregion
