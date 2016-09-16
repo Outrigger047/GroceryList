@@ -275,8 +275,8 @@ namespace GroceryList.Main
             dialog.Document = document;
             dialog.Document.DefaultPageSettings.PaperSize = size;
 
-            document.DefaultPageSettings.PaperSize.Height = 820;
-            document.DefaultPageSettings.PaperSize.Width = 520;
+            document.DefaultPageSettings.PaperSize.Height = 1100;
+            document.DefaultPageSettings.PaperSize.Width = 850;
             document.PrintPage += new PrintPageEventHandler(PrintGroceryList_PrintPage);
 
             DialogResult result = dialog.ShowDialog();
@@ -297,7 +297,7 @@ namespace GroceryList.Main
             List<string> documentContents = PrepDocumentContents(Enums.Stores.Hannaford); // CHANGE THIS!!!
 
             Graphics graphics = e.Graphics;
-            Font font = new Font("Arial", 14);
+            Font font = new Font("Arial", 12);
             SolidBrush brush = new SolidBrush(Color.Black);
 
             int fontHeight = Convert.ToInt32(font.GetHeight());
@@ -308,7 +308,7 @@ namespace GroceryList.Main
             foreach (var line in documentContents)
             {
                 graphics.DrawString(line, font, brush, startX, startY + offset);
-                offset = offset + fontHeight + 10;
+                offset = offset + fontHeight + 3;
             }
         }
 
@@ -330,7 +330,7 @@ namespace GroceryList.Main
                 lineText.Append("x   ");
 
                 // Item
-                lineText.Append(item.Key.ToString());
+                lineText.Append(item.Key.Name.ToString());
                 lineText.Append("   ");
 
                 // Price
