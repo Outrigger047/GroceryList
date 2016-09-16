@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using GroceryList.Main.Helpers;
@@ -261,6 +263,59 @@ namespace GroceryList.Main
 
             ItemsMoved(this, new EventArgs());
         }
+
+        #region Printing
+        private void PrintGroceryList()
+        {
+
+        }
+
+        private List<string> PrepDocumentContents(Enums.Stores store)
+        {
+            List<string> documentContents = new List<string>();
+
+            documentContents.Add(lastSaveAsPath);
+
+            foreach (var item in ListItemsRepo)
+            {
+                StringBuilder lineText = new StringBuilder();
+
+                // Quantity
+                lineText.Append(item.Value.ToString());
+                lineText.Append("x   ");
+
+                // Item
+                lineText.Append(item.Key.ToString());
+                lineText.Append("   ");
+
+                // Price
+                decimal unitCost = MoneyShit.PenniesToDecimal(item.Key.Prices.Find(x => x.Store == store).Price);
+                decimal totalItemCost = unitCost * item.Value;
+
+                if (item.Value > 1)
+                {
+                    lineText.Append("$" + totalItemCost + " (" + "$" + unitCost + " ea.)");
+                }
+                else
+                {
+                    lineText.Append("$" + unitCost);
+                }
+
+                documentContents.Add(lineText.ToString());
+            }
+
+            return documentContents;
+        }
+
+        private void PrintGroceryList_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Font font = new Font("Arial", 14);
+            float fontHeight = font.GetHeight();
+
+            
+        }
+        #endregion
         #endregion
 
         #region UI Interaction Event Handlers
