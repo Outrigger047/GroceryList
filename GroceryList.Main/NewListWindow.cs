@@ -323,21 +323,22 @@ namespace GroceryList.Main
             {
                 StorePrice unitCostPrice = item.Key.Prices.Find(x => x.Store == store);
 
+                runningItemCount = runningItemCount + 1;
+
+                StringBuilder lineText = new StringBuilder();
+
+                // Checkbox
+                lineText.Append("\u2610  ");
+
+                // Quantity
+                lineText.Append(item.Value.ToString());
+                lineText.Append("x   ");
+
+                // Item
+                lineText.Append(item.Key.Name.ToString());
+
                 if (unitCostPrice != null)
                 {
-                    runningItemCount = runningItemCount + 1;
-
-                    StringBuilder lineText = new StringBuilder();
-
-                    // Checkbox
-                    lineText.Append("\u2610  ");
-
-                    // Quantity
-                    lineText.Append(item.Value.ToString());
-                    lineText.Append("x   ");
-
-                    // Item
-                    lineText.Append(item.Key.Name.ToString());
                     lineText.Append("       ");
 
                     // Price
@@ -357,9 +358,9 @@ namespace GroceryList.Main
                     {
                         lineText.Append("$" + unitCost.ToString("0.00"));
                     }
-
-                    documentContents.Add(lineText.ToString());
                 }
+
+                documentContents.Add(lineText.ToString());
             }
 
             documentContents.Add("");
