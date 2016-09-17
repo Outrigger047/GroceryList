@@ -1,7 +1,3 @@
-- Add support for Trader Joe's as a store
-
-- "Print..." list option
-	- UI: Print dialog
-	- Functionality
-		- Research
-		- Implement
+- Double click to edit quantity in list listbox
+- Fix bug in filter textbox
+- Add prompt to save if program closes and there are unsaved changes
