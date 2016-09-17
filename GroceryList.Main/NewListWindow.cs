@@ -311,48 +311,61 @@ namespace GroceryList.Main
         {
             List<string> documentContents = new List<string>();
             decimal runningTotal = 0;
+            int runningItemCount = 0;
 
             documentContents.Add(lastSaveAsPath);
             documentContents.Add("");
+
+            documentContents.Add(store.ToString());
             documentContents.Add("");
 
             foreach (var item in ListItemsRepo)
             {
-                StringBuilder lineText = new StringBuilder();
+                StorePrice unitCostPrice = item.Key.Prices.Find(x => x.Store == store);
 
-                // Checkbox
-                lineText.Append("\u2610  ");
-
-                // Quantity
-                lineText.Append(item.Value.ToString());
-                lineText.Append("x   ");
-
-                // Item
-                lineText.Append(item.Key.Name.ToString());
-                lineText.Append("   ");
-
-                // Price
-                decimal unitCost = MoneyShit.PenniesToDecimal(item.Key.Prices.Find(x => x.Store == store).Price);
-                decimal totalItemCost = unitCost * item.Value;
-
-                runningTotal = runningTotal + totalItemCost;
-
-                if (item.Value > 1)
+                if (unitCostPrice != null)
                 {
-                    lineText.Append("$" + totalItemCost + " (" + "$" + unitCost + " ea.)");
-                }
-                else
-                {
-                    lineText.Append("$" + unitCost);
-                }
+                    runningItemCount = runningItemCount + 1;
 
-                documentContents.Add(lineText.ToString());
+                    StringBuilder lineText = new StringBuilder();
+
+                    // Checkbox
+                    lineText.Append("\u2610  ");
+
+                    // Quantity
+                    lineText.Append(item.Value.ToString());
+                    lineText.Append("x   ");
+
+                    // Item
+                    lineText.Append(item.Key.Name.ToString());
+                    lineText.Append("       ");
+
+                    // Price
+                    decimal unitCost = MoneyShit.PenniesToDecimal(unitCostPrice.Price);
+                    decimal totalItemCost = unitCost * item.Value;
+
+                    runningTotal = runningTotal + totalItemCost;
+
+                    if (item.Value > 1)
+                    {
+                        lineText
+                            .Append("$" +
+                            totalItemCost.ToString("0.00") +
+                            " (" + "$" + unitCost.ToString("0.00") + " ea.)");
+                    }
+                    else
+                    {
+                        lineText.Append("$" + unitCost.ToString("0.00"));
+                    }
+
+                    documentContents.Add(lineText.ToString());
+                }
             }
 
             documentContents.Add("");
             documentContents.Add("");
-            documentContents.Add("Total: $" + runningTotal);
-            documentContents.Add("Number of items: " + ListItemsRepo.Count);
+            documentContents.Add("Total: $" + runningTotal.ToString("0.00"));
+            documentContents.Add("Number of items: " + runningItemCount);
 
             return documentContents;
         }
