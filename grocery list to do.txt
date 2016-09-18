@@ -1,4 +1,2 @@
-- Fix formatting bug in total price in info pane
-
 - Add prompt to save if program closes and there are unsaved changes
 - Fix bug in filter textbox
