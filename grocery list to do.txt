@@ -1,5 +1,5 @@
-- Fix bug allowing duplicate named items to be added
 - Investigate why new items are not being perminently committed to the repository when they are added to a list
+- Fix bug allowing duplicate named items to be added
 
 - Add prompt to save if program closes and there are unsaved changes
 - Fix bug in filter textbox
