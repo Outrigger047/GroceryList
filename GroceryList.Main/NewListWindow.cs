@@ -543,7 +543,7 @@ namespace GroceryList.Main
 
         private void RepoAddItemButton_Click(object sender, EventArgs e)
         {
-            AddRepoItemForm addItemForm = new AddRepoItemForm();
+            AddRepoItemForm addItemForm = new AddRepoItemForm(InternalItemsRepo.Items);
             addItemForm.OkButtonClicked += AddItemFromForm;
             addItemForm.OkButtonClicked += UpdateUiFromRepos;
             addItemForm.OkButtonClicked += InternalItemsRepo.WriteRepoToDisk;

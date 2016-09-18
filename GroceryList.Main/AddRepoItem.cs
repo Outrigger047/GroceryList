@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using GroceryList.Main.Helpers;
 
@@ -6,14 +7,18 @@ namespace GroceryList.Main
 {
     public partial class AddRepoItemForm : Form
     {
+        private readonly string ERROR_MSG_DUPLICATE_ITEM = "Item already exists: ";
         private readonly string ERROR_MSG_MISSING_NAME = "Provide a valid name for this item";
-
+        
         public GroceryItem ItemToAdd { get; private set; }
+
+        private List<GroceryItem> ExistingRepoItems;
 
         public event EventHandler<AddRepoItemEventArgs> OkButtonClicked;
 
-        public AddRepoItemForm()
+        public AddRepoItemForm(List<GroceryItem> existingRepoItems)
         {
+            ExistingRepoItems = existingRepoItems;
             InitializeComponent();
         }
 
@@ -28,6 +33,13 @@ namespace GroceryList.Main
             {
                 MessageBox.Show(ERROR_MSG_MISSING_NAME,
                     "Missing Item Name",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else if (ExistingRepoItems.Find(x => x.Name == ItemNameTextBox.Text) != null)
+            {
+                MessageBox.Show(ERROR_MSG_DUPLICATE_ITEM,
+                    "Duplicate Item",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
