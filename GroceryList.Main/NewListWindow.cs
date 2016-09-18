@@ -103,7 +103,7 @@ namespace GroceryList.Main
         #region Private Methods
         private string CalclistTotalCost(Enums.Stores store)
         {
-            return Math.Round(((decimal)CalcListTotalCost(store) / 100), 2).ToString();
+            return Math.Round(((decimal)CalcListTotalCost(store) / 100), 2).ToString("0.00");
         }
 
         private int CalcListTotalCost(Enums.Stores store)
