@@ -63,8 +63,14 @@ namespace GroceryList.Main
                         MessageBoxIcon.Error);
                 }
             }
+            AvailableItemsRepo = new List<GroceryItem>();
 
-            AvailableItemsRepo = InternalItemsRepo.Items;
+            //AvailableItemsRepo = InternalItemsRepo.Items;
+            foreach (var item in InternalItemsRepo.Items)
+            {
+                AvailableItemsRepo.Add(item);
+            }
+
             ListItemsRepo = new Dictionary<GroceryItem, int>();
 
             ItemsMoved += UpdateUiFromRepos;
@@ -150,6 +156,8 @@ namespace GroceryList.Main
             RepositoryListBox.Items.Clear();
             ListListBox.Items.Clear();
 
+            RefreshAvailableRepo();
+
             foreach (var item in AvailableItemsRepo)
             {
                 RepositoryListBox.Items.Add(item.ListBoxRowText);
@@ -201,9 +209,17 @@ namespace GroceryList.Main
             ItemsMoved(this, new EventArgs());
         }
 
-        private void UpdateMainFormTitle()
+        private void RefreshAvailableRepo()
         {
-            Text = TITLE + " - " + lastSaveAsPath;
+            AvailableItemsRepo.Clear();
+
+            foreach (var item in InternalItemsRepo.Items)
+            {
+                if (!ListItemsRepo.ContainsKey(item))
+                {
+                    AvailableItemsRepo.Add(item);
+                }
+            }
         }
 
         private void ResetFilterTextBox(TextBox textBoxToReset)
@@ -212,9 +228,16 @@ namespace GroceryList.Main
             textBoxToReset.ForeColor = Color.LightGray;
         }
 
+        private void UpdateMainFormTitle()
+        {
+            Text = TITLE + " - " + lastSaveAsPath;
+        }
+
         private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
         {
             InternalItemsRepo.Items.Add(e.ItemToAdd);
+
+            ItemsMoved(this, new EventArgs());
         }
 
         private void EditQuantityFromForm(object sender, EditListQuantityForm.EditListQuantityEventArgs e)
