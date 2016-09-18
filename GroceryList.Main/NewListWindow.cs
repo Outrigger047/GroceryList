@@ -434,25 +434,28 @@ namespace GroceryList.Main
 
         private void ListListBox_DoubleClick(object sender, EventArgs e)
         {
-            Dictionary<GroceryItem, int> itemsToEdit = new Dictionary<GroceryItem, int>();
-
-            Dictionary<GroceryItem, int>.KeyCollection groceryItems = ListItemsRepo.Keys;
-
-            foreach (var item in ListListBox.SelectedItems)
+            if (ListListBox.SelectedItems.Count > 0)
             {
-                string itemNameFromListBox = Regex.Split(item.ToString(), @"\s{2,}")[1];
-                IEnumerable<GroceryItem> g = groceryItems.Where(x => x.Name == itemNameFromListBox);
-                foreach (var gItem in g)
-                {
-                    itemsToEdit.Add(gItem, ListItemsRepo[gItem]);
-                }
-            }
+                Dictionary<GroceryItem, int> itemsToEdit = new Dictionary<GroceryItem, int>();
 
-            EditListQuantityForm editQuantityForm = new EditListQuantityForm(itemsToEdit);
-            editQuantityForm.EditListQuantityFormOkButtonClicked += EditQuantityFromForm;
-            editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
-            editQuantityForm.Location = new Point(Location.X + 200, Location.Y + 100);
-            editQuantityForm.Show();
+                Dictionary<GroceryItem, int>.KeyCollection groceryItems = ListItemsRepo.Keys;
+
+                foreach (var item in ListListBox.SelectedItems)
+                {
+                    string itemNameFromListBox = Regex.Split(item.ToString(), @"\s{2,}")[1];
+                    IEnumerable<GroceryItem> g = groceryItems.Where(x => x.Name == itemNameFromListBox);
+                    foreach (var gItem in g)
+                    {
+                        itemsToEdit.Add(gItem, ListItemsRepo[gItem]);
+                    }
+                }
+
+                EditListQuantityForm editQuantityForm = new EditListQuantityForm(itemsToEdit);
+                editQuantityForm.EditListQuantityFormOkButtonClicked += EditQuantityFromForm;
+                editQuantityForm.EditListQuantityFormOkButtonClicked += UpdateUiFromRepos;
+                editQuantityForm.Location = new Point(Location.X + 200, Location.Y + 100);
+                editQuantityForm.Show(); 
+            }
         }
         #endregion
 
