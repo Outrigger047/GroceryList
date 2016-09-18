@@ -221,6 +221,7 @@
             this.ListListBox.Size = new System.Drawing.Size(478, 381);
             this.ListListBox.TabIndex = 7;
             this.ListListBox.SelectedIndexChanged += new System.EventHandler(this.ListListBox_SelectedIndexChanged);
+            this.ListListBox.DoubleClick += new System.EventHandler(this.ListListBox_DoubleClick);
             // 
             // AddToListButton
             // 
