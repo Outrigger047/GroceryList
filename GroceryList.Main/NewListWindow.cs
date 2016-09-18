@@ -63,9 +63,8 @@ namespace GroceryList.Main
                         MessageBoxIcon.Error);
                 }
             }
-            AvailableItemsRepo = new List<GroceryItem>();
 
-            //AvailableItemsRepo = InternalItemsRepo.Items;
+            AvailableItemsRepo = new List<GroceryItem>();
             foreach (var item in InternalItemsRepo.Items)
             {
                 AvailableItemsRepo.Add(item);
@@ -531,7 +530,7 @@ namespace GroceryList.Main
             {
                 foreach (var item in itemsToRemove)
                 {
-                    AvailableItemsRepo.Remove(item);
+                    InternalItemsRepo.Items.Remove(item);
                 }
 
                 RepoItemsChanged(this, new EventArgs());
