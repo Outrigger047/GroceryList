@@ -1,2 +1,2 @@
-- Fix bug causing items to not remove from Available List Box on file load
+- (load-bug) Fix bug causing items to not remove from Available List Box on file load
 - Fix bug in filter textbox
