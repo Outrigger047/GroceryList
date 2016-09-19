@@ -232,6 +232,7 @@ namespace GroceryList.Main
             Text = TITLE + " - " + lastSaveAsPath;
         }
 
+        #region Private Methods - Event handlers
         private void AddItemFromForm(object sender, AddRepoItemForm.AddRepoItemEventArgs e)
         {
             InternalItemsRepo.Items.Add(e.ItemToAdd);
@@ -285,8 +286,9 @@ namespace GroceryList.Main
 
             ItemsMoved(this, new EventArgs());
         }
+        #endregion
 
-        #region Printing
+        #region Private Methods - Printing
         private void PrintGroceryList()
         {
             PrintDialog dialog = new PrintDialog();
