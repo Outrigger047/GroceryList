@@ -1,2 +1,2 @@
-- (save-prompt) Add prompt to save if program closes and there are unsaved changes
+- Fix bug causing items to not remove from Available List Box on file load
 - Fix bug in filter textbox

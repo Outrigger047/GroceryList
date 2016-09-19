@@ -17,15 +17,15 @@ namespace GroceryList.Main
         private readonly string CONFIRM_REPO_REMOVE_SINGLE = "Are you sure you want to remove this item?";
         private readonly string CONFIRM_REPO_REMOVE_MULTI = "Are you sure you want to remove these items?";
         private readonly string DEFAULT_FILTER_TEXTBOX_VALUE = "\uD83D\uDD0E Type to filter...";
-
         private readonly string DEFAULT_COMBOBOX_STORE = "Hannaford";
-
         private readonly string DEFAULT_PERSIST_PATH = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
         private readonly string DEFAULT_PERSIST_EXTENSION = ".nom";
-
         private readonly string TITLE = "Grocery List Manager";
+        private readonly string SAVE_QUIT_PROMPT = "Save changes to list before quitting?";
 
         private string lastSaveAsPath = "";
+
+        private bool unsavedChanges;
 
         public GroceryItemRepository InternalItemsRepo { get; private set; }
         public List<GroceryItem> AvailableItemsRepo { get; private set; }
@@ -86,6 +86,8 @@ namespace GroceryList.Main
             ListOpenFileDialog.DefaultExt = DEFAULT_PERSIST_EXTENSION;
             ListOpenFileDialog.FileOk += ReadListFromDisk;
 
+            FormClosing += SaveOnQuit;
+
             string[] stores = Enum.GetNames(typeof(Enums.Stores));
             foreach (var item in stores)
             {
@@ -94,6 +96,8 @@ namespace GroceryList.Main
             StoreComboBox.Text = DEFAULT_COMBOBOX_STORE;
 
             Text = TITLE;
+
+            unsavedChanges = false;
 
             DoUiListBoxUpdateFromRepos();
             ResetFilterTextBox(AvailableFilterTextBox);
@@ -146,6 +150,7 @@ namespace GroceryList.Main
             }
 
             ItemsMoved(this, new EventArgs());
+            unsavedChanges = false;
         }
 
         private void DoUiListBoxUpdateFromRepos()
@@ -183,6 +188,7 @@ namespace GroceryList.Main
             ListSaveAsButton.Enabled = true;
 
             ItemsMoved(this, new EventArgs());
+            unsavedChanges = true;
         }
 
         private void MoveListToAvailable(GroceryItem itemToMove)
@@ -199,10 +205,13 @@ namespace GroceryList.Main
                 ListSaveButton.Enabled = false;
                 ListPrintButton.Enabled = false;
                 ListQuantityButton.Enabled = false;
+
+                unsavedChanges = false;
             }
             else
             {
                 ListSaveButton.Enabled = true;
+                unsavedChanges = true;
             }
 
             ItemsMoved(this, new EventArgs());
@@ -246,6 +255,8 @@ namespace GroceryList.Main
             {
                 ListItemsRepo[item.Key] = item.Value;
             }
+
+            unsavedChanges = true;
         }
 
         private void UpdateUiFromRepos(object sender, EventArgs e)
@@ -265,6 +276,31 @@ namespace GroceryList.Main
                 new System.IO.FileInfo(lastSaveAsPath), ListItemsRepo, AvailableItemsRepo);
 
             UpdateMainFormTitle();
+            unsavedChanges = false;
+        }
+
+        private void SaveOnQuit(object sender, EventArgs e)
+        {
+            if (unsavedChanges)
+            {
+                DialogResult result = MessageBox.Show(SAVE_QUIT_PROMPT, 
+                    "Save Changes", 
+                    MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    if (lastSaveAsPath != "")
+                    {
+                        System.IO.FileInfo f = new System.IO.FileInfo(lastSaveAsPath);
+                        DiskRepoHelpers.WriteListToDisk(f, ListItemsRepo, AvailableItemsRepo);
+                    }
+                    else
+                    {
+                        ListSaveAsDialog.ShowDialog();
+                    }
+                }
+            }
         }
 
         private void ReadListFromDisk(object sender, EventArgs e)
@@ -285,6 +321,7 @@ namespace GroceryList.Main
             ListSaveAsButton.Enabled = true;
 
             ItemsMoved(this, new EventArgs());
+            unsavedChanges = false;
         }
         #endregion
 
