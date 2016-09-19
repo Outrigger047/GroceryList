@@ -1,2 +1,2 @@
-- Add prompt to save if program closes and there are unsaved changes
+- (save-prompt) Add prompt to save if program closes and there are unsaved changes
 - Fix bug in filter textbox
