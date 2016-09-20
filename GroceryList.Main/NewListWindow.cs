@@ -221,9 +221,15 @@ namespace GroceryList.Main
         {
             AvailableItemsRepo.Clear();
 
+            List<string> listItemsRepoNames = new List<string>();
+            foreach (var item in ListItemsRepo)
+            {
+                listItemsRepoNames.Add(item.Key.Name);
+            }
+
             foreach (var item in InternalItemsRepo.Items)
             {
-                if (!ListItemsRepo.ContainsKey(item))
+                if (!listItemsRepoNames.Contains(item.Name))
                 {
                     AvailableItemsRepo.Add(item);
                 }
@@ -257,6 +263,7 @@ namespace GroceryList.Main
             }
 
             unsavedChanges = true;
+            ListSaveButton.Enabled = true;
         }
 
         private void UpdateUiFromRepos(object sender, EventArgs e)
@@ -306,11 +313,13 @@ namespace GroceryList.Main
         private void ReadListFromDisk(object sender, EventArgs e)
         {
             DoListClear();
-
             AvailableItemsRepo.Clear();
+            //InternalItemsRepo.Items.Clear();
 
             DiskRepoHelpers.ReadListFromDisk(
                 new System.IO.FileInfo(ListOpenFileDialog.FileName), ListItemsRepo, AvailableItemsRepo);
+
+            //RefreshAvailableRepo();
 
             lastSaveAsPath = ListOpenFileDialog.FileName;
 
@@ -713,6 +722,8 @@ namespace GroceryList.Main
             {
                 ListSaveAsDialog.ShowDialog();
             }
+
+            ListSaveButton.Enabled = false;
         }
 
         private void ListSaveAsButton_Click(object sender, EventArgs e)
